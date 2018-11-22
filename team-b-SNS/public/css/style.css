@@ -7,6 +7,39 @@ hr {
   width:95%;
 }
 /* 【container-fluid クラス】*/
+/*  画面サイズが480pxまで  */
+/* .pageTitle h3 {
+ font-size:12px;
+}
+
+@media screen and (min-width:480px) and ( max-width:600px) {
+    /*　画面サイズが480pxからはここを読み込む　*/
+.pageTitle h3 {
+  font-size:15px;
+}
+
+@media screen and (min-width:600px) and ( max-width:960px) {
+    /*　画面サイズが600pxから960pxまではここを読み込む　*/
+.pageTitle h3 {
+  font-size:20px;
+    }
+  }
+
+@media screen and (min-width:960px) and ( max-width:1280px) {
+    /*　画面サイズが960pxから1280pxまではここを読み込む　*/
+.pageTitle h3 {
+   font-size:20px;
+        }
+      }
+
+@media screen and (min-width:1280px) {
+    /*　画面サイズが1280pxからはここを読み込む　*/
+.pageTitle h3 {
+   font-size:20px;
+      }
+    }
+
+
 
 
 /* 【headerタグ内の項目】 */
@@ -41,10 +74,10 @@ header {
 
 .pageTitle {
   height:50px;
-  position: relative;
+  text-align: right;
 }
 
-.pageTitleData {
+/* .pageTitleData {
   position: absolute;
   top: 70%;
   left: 50%;
@@ -52,7 +85,7 @@ header {
   -webkit-transform : translate(-50%,-50%);
   transform : translate(-50%,-50%);
   width:180px;
-}
+} */
 
 /* 【containerクラス内の項目】 */
 
@@ -73,14 +106,14 @@ header {
 }
 
 /* 【ボタンの仕様】 */
-.btn{
+/* .btn{
     display: inline-block;
     padding: 0.5em 1em;
     text-decoration: none;
     color: #FFF;
     border-bottom: solid 4px #627295;
     border-radius: 3px;
-}
+} */
 .btn:active {/*ボタンを押したとき*/
     -ms-transform: translateY(4px);
     -webkit-transform: translateY(4px);
@@ -114,4 +147,8 @@ footer {
 .spaceC {
   background-color: white;
   height:50px;
+}
+
+.footerBtn {
+  text-align: center;
 }
