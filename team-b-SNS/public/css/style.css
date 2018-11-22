@@ -1,0 +1,72 @@
+/* 【body】 */
+body{
+  background-color: white;
+}
+
+/* 【container-fluid クラス】*/
+
+
+/* 【headerタグ内の項目】 */
+header {
+  padding:10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border-bottom: 1px solid #aaa;
+}
+
+.logoMark {
+  height:50px;
+  position: relative;
+}
+
+.logoData{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
+  width: 115px;
+}
+
+.black {
+  background-color: gold;
+  height:50px;
+}
+
+.pageTitle {
+  height:50px;
+  position: relative;
+}
+
+.pageTitleData {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform : translate(-50%,-50%);
+  transform : translate(-50%,-50%);
+  width:180px;
+}
+
+/* 【containerクラス内の項目】 */
+
+
+.box {
+  padding:10px;
+}
+
+.spaceA {
+  background-color: blue;
+  height: 100px;
+}
+
+.spaceB {
+  background-color: yellow;
+  height: 100px;
+}
+
+.spaceC {
+  background-color: green;
+  height: 100px;
+}
