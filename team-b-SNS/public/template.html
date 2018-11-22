@@ -6,7 +6,11 @@
     <title>Welcome to Firebase Hosting</title>
 
     <!-- BootstrapのCSS読み込み -->
+    <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- style.cssの読み込み -->
+    <link href="css/style.css" rel="stylesheet">
+
     <!-- jQuery読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
@@ -24,7 +28,7 @@
     <script defer src="/__/firebase/init.js"></script>
 
     <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
       #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
       #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
       #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
@@ -34,13 +38,31 @@
       #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
       @media (max-width: 600px) {
         body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+        /* body { border-top: 16px solid #ffa100; } */
       }
     </style>
   </head>
   <body>
-
-
+    <div class="container-fluid">
+      <header>
+        <div class="row">
+            <div id="logo-space" class="col-xs-3 col-sm-3 col-md-3 logoMark">
+              <img id="logo" src="img/logo.svg" class="logoData"/>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 blank"></div>
+            <div id="title-space" class="col-xs-3 col-sm-3 col-md-3 pageTitle">
+              <img id="title" src="img/userInfoUpdate.svg" class="pageTitleData"/>
+            </div>
+        </div>
+      </header>
+      <div class="box">
+          <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6 spaceA"></div>
+              <div class="col-xs-6 col-sm-6 col-md-6 spaceB"></div>
+          </div>
+      </div>
+    </div>
+    
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
     <script>
       // Initialize Firebase
