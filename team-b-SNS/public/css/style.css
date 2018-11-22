@@ -6,12 +6,21 @@ body{
 hr {
   width:95%;
 }
+
+/*==================
+ ▼ブレイクポイントのルール▼
+ -スマホを基本設計にする-
+ *〜479px：SP縦
+ *480px〜：SP横
+ *600px〜タブレット
+ *960px〜小型PC
+ *1280px〜大型PC
+==================*/
 /* 【container-fluid クラス】*/
 /*  画面サイズが480pxまで  */
 /* .pageTitle h3 {
  font-size:12px;
 }
-
 @media screen and (min-width:480px) and ( max-width:600px) {
     /*　画面サイズが480pxからはここを読み込む　*/
 .pageTitle h3 {
@@ -53,7 +62,7 @@ header {
 }
 
 .logoMark {
-  height:50px;
+  height:30px;
   position: relative;
 }
 
@@ -67,13 +76,8 @@ header {
   width: 115px;
 }
 
-.black {
-  background-color: gold;
-  height:50px;
-}
-
 .pageTitle {
-  height:50px;
+  height:35px;
   text-align: right;
 }
 
