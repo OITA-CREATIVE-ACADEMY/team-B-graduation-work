@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ボタンはここから</title>
+
+    <!-- BootstrapのCSS読み込み -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- style.cssの読み込み -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- jQuery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <style media="screen">
+      body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        /* body { border-top: 16px solid #ffa100; } */
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+
+        <h1>モックで使用しているボタン</h1>
+        <br>
+        <h4>ログイン・次へ・登録</h4>
+            <ul>
+              <th>btn-primary</th>
+              <li style="list-style: none;">
+                <button type="button" class="btn btn-primary">ログイン</button>
+              </li>
+              <br>
+              <li style="list-style: none;">
+                <button type="button" class="btn btn-primary">次へ</button>
+              </li>
+              <br>
+              <li style="list-style: none;">
+                <button type="button" class="btn btn-primary">登録</button>
+              </li>
+            </ul>
+        <br>
+
+        <h4>パスワード再発行・戻る・キャンセル・画像修正</h4>
+            <ul>
+              <th>Secondary</th>
+              <li style="list-style: none;">
+                <button type="button" class="btn btn-secondary">パスワード再発行</button>
+              </li>
+              <br>
+              <li style="list-style: none;">
+                <button type="button" class="btn btn-secondary">戻る</button>
+              </li>
+              <br>
+              <li style="list-style: none;">
+                <button type="button" class="btn btn-secondary">キャンセル</button>
+              </li>
+              <br>
+              <li style="list-style: none;">
+                <button type="button" class="btn btn-secondary">画像修正</button>
+              </li>
+            </ul>
+          <br>
+
+          <h4>新規登録・ファイル選択・画像変更・再発行用メール送信・パスワード更新</h4>
+              <ul>
+                <th>info</th>
+                <li style="list-style: none;">
+                  <button type="button" class="btn btn-info">パスワード再発行</button>
+                </li>
+                <br>
+                <li style="list-style: none;">
+                  <button type="button" class="btn btn-info">戻る</button>
+                </li>
+                <br>
+                <li style="list-style: none;">
+                  <button type="button" class="btn btn-info">キャンセル</button>
+                </li>
+                <br>
+                <li style="list-style: none;">
+                  <button type="button" class="btn btn-info">画像修正</button>
+                </li>
+              </ul>
+            <br>
+
+        <h4>公式</h4>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-success">Success</button>
+        <button type="button" class="btn btn-danger">Danger</button>
+        <button type="button" class="btn btn-warning">Warning</button>
+        <button type="button" class="btn btn-info">Info</button>
+        <button type="button" class="btn btn-light">Light</button>
+        <button type="button" class="btn btn-dark">Dark</button>
+
+        <button type="button" class="btn btn-link">Link</button>
+
+      </div>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
+        authDomain: "team-b-sns.firebaseapp.com",
+        databaseURL: "https://team-b-sns.firebaseio.com",
+        projectId: "team-b-sns",
+        storageBucket: "team-b-sns.appspot.com",
+        messagingSenderId: "895377669050"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+  </body>
+</html>
