@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>テンプレート</title>
 
     <!-- BootstrapのCSS読み込み -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -43,8 +43,7 @@
     </style>
   </head>
   <body>
-    <div class="container-fluid">
-      <header>
+      <header class="sticky-top">
         <div class="row">
             <div id="logo-space" class="col-xs-3 col-sm-3 col-md-3 logoMark">
               <img id="logo" src="img/logo.svg" class="logoData"/>
@@ -55,15 +54,36 @@
             </div>
         </div>
       </header>
+  <div class="container-fluid">
+
       <div class="box">
           <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-6 spaceA"></div>
               <div class="col-xs-6 col-sm-6 col-md-6 spaceB"></div>
           </div>
-          <button type="button" class="btn btn-primary">ログイン</button>
-
+              <button type="button" class="btn btn-primary">ログイン</button>
+              <button type="button" class="btn btn-secondary">パスワード再発行</button>
+              <button type="button" class="btn btn-info">新規登録</button>
       </div>
+
+    <form class="form-signin">
+      <input type="text" class="form-control" placeholder="Username" id="email" required>
+      <input type="password" class="form-control" placeholder="Password" required>
+    </form>
+    <div id="login" class="login-btn">
+      <button class="btn btn-primary" type="button">
+        ログイン
+      </button>
     </div>
+
+    <hr>
+
+  </div>
+
+    <footer class="fixed-bottom">
+      <div class="spaceC">フッター
+      </div>
+    </footer>
 
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
     <script>
