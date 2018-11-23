@@ -43,79 +43,69 @@
     </style>
   </head>
   <body>
-      <header class="sticky-top">
-        <div class="col-12">
+    <header class="sticky-top">
+        <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
+      <div class="col-12">　
 
         <div class="row">
+          <div id="logo-space" class="col-6 logoMark">
+            <img id="logo" src="img/logo.svg" style="width: 120px;" />
+          </div>
 
-            <div id="logo-space" class="col-6 logoMark">
-              <img id="logo" src="img/logo.svg" style="width: 100px;" />
-            </div>
-
-            <div id="title-space" class="col-6 pageTitle">
-              <h3>ページタイトルタイトル</h3>
-            </div>
-
+          <div id="title-space" class="col-6 pageTitle">
+            <h3>ページタイトルタイトル</h3>
           </div>
         </div>
-      </header>
-  <div class="container-fluid">
+      </div>
+    </header>
 
-    <button class="btn btn-primary">ボタンです</button>
-    <div class="row">
-      <div class="col-6">col-sm-8</div>
-      <div class="col-6">col-sm-4</div>
-    </div>
+    <div class="container-fluid">
+
+      <button class="btn btn-primary">ボタンです</button>
+      <div class="row">
+        <div class="col-6">col-sm-8</div>
+        <div class="col-6">col-sm-4</div>
+      </div>
 
     <!-- <div class="row" style="padding: 20px;">
         <div class="col-xs-6">a</div>
         <div class="col-xs-6">b</div>
     </div> -->
 
-      <div class="box">
-
-              <button type="button" class="btn btn-primary">ログイン</button>
-              <button type="button" class="btn btn-secondary">パスワード再発行</button>
-              <button type="button" class="btn btn-info">新規登録</button>
-      </div>
+    <div class="box">
+      <button type="button" class="btn btn-primary">ログイン</button>
+      <button type="button" class="btn btn-secondary">パスワード再発行</button>
+      <button type="button" class="btn btn-info">新規登録</button>
+    </div>
 
     <form class="form-signin">
       <input type="text" class="form-control" placeholder="Username" id="email" required>
       <input type="password" class="form-control" placeholder="Password" required>
     </form>
     <div id="login" class="login-btn">
-      <button class="btn btn-primary" type="button">
-        ログイン
-      </button>
+      <button class="btn btn-primary" type="button">ログイン</button>
     </div>
-
     <hr>
-
   </div>
 
-    <footer class="fixed-bottom">
-      <div class="col-12">
-
+  <footer class="fixed-bottom">
+    <div class="col-12">
       <div class="row">
-
-          <div id="logo-space" class="col-4 footerBtn">
-            <img id="logo" src="img/logo.svg" style="width: 100px;" />
-          </div>
-          <div id="logo-space" class="col-4 footerBtn">
-            <img id="logo" src="img/logo.svg" style="width: 100px;" />
-          </div>
-
-          <div id="title-space" class="col-4 footerBtn">
-            <img id="logo" src="img/logo.svg" style="width: 100px;" />
-          </div>
-
+        <div id="logo-space" class="col-4 footerBtn">
+          <img id="logo" src="img/home_icon.svg" style="width: 40px;" />
+        </div>
+        <div id="logo-space" class="col-4 footerBtn">
+          <img id="logo" src="img/newPost_icon.svg" style="width: 40px;" />
+        </div>
+        <div id="title-space" class="col-4 footerBtn">
+          <img id="logo" src="img/myPage_icon.svg" style="width: 40px;" />
         </div>
       </div>
+    </div>
+  </footer>
 
-    </footer>
-
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+  <script>
       // Initialize Firebase
       var config = {
         apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
