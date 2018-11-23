@@ -53,9 +53,8 @@ hr {
 
 /* 【headerタグ内の項目】 */
 header {
-  padding:10px 0;
-  margin-bottom: 10px;
-  font-size: 18px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
   border-bottom: 1px solid #aaa;
   background: white;
   box-shadow: 0 2px 2px rgba(0,0,0,0.25);
@@ -63,21 +62,11 @@ header {
 
 .logoMark {
   height:30px;
-  position: relative;
+  margin-bottom:10px;
 }
 
-.logoData{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%,-50%);
-  -webkit-transform : translate(-50%,-50%);
-  transform : translate(-50%,-50%);
-  width: 115px;
-}
 
 .pageTitle {
-  height:35px;
   text-align: right;
 }
 
@@ -146,6 +135,7 @@ input {
 footer {
   border-top: 1px solid #aaa;
   box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
+  background: white;
 }
 
 .spaceC {
@@ -155,4 +145,5 @@ footer {
 
 .footerBtn {
   text-align: center;
+  margin:5px 0;
 }
