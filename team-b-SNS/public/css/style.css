@@ -23,7 +23,7 @@ hr {
 /* .pageTitle h3 {
  font-size:12px;
 }
-@media screen and (min-width:480px) and ( max-width:600px) {
+/* @media screen and (min-width:480px) and ( max-width:600px) { */
     /*　画面サイズが480pxからはここを読み込む　*/
 .pageTitle h3 {
   font-size:15px;
@@ -162,7 +162,7 @@ input {
   margin-bottom:10px;
 }
 
-.login-btn{
+.login{
   text-align:center;
   margin:30px 0px;
 }
@@ -173,6 +173,7 @@ input {
 
 .pwdReissueText {
   font-size: 13px;
+  padding:0px 5px;
 }
 
 .newSignUp {
@@ -185,7 +186,7 @@ input {
   font-size: 18px;
 }
 
-.btn-sineUp{
+.newPost{
   text-align:center;
 }
 
