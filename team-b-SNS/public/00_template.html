@@ -45,33 +45,33 @@
   <body>
     <header class="sticky-top">
         <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
-      <div class="col-12">　
+      <div class="col-12 templateStickyTopSection">　
 
-        <div class="row">
-          <div id="logo-space" class="col-6 logoMark">
+        <div class="row templateStickyTopSectionBox">
+          <div id="logo-space" class="col-6 templateStickyTopSectionBoxLogoMark">
             <img id="logo" src="img/logo.svg" style="width: 120px;" />
           </div>
 
-          <div id="title-space" class="col-6 pageTitle">
+          <div id="title-space" class="col-6 templateStickyTopSectionBoxPageTitle">
             <h3>ページタイトルタイトル</h3>
           </div>
         </div>
       </div>
     </header>
 
-    <div class="container-fluid">
+    <div class="container-fluid templateContainerFluid">
 
-      <button class="btn btn-primary">ボタンです</button>
+      <button class="btn btn-primary templateContainerFluid_Btn">ボタンです</button>
 
     <!-- <div class="row" style="padding: 20px;">
         <div class="col-xs-6">a</div>
         <div class="col-xs-6">b</div>
     </div> -->
 
-    <div class="box">
-      <button id="loginBtn" type="button" class="btn btn-primary">ログイン</button>
-      <button id="pwdReissueBtn" type="button" class="btn btn-secondary">パスワード再発行</button>
-      <button id="newPostBtn" type="button" class="btn btn-info">新規登録</button>
+    <div class="templateContainerFluidBtnSection">
+      <button id="loginBtn" type="button" class="btn btn-primary templateContainerFluidBtnSectionLogin">ログイン</button>
+      <button id="pwdReissueBtn" type="button" class="btn btn-secondary templateContainerFluidBtnSectionPass">パスワード再発行</button>
+      <button id="newPostBtn" type="button" class="btn btn-info templateContainerFluidBtnSectionNewResistration">新規登録</button>
     </div>
 
       <div class="form-group row">
@@ -96,19 +96,19 @@
     <div class="col-12">
       <div class="row">
         <!-- ホームアイコン -->
-        <div id="timeLine" class="col-4 footerBtn icon-timeLine">
+        <div id="timeLine" class="col-4 footerBtn templateContainerFluidBtnSectionIconTimeLine">
           <a href="timeLine.html">
             <img id="timeLineIcon" src="img/home_icon.svg" style="width: 40px;" />
           </a>
         </div>
         <!-- 新規投稿アイコン -->
-        <div id="newPost" class="col-4 footerBtn icon-newPost">
+        <div id="newPost" class="col-4 footerBtn templateContainerFluidBtnSectionIconNewPost">
           <a href="newPostPic.html">
             <img id="newPostIcon" src="img/newPost_icon.svg" style="width: 40px;" />
           </a>
         </div>
         <!-- マイページアイコン -->
-        <div id="myPage" class="col-4 footerBtn icon-myPage">
+        <div id="myPage" class="col-4 footerBtn templateContainerFluidBtnSectionIconMyPage">
           <a href="myPage.html">
             <img id="myPageIcon" src="img/myPage_icon.svg" style="width: 40px;" />
           </a>
