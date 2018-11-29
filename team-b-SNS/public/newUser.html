@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>テンプレート</title>
+  <title>新規ユーザー登録</title>
 
   <!-- BootstrapのCSS読み込み -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -55,7 +55,7 @@
         </div>
 
         <div id="title-space" class="col-6 text-right ">
-          <span class="">ページタイトルタイトル</span>
+          <span class="">ユーザー登録</span>
         </div>
       </div>
     </div>
@@ -66,23 +66,15 @@
 
   <div class="container-fluid" style="margin-bottom:100px;">
 
-    <div class="text-center m-5">
-      <img id="logo" src="img/logo.svg" style="width: 120px;" />
-    </div>
-
-    <div class="text-center m-5">
-      <p>テキストテキストテキストテキストテキストテキストテキスト</p>
-    </div>
-
     <div class="form-label-group">
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputUserName" class="col-3">name</label>
+        <label for="inputUserName" class="col-3">名前</label>
         <input type="text" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required="" autofocus="">
         <input type="text" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required="" autofocus="">
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputUserName" class="col-3">User name</label>
+        <label for="inputUserName" class="col-3">ユーザーネーム</label>
         <input type="text" id="inputUserName" class="form-control col-9" placeholder="User name" required="" autofocus="">
       </div>
 
@@ -97,45 +89,25 @@
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleTextarea" class="col-3">コメント</label>
+        <label for="inputPassword" class="col-3">確認用password</label>
+        <input type="password" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required="" autofocus="">
+      </div>
+
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        ※パスワードが一致しません。
+      </div>
+
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <label for="exampleTextarea" class="col-3">自己紹介</label>
         <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
         </textarea>
       </div>
     </div>
 
-    <hr class="mw-100 bg-light">
-
-    <div class="container-fluid" style="margin-bottom:100px;">
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleInputFile" class="col-3">選択してください。</label>
-        <input type="file" class="form-control-file col-9" id="exampleInputFile" aria-describedby="fileHelp" style="width:350px">
-      </div>
-
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleTextarea" class="col-3">コメント</label>
-        <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
-        </textarea>
-      </div>
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleTextarea" class="col-3">コメント</label>
-        <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
-        </textarea>
-      </div>
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleTextarea" class="col-3">コメント</label>
-        <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
-        </textarea>
-      </div>
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleTextarea" class="col-3">コメント</label>
-        <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
-        </textarea>
-      </div>
-
-
+    <div class="row mx-auto">
+      <button type="button" class="btn btn-info mt-0 mx-auto">次へ</button>
     </div>
+
   </div>
 
 
