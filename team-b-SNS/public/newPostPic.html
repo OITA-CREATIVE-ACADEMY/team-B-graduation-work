@@ -151,7 +151,7 @@
       <div class="container-fluid">
         <div class="mx-auto" style="width:300px">
           <form action="" method="post" enctype="multipart/form-data">
-            <div class="imagePreview"></div>
+            <div id="postImagePreview" class="imagePreview"></div>
             <div class="input-group">
               <label class="input-group-btn">
                 <span class="btn btn-primary">
@@ -176,19 +176,23 @@
       </div>
     </div><!-- 新規投稿ー①イベント・#タグ・②画像選択 終わり-->
 
-<!-- 新規投稿ー③　コメント・内容確認 -->
+
+<!-- ここから、class="d-none"　にする -->
+<!-- 新規投稿ー③　コメント投稿 -->　
 <div class="container-fluid my-3">
   <h3 class="text-center">③ 投稿するコメントを作成してください。</h3>
   <div class="text-center d-flex align-items-center mw-100 mb-3">
     <textarea id="exampleTextarea" cols="30" rows="5" class="form-control mx-auto" placeholder="free" autofocus="" style="width:90%">
     </textarea>
   </div>
-</div>
+</div>　<!-- 新規投稿ー③　コメント投稿 終わり-->
 
 <hr class="mw-100  bg-light my-4">
 
-<!-- 投稿内容の確認 -->
+<!-- 投稿内容　全体　の確認 -->
 <div class="row container-fluid m-0 text-center">
+
+  <!-- 投稿内容　イベント・タグ　の確認 -->
   <div class="col-sm-5">
 
     <div class="card border-primary mb-3">
@@ -199,20 +203,21 @@
     </div>
 
     <div class="card border-primary mb-3">
-      <div class="card-header p-1">投稿イベント</div>
+      <div class="card-header p-1">選択したタグ</div>
       <div class="card-body text-primary p-1">
-        <p class="card-title m-0" id="tagSelected">クリスマス</p>
+        <p class="card-title m-0" id="tagSelected">雪</p>
       </div>
     </div>
 
-  </div>
+  </div>  <!-- 投稿内容　イベント・タグ　の確認 終わり-->
 
 
 
-　<!-- 投稿内容の確認 -->
-  <div class="col-sm-7　container-fluid mb-3 mx-auto" style="width:500px">
+
+　<!-- 投稿内容　画像の確認 -->
+  <div class="col-sm-7 container-fluid mb-3 mx-auto" style="width:500px">
         <!-- <form action="" method="post" enctype="multipart/form-data"> -->
-          <div class="imagePreview"></div>
+          <div id="postImagePreviewCopy" class="imagePreview"></div>
           <!-- <div class="input-group">
             <label class="input-group-btn">
               <span class="btn btn-primary">
@@ -222,11 +227,11 @@
             <input type="text" class="form-control" readonly="">
           </div>
         </form> -->
-  </div>
+  </div>　<!-- 投稿内容　画像の確認　終わり　-->
 
 
 
-</div>　<!-- 新規投稿ー③　コメント・内容確認 終わり-->
+</div>　<!-- 投稿内容　全体　の確認 -->
 
 
 <div class="row">
@@ -239,10 +244,11 @@
 </div>
 
 </div>　
-<!-- 新規投稿ー③　コメント・内容確認 終わり-->
 
 
 </div>　
+<!-- class="d-none"　終わり -->
+
 
   <footer class="fixed-bottom bg-white pb-2">
     <hr class="mw-100 bg-light">
@@ -308,7 +314,12 @@
     });
   </script>   <!-- 画像プレビューのJS 終わり-->
 
-
+<!-- cloneで画像プレビューを複製するJS -->
+<script>
+    $(function(){
+    　　$(‘#postImagePreview‘).clone().appendTo($(‘#postImagePreviewCopy‘));
+    });
+    </script>　<!-- cloneで画像プレビューを複製するJS 終わり-->
 
 </body>
 
