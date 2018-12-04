@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>テンプレート</title>
 
-    <!-- BootstrapのCSS読み込み -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- style.cssの読み込み -->
-    <link href="css/style.css" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>プロフィール画像</title>
 
-    <!-- jQuery読み込み -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- BootstrapのJS読み込み -->
-    <script src="js/bootstrap.min.js"></script>
+  <!-- BootstrapのCSS読み込み -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- style.cssの読み込み -->
+  <!-- <link href="css/style.css" rel="stylesheet"> -->
 
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+  <!-- jQuery読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- BootstrapのJS読み込み -->
+  <script src="js/bootstrap.min.js"></script>
 
-    <style media="screen">
-      body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
+  <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
+  <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+
+  <style media="screen">
+    body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
       #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
       #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
       #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
@@ -41,74 +43,70 @@
         /* body { border-top: 16px solid #ffa100; } */
       }
     </style>
-  </head>
-  <body>
-    <header class="sticky-top">
-        <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
-      <div class="col-12 templateStickyTopSection">　
+</head>
 
-        <div class="row templateStickyTopSectionBox">
-          <div id="logo-space" class="col-6 templateStickyTopSectionBoxLogoMark">
-            <img id="logo" src="img/logo.svg" style="width: 120px;" />
-          </div>
+<body>
+  <header class="sticky-top mb-2 bg-white">
+    <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
+    <div class="col-12">　
+      <div class="row align-items-end">
+        <div id="logo-space" class="col-6  text-left">
+          <img id="logo" src="img/logo.svg" style="width: 120px;" />
+        </div>
 
-          <div id="title-space" class="col-6 templateStickyTopSectionBoxPageTitle">
-            <h3>ページタイトルタイトル</h3>
-          </div>
+        <div id="title-space" class="col-6 text-right ">
+          <span class="">プロフィール画像</span>
         </div>
       </div>
-    </header>
+    </div>
+    <hr class="mw-100  bg-light my-4">
+  </header>
 
-    <div class="container-fluid templateContainerFluid">
 
-      <button class="btn btn-primary templateContainerFluid_Btn">ボタンです</button>
 
-    <!-- <div class="row" style="padding: 20px;">
-        <div class="col-xs-6">a</div>
-        <div class="col-xs-6">b</div>
-    </div> -->
+  <div class="container-fluid" style="margin-bottom:100px;">
 
-    <div class="templateContainerFluidBtnSection">
-      <button id="loginBtn" type="button" class="btn btn-primary templateContainerFluidBtnSectionLogin">ログイン</button>
-      <button id="pwdReissueBtn" type="button" class="btn btn-secondary templateContainerFluidBtnSectionPass">パスワード再発行</button>
-      <button id="newPostBtn" type="button" class="btn btn-info templateContainerFluidBtnSectionNewResistration">新規登録</button>
+    <div class="text-center m-5">
+      <p>[プロフィール画像]</p>
     </div>
 
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">ユーザーネーム</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control">
-        </div>
+    <div class="text-center m-5">
+      <img id="userPic" src="img/myPage_icon.svg" style="width: 120px;" />
+    </div>
+
+    <div class="container-fluid" style="margin-bottom:100px;">
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <input type="file" class="form-control-file mx-auto" id="exampleInputFile" aria-describedby="fileHelp" style="width:350px">
       </div>
-    </form>
-
-    <form class="form-signin">
-      <input type="text" class="form-control" placeholder="Username" id="email" required>
-      <input type="password" class="form-control" placeholder="Password" required>
-    </form>
-    <div id="login" class="login-btn">
-      <button id="loginBtn" type="button" class="btn btn-primary">ログイン</button>
     </div>
-    <hr>
+
+    <div class="row">
+      <div class="col-md-3"></div>
+<div class="col-md-3"><button type="button" class="btn btn-info mt-0 mx-auto">戻る</button></div>
+<div class="col-md-3"><button type="button" class="btn btn-info mt-0 mx-auto">次へ</button></div>
+<div class="col-md-3"></div>
+</div>
   </div>
 
-  <footer class="fixed-bottom">
+
+  <footer class="fixed-bottom bg-white pb-2">
+    <hr class="mw-100 bg-light">
     <div class="col-12">
       <div class="row">
         <!-- ホームアイコン -->
-        <div id="timeLine" class="col-4 footerBtn templateContainerFluidBtnSectionIconTimeLine">
+        <div id="timeLine" class="col-4 text-center">
           <a href="timeLine.html">
             <img id="timeLineIcon" src="img/home_icon.svg" style="width: 40px;" />
           </a>
         </div>
         <!-- 新規投稿アイコン -->
-        <div id="newPost" class="col-4 footerBtn templateContainerFluidBtnSectionIconNewPost">
+        <div id="newPost" class="col-4 text-center">
           <a href="newPostPic.html">
             <img id="newPostIcon" src="img/newPost_icon.svg" style="width: 40px;" />
           </a>
         </div>
         <!-- マイページアイコン -->
-        <div id="myPage" class="col-4 footerBtn templateContainerFluidBtnSectionIconMyPage">
+        <div id="myPage" class="col-4 text-center">
           <a href="myPage.html">
             <img id="myPageIcon" src="img/myPage_icon.svg" style="width: 40px;" />
           </a>
@@ -116,21 +114,21 @@
       </div>
     </div>
   </footer>
-        </div>
 
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
   <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-        authDomain: "team-b-sns.firebaseapp.com",
-        databaseURL: "https://team-b-sns.firebaseio.com",
-        projectId: "team-b-sns",
-        storageBucket: "team-b-sns.appspot.com",
-        messagingSenderId: "895377669050"
-      };
-      firebase.initializeApp(config);
-    </script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
+      authDomain: "team-b-sns.firebaseapp.com",
+      databaseURL: "https://team-b-sns.firebaseio.com",
+      projectId: "team-b-sns",
+      storageBucket: "team-b-sns.appspot.com",
+      messagingSenderId: "895377669050"
+    };
+    firebase.initializeApp(config);
+  </script>
 
-  </body>
+</body>
+
 </html>
