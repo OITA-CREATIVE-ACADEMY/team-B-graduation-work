@@ -55,7 +55,8 @@
         </div>
 
         <div id="title-space" class="col-6 text-right ">
-          <span class="">プロフィール画像　更新</span>
+          <span class="">プロフィール画像</span>
+          <span class="">更新</span>
         </div>
       </div>
     </div>
@@ -67,25 +68,35 @@
   <div class="container-fluid" style="margin-bottom:100px;">
 
     <div class="text-center m-5">
-      <p>[プロフィール画像]</p>
+      <img id="プロフィール画像" src="img/prof_icon.svg" style="width: 120px;" />
     </div>
 
     <div class="text-center m-5">
-      <img id="userPic" src="img/myPage_icon.svg" style="width: 120px;" />
+      <li style="list-style: none;">
+        <button id="fileChoiceBtn" type="button" class="btn btn-info">ファイル選択</button>
+      </li>
     </div>
 
-    <div class="container-fluid" style="margin-bottom:100px;">
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <input type="file" class="form-control-file mx-auto" id="exampleInputFile" aria-describedby="fileHelp" style="width:350px">
+
+    <div class="text-center m-5">
+
+
+      <div class="row">
+      <div class=" col-6 text-right">
+        <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">戻る</button>
       </div>
+      <div class=" col-6 text-left">
+        <button id="forwardBtn" type="button" class="btn btn-primary" style="width:100px">次へ</button>
+      </div>
+      </div>
+
+      </div>　
+
     </div>
 
-    <div class="row">
-      <div class="col-md-3"></div>
-<div class="col-md-3"><button type="button" class="btn btn-info mt-0 mx-auto">戻る</button></div>
-<div class="col-md-3"><button type="button" class="btn btn-info mt-0 mx-auto">次へ</button></div>
-<div class="col-md-3"></div>
-</div>
+
+    </div>
+
   </div>
 
 
