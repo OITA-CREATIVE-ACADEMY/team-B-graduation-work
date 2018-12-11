@@ -63,7 +63,7 @@
   </header>
 
 
-
+  <!-- タイムライン全体のbox -->
   <div class="container-fluid pb-3" style="margin-bottom:100px;">
 
     <!-- タブ部分 イベント名称-->
@@ -84,228 +84,451 @@
       <!-- １つ目のイベント -->
       <div id="event_1" class="tab-pane active" role="tabpanel" aria-labelledby="event_1-tab">
         <!-- ＃タグのボタン -->
-        <div class="btnEvent_1 container-fluid">
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#コスプレ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#魔女</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#渋ハロ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#かぼちゃ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#準備大変！</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#コウモリ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#ドンキホーテ</button>
+        <div class="container-fluid">
+          <div class="btnEvent_1">
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#コスプレ</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#魔女</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#渋ハロ</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#かぼちゃ</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#準備大変！</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#コウモリ</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#ドンキホーテ</button>
+          </div>
           <hr class="mw-100 mb-3 w-90 bg-gradient-light">
-
-          <!-- タイムラインのarea -->
-          <div class="container-fluid bg-white mw-100 p-2" id="postArea">
-
-            <!-- タイムラインのbox -->
-            <div class="mw-100 shadow-sm p-2 mb-4" id="postBox">
-              <div class="row">
-                <div class="col-sm">
-                  <img class="mw-100" id="boxPic" src="img/img_sample3.jpg" />
-                </div>
-                <div class="col-sm container-fluid">
-                  <div>
-                    <img class="m-1 rounded-circle border border-light shadow-sm p-1" src="img/prof_icon.svg" alt="" style="width:15%" />
-                    <div>
-                      <h5 class="m-0">OCA-Btaro</h5>
-                      <small><span id="postDate" class="bg-light">2018年12月25日</span> </small>
-                    </div>
-                  </div>
-                  <div class="row container-fluid">
-                    <img class="col-1 p-0" src="img/likes_heart.svg" alt="" style="height:20px" />
-                    <div class="text-left">
-                      <h5 class="col-11 p-0">110</h5>
-                    </div>
-                  </div>
-                  <div>
-                    <textarea id="postTextarea" class="form-control">
-                  </textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mw-100 shadow-sm p-2" id="postBox">
-              <div class="row">
-                <div class="col-sm">
-                  <img class="mw-100" id="boxPic" src="img/img_sample4.jpg" />
-                </div>
-                <div class="col-sm container-fluid">
-                  <div>
-                    <img class="m-1 rounded-circle border border-light shadow-sm p-1" src="img/prof_icon.svg" alt="" style="width:15%" />
-                    <div>
-                      <h5 class="m-0">OCA-Btaro</h5>
-                      <small><span id="postDate" class="bg-light">2018年12月25日</span> </small>
-                    </div>
-                  </div>
-                  <div class="row container-fluid">
-                    <img class="col-1 p-0" src="img/likes_heart.svg" alt="" style="height:20px" />
-                    <div class="text-left">
-                      <h5 class="col-11 p-0">110</h5>
-                    </div>
-                  </div>
-                  <div>
-                    <textarea id="postTextarea" class="form-control">
-                </textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- タイムラインのarea 終わり-->
         </div>
+        <!-- タイムラインのarea 1 -->
+        <div class="container-fluid bg-white mw-100 p-2" id="postArea">
+          <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+            <!-- タイムラインのbox -->
+            <div class="row">
+              <!-- 投稿のbox -->
+
+              <div class="col-md">
+                <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+                <div class="mx-100">
+                  <div class="">
+                    <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample3.jpg" />
+                  </div>
+                </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+              </div>
+
+              <div class="col-md mt-2">
+                <!-- プロフ画像・投稿者名・投稿日・いいね！のbox -->
+
+                <div class=" container-fluid">
+
+                  <div class="row">
+                    <!-- プロフ画像 のbox-->
+                    <div class="col-2 p-1 text-center">
+                      <!-- プロフ画像 --> <img id="postUserPic" class="rounded-circle bg-primary shadow" src="img/img_sample1.jpg" alt="" style="width: 50px;height: 50px;" />
+                    </div><!-- プロフ画像 のbox 終わり-->
+                    <div class="col-6 container-fluid">
+                      <!-- 投稿者名・投稿日 のbox -->
+                      <div class="row">
+                        <!-- 投稿者名 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">ユーザー名</span></small>
+                        </div>
+                      </div><!-- 投稿者名 のbox 終わり-->
+                      <div class="row">
+                        <!-- 投稿日 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postDate" class="">2018年12月25日</span></small>
+                        </div>
+                      </div><!-- 投稿日 のbox 終わり-->
+                    </div><!-- 投稿者名・投稿日のbox 終わり-->
+
+                    <div class="col-2 p-0 text-right">
+                      <!-- ハート のbox -->
+                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                    </div> <!-- ハート のbox 終わり-->
+                    <div id="likesNumber" class="col-2 p-0">
+                      <!-- いいねの数 のbox -->
+                      <!-- いいね！の数 -->
+                      <div class="mw-100 text-left" style="font-size:24px">110</div>
+                    </div> <!-- いいねの数 のbox 終わり-->
+                  </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+
+                  <div class="row">
+                    <!-- コメントのbox -->
+                    <!-- コメント -->
+                    <div class="col mw-100 p-1">
+                      <div class="mw-100 border border-light shadow-sm">
+                        <span class="p-1">コメントコメントコメント</span>
+                      </div>
+                    </div>
+                  </div><!-- コメントのbox 終わり-->
+                </div><!-- 投稿情報・コメントのbox 終わり-->
+              </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+            </div><!-- 投稿のbox 終わり-->
+          </div><!-- タイムラインのbox 終わり-->
+          <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+            <!-- タイムラインのbox -->
+            <div class="row">
+              <!-- 投稿のbox -->
+
+              <div class="col-md">
+                <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+                <div class="mx-100">
+                  <div class="">
+                    <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample4.jpg" />
+                  </div>
+                </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+              </div>
+
+              <div class="col-md mt-2">
+                <!-- プロフ画像・投稿者名・投稿日・いいね！のbox -->
+
+                <div class=" container-fluid">
+
+                  <div class="row">
+                    <!-- プロフ画像 のbox-->
+                    <div class="col-2 p-1 text-center">
+                      <!-- プロフ画像 --> <img id="postUserPic" class="rounded-circle bg-primary shadow" src="img/img_sample1.jpg" alt="" style="width: 50px;height: 50px;" />
+                    </div><!-- プロフ画像 のbox 終わり-->
+                    <div class="col-6 container-fluid">
+                      <!-- 投稿者名・投稿日 のbox -->
+                      <div class="row">
+                        <!-- 投稿者名 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">ユーザー名</span></small>
+                        </div>
+                      </div><!-- 投稿者名 のbox 終わり-->
+                      <div class="row">
+                        <!-- 投稿日 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postDate" class="">2018年12月25日</span></small>
+                        </div>
+                      </div><!-- 投稿日 のbox 終わり-->
+                    </div><!-- 投稿者名・投稿日のbox 終わり-->
+
+                    <div class="col-2 p-0 text-right">
+                      <!-- ハート のbox -->
+                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                    </div> <!-- ハート のbox 終わり-->
+                    <div id="likesNumber" class="col-2 p-0">
+                      <!-- いいねの数 のbox -->
+                      <!-- いいね！の数 -->
+                      <div class="mw-100 text-left" style="font-size:24px">110</div>
+                    </div> <!-- いいねの数 のbox 終わり-->
+                  </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+
+                  <div class="row">
+                    <!-- コメントのbox -->
+                    <!-- コメント -->
+                    <div class="col mw-100 p-1">
+                      <div class="mw-100 border border-light shadow-sm">
+                        <span class="p-1">コメントコメントコメント</span>
+                      </div>
+                    </div>
+                  </div><!-- コメントのbox 終わり-->
+                </div><!-- 投稿情報・コメントのbox 終わり-->
+              </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+            </div><!-- 投稿のbox 終わり-->
+          </div><!-- タイムラインのbox 終わり-->
+        </div> <!-- タイムラインのarea 1 終わり-->
       </div>
 
-      <!-- ２つ目のイベント -->
+      <!-- イベントのarea 2 -->
       <div id="event_2" class="tab-pane" role="tabpanel" aria-labelledby="event_2-tab">
         <!-- ＃タグのボタン -->
-        <div class="btnEvent_2 container-fluid">
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#サンタ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#ツリー</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#プレゼント</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#雪</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#イルミネーション</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#イブ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#セブンのケーキ</button>
+        <div class="container-fluid">
+          <div class="btnEvent_2">
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#サンタ</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#ツリー</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#プレゼント</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#雪</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#イルミネーション</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#イブ</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#セブンのケーキ</button>
+          </div>
           <hr class="mw-100 mb-3 w-90 bg-gradient-light">
-
-          <!-- タイムラインのarea -->
-          <div class="container-fluid bg-white mw-100 p-2" id="postArea">
-
-            <!-- タイムラインのbox -->
-            <div class="mw-100 shadow-sm p-2 mb-4" id="postBox">
-              <div class="row">
-                <div class="col-sm">
-                  <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
-                </div>
-                <div class="col-sm container-fluid">
-                  <div>
-                    <img class="m-1 rounded-circle border border-light shadow-sm p-1" src="img/prof_icon.svg" alt="" style="width:15%" />
-                    <div>
-                      <h5 class="m-0">OCA-Btaro</h5>
-                      <small><span id="postDate" class="bg-light">2018年12月25日</span> </small>
-                    </div>
-                  </div>
-                  <div class="row container-fluid">
-                    <img class="col-1 p-0" src="img/likes_heart.svg" alt="" style="height:20px" />
-                    <div class="text-left">
-                      <h5 class="col-11 p-0">110</h5>
-                    </div>
-                  </div>
-                  <div>
-                    <textarea id="postTextarea" class="form-control">
-                            </textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mw-100 shadow-sm p-2" id="postBox">
-              <div class="row">
-                <div class="col-sm">
-                  <img class="mw-100" id="boxPic" src="img/img_sample2.jpg" />
-                </div>
-                <div class="col-sm container-fluid">
-                  <div>
-                    <img class="m-1 rounded-circle border border-light shadow-sm p-1" src="img/prof_icon.svg" alt="" style="width:15%" />
-                    <div>
-                      <h5 class="m-0">OCA-Btaro</h5>
-                      <small><span id="postDate" class="bg-light">2018年12月25日</span> </small>
-                    </div>
-                  </div>
-                  <div class="row container-fluid">
-                    <img class="col-1 p-0" src="img/likes_heart.svg" alt="" style="height:20px" />
-                    <div class="text-left">
-                      <h5 class="col-11 p-0">110</h5>
-                    </div>
-                  </div>
-                  <div>
-                    <textarea id="postTextarea" class="form-control">
-                    </textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- タイムラインのarea 終わり-->
         </div>
-      </div>
+        <!-- タイムラインのarea 2 -->
+        <div class="container-fluid bg-white mw-100 p-2" id="postArea">
+          <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+            <!-- タイムラインのbox -->
+            <div class="row">
+              <!-- 投稿のbox -->
 
+              <div class="col-md">
+                <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+                <div class="mx-100">
+                  <div class="">
+                    <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
+                  </div>
+                </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+              </div>
+
+              <div class="col-md mt-2">
+                <!-- プロフ画像・投稿者名・投稿日・いいね！のbox -->
+
+                <div class=" container-fluid">
+
+                  <div class="row">
+                    <!-- プロフ画像 のbox-->
+                    <div class="col-2 p-1 text-center">
+                      <!-- プロフ画像 --> <img id="postUserPic" class="rounded-circle bg-primary shadow" src="img/img_sample1.jpg" alt="" style="width: 50px;height: 50px;" />
+                    </div><!-- プロフ画像 のbox 終わり-->
+                    <div class="col-6 container-fluid">
+                      <!-- 投稿者名・投稿日 のbox -->
+                      <div class="row">
+                        <!-- 投稿者名 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">ユーザー名</span></small>
+                        </div>
+                      </div><!-- 投稿者名 のbox 終わり-->
+                      <div class="row">
+                        <!-- 投稿日 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postDate" class="">2018年12月25日</span></small>
+                        </div>
+                      </div><!-- 投稿日 のbox 終わり-->
+                    </div><!-- 投稿者名・投稿日のbox 終わり-->
+
+                    <div class="col-2 p-0 text-right">
+                      <!-- ハート のbox -->
+                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                    </div> <!-- ハート のbox 終わり-->
+                    <div id="likesNumber" class="col-2 p-0">
+                      <!-- いいねの数 のbox -->
+                      <!-- いいね！の数 -->
+                      <div class="mw-100 text-left" style="font-size:24px">110</div>
+                    </div> <!-- いいねの数 のbox 終わり-->
+                  </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+
+                  <div class="row">
+                    <!-- コメントのbox -->
+                    <!-- コメント -->
+                    <div class="col mw-100 p-1">
+                      <div class="mw-100 border border-light shadow-sm">
+                        <span class="p-1">コメントコメントコメント</span>
+                      </div>
+                    </div>
+                  </div><!-- コメントのbox 終わり-->
+                </div><!-- 投稿情報・コメントのbox 終わり-->
+              </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+            </div><!-- 投稿のbox 終わり-->
+          </div><!-- タイムラインのbox 終わり-->
+          <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+            <!-- タイムラインのbox -->
+            <div class="row">
+              <!-- 投稿のbox -->
+
+              <div class="col-md">
+                <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+                <div class="mx-100">
+                  <div class="">
+                    <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample2.jpg" />
+                  </div>
+                </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+              </div>
+
+              <div class="col-md mt-2">
+                <!-- プロフ画像・投稿者名・投稿日・いいね！のbox -->
+
+                <div class=" container-fluid">
+
+                  <div class="row">
+                    <!-- プロフ画像 のbox-->
+                    <div class="col-2 p-1 text-center">
+                      <!-- プロフ画像 --> <img id="postUserPic" class="rounded-circle bg-primary shadow" src="img/img_sample1.jpg" alt="" style="width: 50px;height: 50px;" />
+                    </div><!-- プロフ画像 のbox 終わり-->
+                    <div class="col-6 container-fluid">
+                      <!-- 投稿者名・投稿日 のbox -->
+                      <div class="row">
+                        <!-- 投稿者名 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">ユーザー名</span></small>
+                        </div>
+                      </div><!-- 投稿者名 のbox 終わり-->
+                      <div class="row">
+                        <!-- 投稿日 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postDate" class="">2018年12月25日</span></small>
+                        </div>
+                      </div><!-- 投稿日 のbox 終わり-->
+                    </div><!-- 投稿者名・投稿日のbox 終わり-->
+
+                    <div class="col-2 p-0 text-right">
+                      <!-- ハート のbox -->
+                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                    </div> <!-- ハート のbox 終わり-->
+                    <div id="likesNumber" class="col-2 p-0">
+                      <!-- いいねの数 のbox -->
+                      <!-- いいね！の数 -->
+                      <div class="mw-100 text-left" style="font-size:24px">110</div>
+                    </div> <!-- いいねの数 のbox 終わり-->
+                  </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+
+                  <div class="row">
+                    <!-- コメントのbox -->
+                    <!-- コメント -->
+                    <div class="col mw-100 p-1">
+                      <div class="mw-100 border border-light shadow-sm">
+                        <span class="p-1">コメントコメントコメント</span>
+                      </div>
+                    </div>
+                  </div><!-- コメントのbox 終わり-->
+                </div><!-- 投稿情報・コメントのbox 終わり-->
+              </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+            </div><!-- 投稿のbox 終わり-->
+          </div><!-- タイムラインのbox 終わり-->
+        </div> <!-- タイムラインのarea 3 終わり-->
+      </div><!-- イベントのarea 2 終わり-->
+
+      <!-- イベントのarea 3 -->
       <div id="event_3" class="tab-pane" role="tabpanel" aria-labelledby="event_3-tab">
-        <div class="btnEvent_3 container-fluid">
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#鏡餅</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#お年玉</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#おせち</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#初詣</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#駅伝</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#お正月ライブ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#福袋</button>
+        <div class="container-fluid">
+          <div class="btnEvent_3">
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#鏡餅</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#お年玉</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#おせち</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#初詣</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#駅伝</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#お正月ライブ</button>
+            <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#福袋</button>
+          </div>
           <hr class="mw-100 mb-3 w-90 bg-gradient-light">
-
-
-          <!-- タイムラインのarea -->
-          <div class="container-fluid bg-white mw-100 p-2" id="postArea">
-
-            <!-- タイムラインのbox -->
-            <div class="mw-100 shadow-sm p-2 mb-4" id="postBox">
-              <div class="row">
-                <div class="col-sm">
-                  <img class="mw-100" id="boxPic" src="img/img_sample5.jpg" />
-                </div>
-                <div class="col-sm container-fluid">
-                  <div>
-                    <img class="m-1 rounded-circle border border-light shadow-sm p-1" src="img/prof_icon.svg" alt="" style="width:15%" />
-                    <div>
-                      <h5 class="m-0">OCA-Btaro</h5>
-                      <small><span id="postDate" class="bg-light">2018年12月25日</span> </small>
-                    </div>
-                  </div>
-                  <div class="row container-fluid">
-                    <img class="col-1 p-0" src="img/likes_heart.svg" alt="" style="height:20px" />
-                    <div class="text-left">
-                      <h5 class="col-11 p-0">110</h5>
-                    </div>
-                  </div>
-                  <div>
-                    <textarea id="postTextarea" class="form-control">
-                    </textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mw-100 shadow-sm p-2" id="postBox">
-              <div class="row">
-                <div class="col-sm">
-                  <img class="mw-100" id="boxPic" src="img/img_sample6.jpg" />
-                </div>
-                <div class="col-sm container-fluid">
-                  <div>
-                    <img class="m-1 rounded-circle border border-light shadow-sm p-1" src="img/prof_icon.svg" alt="" style="width:15%" />
-                    <div>
-                      <h5 class="m-0">OCA-Btaro</h5>
-                      <small><span id="postDate" class="bg-light">2018年12月25日</span> </small>
-                    </div>
-                  </div>
-                  <div class="row container-fluid">
-                    <img class="col-1 p-0" src="img/likes_heart.svg" alt="" style="height:20px" />
-                    <div class="text-left">
-                      <h5 class="col-11 p-0">110</h5>
-                    </div>
-                  </div>
-                  <div>
-                    <textarea id="postTextarea" class="form-control">
-                        </textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- タイムラインのarea 終わり-->
         </div>
-      </div>
-    </div>
+        <!-- タイムラインのarea 3 -->
+        <div class="container-fluid bg-white mw-100 p-2" id="postArea">
+          <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+            <!-- タイムラインのbox -->
+            <div class="row">
+              <!-- 投稿のbox -->
 
+              <div class="col-md">
+                <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+                <div class="mx-100">
+                  <div class="">
+                    <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample5.jpg" />
+                  </div>
+                </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+              </div>
+
+              <div class="col-md mt-2">
+                <!-- プロフ画像・投稿者名・投稿日・いいね！のbox -->
+
+                <div class=" container-fluid">
+
+                  <div class="row">
+                    <!-- プロフ画像 のbox-->
+                    <div class="col-2 p-1 text-center">
+                      <!-- プロフ画像 --> <img id="postUserPic" class="rounded-circle bg-primary shadow" src="img/img_sample1.jpg" alt="" style="width: 50px;height: 50px;" />
+                    </div><!-- プロフ画像 のbox 終わり-->
+                    <div class="col-6 container-fluid">
+                      <!-- 投稿者名・投稿日 のbox -->
+                      <div class="row">
+                        <!-- 投稿者名 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">ユーザー名</span></small>
+                        </div>
+                      </div><!-- 投稿者名 のbox 終わり-->
+                      <div class="row">
+                        <!-- 投稿日 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postDate" class="">2018年12月25日</span></small>
+                        </div>
+                      </div><!-- 投稿日 のbox 終わり-->
+                    </div><!-- 投稿者名・投稿日のbox 終わり-->
+
+                    <div class="col-2 p-0 text-right">
+                      <!-- ハート のbox -->
+                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                    </div> <!-- ハート のbox 終わり-->
+                    <div id="likesNumber" class="col-2 p-0">
+                      <!-- いいねの数 のbox -->
+                      <!-- いいね！の数 -->
+                      <div class="mw-100 text-left" style="font-size:24px">110</div>
+                    </div> <!-- いいねの数 のbox 終わり-->
+                  </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+
+                  <div class="row">
+                    <!-- コメントのbox -->
+                    <!-- コメント -->
+                    <div class="col mw-100 p-1">
+                      <div class="mw-100 border border-light shadow-sm">
+                        <span class="p-1">コメントコメントコメント</span>
+                      </div>
+                    </div>
+                  </div><!-- コメントのbox 終わり-->
+                </div><!-- 投稿情報・コメントのbox 終わり-->
+              </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+            </div><!-- 投稿のbox 終わり-->
+          </div><!-- タイムラインのbox 終わり-->
+          <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+            <!-- タイムラインのbox -->
+            <div class="row">
+              <!-- 投稿のbox -->
+
+              <div class="col-md">
+                <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+                <div class="mx-100">
+                  <div class="">
+                    <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample6.jpg" />
+                  </div>
+                </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+              </div>
+
+              <div class="col-md mt-2">
+                <!-- プロフ画像・投稿者名・投稿日・いいね！のbox -->
+
+                <div class=" container-fluid">
+
+                  <div class="row">
+                    <!-- プロフ画像 のbox-->
+                    <div class="col-2 p-1 text-center">
+                      <!-- プロフ画像 --> <img id="postUserPic" class="rounded-circle bg-primary shadow" src="img/img_sample1.jpg" alt="" style="width: 50px;height: 50px;" />
+                    </div><!-- プロフ画像 のbox 終わり-->
+                    <div class="col-6 container-fluid">
+                      <!-- 投稿者名・投稿日 のbox -->
+                      <div class="row">
+                        <!-- 投稿者名 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">ユーザー名</span></small>
+                        </div>
+                      </div><!-- 投稿者名 のbox 終わり-->
+                      <div class="row">
+                        <!-- 投稿日 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postDate" class="">2018年12月25日</span></small>
+                        </div>
+                      </div><!-- 投稿日 のbox 終わり-->
+                    </div><!-- 投稿者名・投稿日のbox 終わり-->
+
+                    <div class="col-2 p-0 text-right">
+                      <!-- ハート のbox -->
+                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                    </div> <!-- ハート のbox 終わり-->
+                    <div id="likesNumber" class="col-2 p-0">
+                      <!-- いいねの数 のbox -->
+                      <!-- いいね！の数 -->
+                      <div class="mw-100 text-left" style="font-size:24px">110</div>
+                    </div> <!-- いいねの数 のbox 終わり-->
+                  </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+
+                  <div class="row">
+                    <!-- コメントのbox -->
+                    <!-- コメント -->
+                    <div class="col mw-100 p-1">
+                      <div class="mw-100 border border-light shadow-sm">
+                        <span class="p-1">コメントコメントコメント</span>
+                      </div>
+                    </div>
+                  </div><!-- コメントのbox 終わり-->
+                </div><!-- 投稿情報・コメントのbox 終わり-->
+              </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+            </div><!-- 投稿のbox 終わり-->
+          </div><!-- タイムラインのbox 終わり-->
+        </div> <!-- タイムラインのarea 3 終わり-->
+      </div><!-- イベントのarea 3 終わり-->
+
+    </div>
+    <!-- タブのコンテンツ部分 終わり-->
 
   </div>
-
+  <!-- タイムライン全体のbox 終わり-->
 
   <footer class="fixed-bottom bg-white pb-2">
     <hr class="mw-100 bg-light">
