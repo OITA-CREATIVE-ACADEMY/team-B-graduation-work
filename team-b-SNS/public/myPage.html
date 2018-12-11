@@ -55,8 +55,7 @@
         </div>
 
         <div id="title-space" class="col-6 text-right ">
-          <span class="">ユーザー登録</span>
-          <span class="">更新</span>
+          <span class="">マイページ</span>
         </div>
       </div>
     </div>
@@ -68,29 +67,95 @@
   <div class="container-fluid" style="margin-bottom:100px;">
 
     <div class="text-center m-5">
-      <img id="プロフィール画像" src="img/myPage_icon.svg" style="width: 120px;" />
+      <img id="プロフィール画像" src="img/prof_icon.svg" style="width: 120px;" />
     </div>
 
-    <div class="text-center m-5">
-      <li style="list-style: none;">
-        <button id="fileChoiceBtn" type="button" class="btn btn-info">ファイル選択</button>
-      </li>
-    </div>
+    <div class="container-fluid" style="margin-bottom:100px;">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form class="form-horizontal">
+              <div class="form-group has-error">
+                <label class="col-sm-2 control-label">名前</label>
+                <div class="text-center d-flex align-items-center mw-100 mb-3">
+                  <input type="text" id="input" class="form-control col-12" placeholder="オシエ　ビー太郎" required="" autofocus="">
+                </div>
+              </div>
+
+              <div class="form-group has-error">
+                <label class="col-sm-2 control-label">ユーザーネーム</label>
+                <div class="text-center d-flex align-items-center mw-100 mb-3">
+                    <input type="text" id="input" class="form-control col-12" placeholder="OCA-Btarou" required="" autofocus="">
+                </div>
+              </div>
+
+              <div class="form-group has-error">
+                <label class="col-sm-2 control-label">自己紹介</label>
+                  <input id="exampleTextarea" class="form-control col-12" placeholder="free" autofocus="">
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
 
 
-    <div class="text-center m-5">
+      <div class="newSignUp text-center mt-5">
+        <p class="mb-2"> 登録情報変更は、こちらから</p>
+      </div>
 
 
+      <div class="text-center m-5">
+        <li style="list-style: none;">
+          <button id="LogOutBtn" type="button" class="btn btn-info">ログアウト</button>
+        </li>
+      </div>
+
+
+
+    <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
       <div class="row">
-      <div class=" col-6 text-right">
-        <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">戻る</button>
-      </div>
-      <div class=" col-6 text-left">
-        <button id="forwardBtn" type="button" class="btn btn-primary" style="width:100px">次へ</button>
-      </div>
-      </div>
 
-      </div>　
+        <div class="col-md">
+          <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+          <div class="mx-100">
+            <div class="">
+              <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
+            </div>
+          </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+        </div>
+        <!-- いいね！・投稿日時・編集のbox -->
+        <div class="col-md mt-2">
+
+          <!-- いいね！・投稿日時・編集のcontainer 終わり-->
+          <div class=" container-fluid">
+
+            <div class="row">
+              <!-- ハート のbox -->
+              <div class="col-1 p-0 text-right">
+                <!-- ハート --> <img id="heartPic" class="h-50" src="img/likes_heart.svg" alt="" style="width: 35px;height: 35px;" />
+              </div> <!-- ハート のbox 終わり-->
+              <div id="likesNumber" class="col-2 p-0">
+                <!-- いいねの数 のbox -->
+                <!-- いいね！の数 -->
+                <div class="mw-100 text-left" style="font-size:24px">110</div>
+              </div> <!-- いいねの数 のbox 終わり-->
+              <!-- 投稿日 のbox -->
+              <div class="col-7 text-right">
+                <small><span id="postDate" class="">2018年12月25日</span></small>
+              </div> <!-- 投稿日 のbox 終わり-->
+              <!-- 編集ボタン のbox -->
+              <div class="col-2 p-0 text-right">
+                <!-- 編集ボタン --> <img id="editBtn" class="h-75" src="img/edit_icon.svg" alt="" style="width: 35px;height: 35px;" />
+              </div> <!-- 編集ボタン のbox 終わり-->
+
+            </div>
+          </div><!-- いいね！・投稿日時・編集のcontainer 終わり-->
+        </div><!-- いいね！・投稿日時・編集のbox 終わり-->
+      </div>
+    </div><!-- 投稿アーカイブのbox 終わり-->
+
+
+
 
     </div>
 
