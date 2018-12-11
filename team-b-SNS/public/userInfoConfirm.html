@@ -48,14 +48,14 @@
 <body>
   <header class="sticky-top mb-2 bg-white">
     <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
-    <div class="col-12">　
+    <div class="col-12">
       <div class="row align-items-end">
         <div id="logo-space" class="col-6  text-left">
           <img id="logo" src="img/logo.svg" style="width: 120px;" />
         </div>
 
         <div id="title-space" class="col-6 text-right ">
-          <span class="">ユーザー登録情報　更新　内容確認</span>
+          <span class="">更新内容確認</span>
         </div>
       </div>
     </div>
@@ -65,59 +65,64 @@
 
 
   <div class="container-fluid" style="margin-bottom:100px;">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group has-error">
+              <label class="col-sm-2 control-label">名前</label>
+              <div class="text-center d-flex align-items-center mw-100 mb-3">
+                  <input type="text" id="inputFirstName" class="form-control col-5 mr-2" placeholder="姓" required="" autofocus="">
+                  <input type="text" id="inputSecondName" class="form-control col-5" placeholder="名" required="" autofocus="">
+              </div>
+            </div>
 
-    <div class="form-label-group">
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputUserName" class="col-3">名前</label>
-        <input type="text" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required="" autofocus="">
-        <input type="text" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required="" autofocus="">
-      </div>
+            <div class="form-group has-error">
+              <label class="col-sm-2 control-label">ユーザーネーム</label>
+              <div class="text-center d-flex align-items-center mw-100 mb-3">
+                  <input type="text" id="input" class="form-control col-12" placeholder="User name" required="" autofocus="">
+              </div>
+            </div>
 
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputUserName" class="col-3">ユーザーネーム</label>
-        <input type="text" id="inputUserName" class="form-control col-9" placeholder="User name" required="" autofocus="">
-      </div>
+            <div class="form-group has-error">
+              <label class="col-sm-2 control-label">E-mail</label>
+              <div class="text-center d-flex align-items-center mw-100 mb-3">
+                  <input type="text" id="inputEmail" class="form-control col-12" placeholder="E-mail" required="" autofocus="">
+              </div>
+            </div>
 
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputEmail" class="col-3">E-mail</label>
-        <input type="text" id="inputEmail" class="form-control col-9" placeholder="E-mail" required="" autofocus="">
-      </div>
+            <div class="form-group has-error">
+              <label class="col-sm-2 control-label">password</label>
+              <div class="text-center d-flex align-items-center mw-100 mb-3">
+                  <input type="text" id="inputPassword" class="form-control col-12" placeholder="password" required="" autofocus="">
+              </div>
+            </div>
 
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputPassword" class="col-3">password</label>
-        <input type="password" id="inputPassword" class="form-control col-9" placeholder="Password" required="" autofocus="">
-      </div>
+            <div class="form-group has-error">
+              <label class="col-sm-2 control-label">確認用password</label>
+              <div class="text-center d-flex align-items-center mw-100 mb-3">
+                  <input type="text" id="inputConfirmationPassword" class="form-control col-12" placeholder="確認用password" required="" autofocus="">
+              </div>
+            </div>
 
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputPassword" class="col-3">確認用password</label>
-        <input type="password" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required="" autofocus="">
-      </div>
+            <div class="form-group has-error">
+              <label class="col-sm-2 control-label">自己紹介</label>
+                <input id="exampleTextarea" class="form-control col-12" placeholder="free" autofocus="">
+            </div>
 
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        ※パスワードが一致しません。
-      </div>
+            <div class="form-group has-error">
+              <label class="col-sm-2 control-label">プロフィール画像</label>
+              <div class="text-center m-5">
+                <img id="userPic" src="img/prof_icon.svg" style="width: 120px;" />
+              </div>
+            </div>
 
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleTextarea" class="col-3">自己紹介</label>
-        <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
-        </textarea>
-      </div>
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleTextarea" class="col-3">プロフィール画像</label>
-        <div class="text-center m-5">
-          <img id="userPic" src="img/myPage_icon.svg" style="width: 120px;" />
+          </form>
         </div>
       </div>
-
+      <div class="row mx-auto">
+        <button type="button" class="btn btn-info mt-0 mx-auto">次へ</button>
+      </div>
     </div>
-
-    <div class="row mx-auto">
-      <button type="button" class="btn btn-info mt-0 mx-auto">次へ</button>
-    </div>
-
-  </div>
-
 
   <footer class="fixed-bottom bg-white pb-2">
     <hr class="mw-100 bg-light">
