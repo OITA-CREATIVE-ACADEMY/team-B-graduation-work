@@ -43,6 +43,18 @@
         /* body { border-top: 16px solid #ffa100; } */
       }
     </style>
+    <!-- 画像選択とプレビュー表示　の　CSS -->　
+    <style>
+      .imagePreview {
+              width: 100%;
+              height: 200px;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: contain;
+              -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
+              display: inline-block;
+          }
+      </style>    <!-- 画像選択とプレビュー表示　の　CSS 終わり-->　
 </head>
 
 <body>
@@ -102,6 +114,29 @@
         <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
         </textarea>
       </div>
+
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <label for="exampleTextarea" class="col-3">プロフィール画像</label>
+        <div class="container-fluid" style="margin-bottom:100px;">
+      <!-- 画像選択とプレビュー表示　の　コード -->　
+      <div class="container-fluid">
+        <div class="mx-auto" style="width:300px">
+          <form action="" method="post" enctype="multipart/form-data">
+            <div id="postImagePreview" class="imagePreview"></div>
+            <div class="input-group">
+              <label class="input-group-btn">
+                <span class="btn btn-primary">
+                  ファイルを選択<input type="file" style="display:none" class="uploadFile">
+                </span>
+              </label>
+              <input type="text" class="form-control" readonly="">
+            </div>
+          </form>
+        </div>
+      </div>
+      </div> <!-- 画像選択とプレビュー表示 終わり-->
+      </div>
+
     </div>
 
     <div class="row mx-auto">
