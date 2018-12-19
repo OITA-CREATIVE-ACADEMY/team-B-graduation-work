@@ -1,62 +1,61 @@
 // Initialize Firebase
 // APIコンフィグ情報を取得する
-// var config = getApiConfing();
-var config = {
-  apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-  authDomain: "team-b-sns.firebaseapp.com",
-  databaseURL: "https://team-b-sns.firebaseio.com",
-  projectId: "team-b-sns",
-  storageBucket: "team-b-sns.appspot.com",
-  messagingSenderId: "895377669050"
-};
+var config = getApiConfing();
 firebase.initializeApp(config);
 
-function creat() {
-  // 認証情報の作成
-  //DOM取得
-  var userFirstName = document.getElementById("inputFirstName"); //名前(姓)
-  var userSecondName = document.getElementById("inputSecondName"); //名前(姓)
-  var displayName = document.getElementById("inputUserName"); //ユーザーネーム
-  var email = document.getElementById("inputEmail"); // E-mail
-  var password = document.getElementById("inputPassword"); //password
-  var password2 = document.getElementById("inputConfirmationPassword"); //確認用password
-  var passMessage = document.getElementById("passwordDisMatchMessage"); //パスワード不一致メッセージ
-  var profileText = document.getElementById("exampleTextarea"); //自己紹介
-  var profilePic = document.getElementById(""); //プロフィール画像
-  var newuser = document.getElementById("newuser"); //登録ボタン
-
-  newuser.addEventListener("click", function(e) {
-    var email = document.getElementById("inputEmail").value;
-    var password = document.getElementById("inputPassword").value;
-    console.log(email + "取得");
-    try {
-      // 認証情報の登録
-      firebase.auth().createUserWithEmailAndPassword(email, password);
-      // ユーザー情報の登録
-      var usersRef = firebase.database().ref("/Users");
-      messagesRef.push({
-        firstname: userFirstName,
-        secondname: userSecondName,
-        displayname,
-        e: displayName,
-        email: email,
-        password: password,
-        profiletext: profileText,
-        profilepic: profilePic
-      });
-    } catch {
-      //エラー表示の指示
-    }
-  });
+function create() {
+  // まず、ユーザ登録に必要なメール、パスワード情報をDOMから取得して定義しておく
+  var email = document.getElementById("inputEmail").value;
+  var password = document.getElementById("inputPassword").value;
+  // ユーザーの登録
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(function() {
+      // ユーザ登録が成功した場合、登録したユーザーを取得する
+      var user = firebase.auth().currentUser; // ※firebase.auth().currentUser　を使うと現在ログイン中のユーザが取得できる
+      // 更新するパラメータはスコープの関係でここで取得する
+      var displayName = document.getElementById("inputUserName").value; //ユーザーネーム
+      var userFirstName = document.getElementById("inputFirstName").value; //名前(姓)
+      var userSecondName = document.getElementById("inputSecondName").value; //名前(姓)
+      var profileText = document.getElementById("exampleTextarea").value; //自己紹介
+      var profilePic = document.getElementById("uploadFile").value; //プロフィール画像
+      // user.updateProfileを使用してユーザ情報を更新する
+      user
+        .updateProfile({
+          firstName: userFirstName,
+          lastName: userSecondName,
+          displayName: displayName,
+          profiletext: profileText,
+          photoURL: profilePic
+        })
+        .then(function() {
+          // 登録成功時の処理
+          alert("登録完了！");
+        });
+    })
+    .catch(function(error) {
+      console.log(error);
+      // 登録失敗時の処理
+      alert("登録失敗");
+    });
+}
+function read() {
+  // ユーザ情報取得処理を記述する
+  return;
 }
 
-// function read(){
+function update() {
+  // ユーザ情報更新処理を記述する
+  return;
+}
 
-// }
+function drop() {
+  // ユーザ情報削除処理を記述する
+  return;
+}
 
-// function update(){
-
-// }
-
-// function delete(){
-// }
+// 登録ボタン押下イベント
+$("#newuser").on("click", function() {
+  create();
+});

@@ -25,7 +25,6 @@
     <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-    <script type="text/javascript" src="apiConfig.js"></script>
 
     <style media="screen">
       body {
@@ -212,6 +211,7 @@
                           type="file"
                           style="display:none"
                           class="uploadFile"
+                          id="uploadFile"
                         />
                       </span>
                     </label>
@@ -235,19 +235,7 @@
 
     <!-- firebase.js　と　追加で作る app.js　を読み込む -->
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script src="js/apiConfig.js"></script>
     <script src="js/user.js"></script>
-
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-        authDomain: "team-b-sns.firebaseapp.com",
-        databaseURL: "https://team-b-sns.firebaseio.com",
-        projectId: "team-b-sns",
-        storageBucket: "team-b-sns.appspot.com",
-        messagingSenderId: "895377669050"
-      };
-      firebase.initializeApp(config);
-    </script>
   </body>
 </html>
