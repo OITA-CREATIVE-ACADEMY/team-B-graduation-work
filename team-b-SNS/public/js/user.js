@@ -1,8 +1,10 @@
 // Initialize Firebase
 // APIコンフィグ情報を取得する
-// var config = getApiConfing();
-var config = getApiConfig();
+var config = getApiConfing();
 firebase.initializeApp(config);
+
+
+
 
 function create() {
   // まず、ユーザ登録に必要なメール、パスワード情報をDOMから取得して定義しておく
