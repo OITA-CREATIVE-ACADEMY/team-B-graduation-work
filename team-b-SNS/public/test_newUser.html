@@ -114,6 +114,21 @@
  <!-- 画像選択とプレビュー表示　の　CSS 終わり -->
 </head>
 <body>
+  <header class="sticky-top mb-2 bg-white">
+    <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
+    <div class="col-12">　
+      <div class="row align-items-end">
+        <div id="logo-space" class="col-6  text-left">
+          <img id="logo" src="img/logo.svg" style="width: 120px;" />
+        </div>
+
+        <div id="title-space" class="col-6 text-right ">
+          <span class="">新規ユーザー登録</span>
+        </div>
+      </div>
+    </div>
+    <hr class="mw-100  bg-light my-4">
+  </header>
  <div class="container-fluid" style="margin-bottom:100px;">
    <div class="form-label-group">
      <div class="row text-center d-flex align-items-center mw-100 mb-3">
@@ -188,6 +203,33 @@
    </div>
  </div>
 
+ <footer class="fixed-bottom bg-white pb-2">
+   <hr class="mw-100 bg-light">
+   <div class="col-12">
+     <div class="row">
+       <!-- ホームアイコン -->
+       <div id="timeLine" class="col-4 text-center">
+         <a href="timeLine.html">
+           <img id="timeLineIcon" src="img/home_icon.svg" style="width: 40px;" />
+         </a>
+       </div>
+       <!-- 新規投稿アイコン -->
+       <div id="newPost" class="col-4 text-center">
+         <a href="newPostPic.html">
+           <img id="newPostIcon" src="img/newPost_icon.svg" style="width: 40px;" />
+         </a>
+       </div>
+       <!-- マイページアイコン -->
+       <div id="myPage" class="col-4 text-center">
+         <a href="myPage.html">
+           <img id="myPageIcon" src="img/myPage_icon.svg" style="width: 40px;" />
+         </a>
+       </div>
+     </div>
+   </div>
+ </footer>
+ </div>
+
  <!-- 画像選択とプレビュー表示　の　JS -->　
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
@@ -216,7 +258,5 @@
  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script> -->
  <script src="js/apiConfig.js"></script>
  <script src="js/user.js"></script>
-
 </body>
-
 </html>
