@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>テスト 新規ユーザー登録</title>
 
-    <!-- BootstrapのCSS読み込み -->
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <!-- style.cssの読み込み -->
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>テスト 新規ユーザー登録</title>
 
-    <!-- jQuery読み込み -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- BootstrapのJS読み込み -->
-    <script src="js/bootstrap.min.js"></script>
+  <!-- BootstrapのCSS読み込み -->
+  <link href="css/bootstrap.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <!-- style.cssの読み込み -->
+  <!-- <link href="css/style.css" rel="stylesheet"> -->
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+  <!-- jQuery読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- BootstrapのJS読み込み -->
+  <script src="js/bootstrap.min.js"></script>
 
-    <style media="screen">
-      body {
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
+  <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
+  <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+
+  <style media="screen">
+    body {
         background: white;
         color: rgba(0, 0, 0, 0.87);
         font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -87,9 +88,9 @@
         /* body { border-top: 16px solid #ffa100; } */
       }
     </style>
-    <!-- 画像選択とプレビュー表示　の　CSS -->
-    <style>
-      .imagePreview {
+  <!-- 画像選択とプレビュー表示　の　CSS -->
+  <style>
+    .imagePreview {
         width: 100%;
         height: 200px;
         background-position: center;
@@ -99,143 +100,113 @@
         display: inline-block;
       }
     </style>
-    <!-- 画像選択とプレビュー表示　の　CSS 終わり -->
-  </head>
+  <!-- 画像選択とプレビュー表示　の　CSS 終わり -->
+</head>
 
-  <body>
-    <div class="container-fluid" style="margin-bottom:100px;">
-      <div class="form-label-group">
-        <div class="row text-center d-flex align-items-center mw-100 mb-3">
-          <label for="inputUserName" class="col-3">名前</label>
-          <input
-            type="text"
-            id="inputFirstName"
-            class="form-control col-4 mr-2"
-            placeholder="姓"
-            required=""
-            autofocus=""
-          />
-          <input
-            type="text"
-            id="inputSecondName"
-            class="form-control col-4 ml-2"
-            placeholder="名"
-            required=""
-            autofocus=""
-          />
-        </div>
+<body>
+  <div class="container-fluid" style="margin-bottom:100px;">
+    <div class="form-label-group">
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <label for="inputUserName" class="col-3">名前</label>
+        <input type="text" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required="" autofocus="" />
+        <input type="text" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required="" autofocus="" />
+      </div>
 
-        <div class="row text-center d-flex align-items-center mw-100 mb-3">
-          <label for="inputUserName" class="col-3">ユーザーネーム</label>
-          <input
-            type="text"
-            id="inputUserName"
-            class="form-control col-9"
-            placeholder="User name"
-            required=""
-            autofocus=""
-          />
-        </div>
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <label for="inputUserName" class="col-3">ユーザーネーム</label>
+        <input type="text" id="inputUserName" class="form-control col-9" placeholder="User name" required="" autofocus="" />
+      </div>
 
-        <div class="row text-center d-flex align-items-center mw-100 mb-3">
-          <label for="inputEmail" class="col-3">E-mail</label>
-          <input
-            type="text"
-            id="inputEmail"
-            class="form-control col-9"
-            placeholder="E-mail"
-            required=""
-            autofocus=""
-          />
-        </div>
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <label for="inputEmail" class="col-3">E-mail</label>
+        <input type="text" id="inputEmail" class="form-control col-9" placeholder="E-mail" required="" autofocus="" />
+      </div>
 
-        <div class="row text-center d-flex align-items-center mw-100 mb-3">
-          <label for="inputPassword" class="col-3">password</label>
-          <input
-            type="password"
-            id="inputPassword"
-            class="form-control col-9"
-            placeholder="Password"
-            required=""
-            autofocus=""
-          />
-        </div>
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <label for="inputPassword" class="col-3">password</label>
+        <input type="password" id="inputPassword" class="form-control col-9" placeholder="Password" required="" autofocus="" />
+      </div>
 
-        <div class="row text-center d-flex align-items-center mw-100 mb-3">
-          <label for="inputPassword" class="col-3">確認用password</label>
-          <input
-            type="password"
-            id="inputConfirmationPassword"
-            class="form-control col-9"
-            placeholder="確認用Password"
-            required=""
-            autofocus=""
-          />
-        </div>
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <label for="inputPassword" class="col-3">確認用password</label>
+        <input type="password" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required="" autofocus="" />
+      </div>
 
-        <!-- パスワードが間違っている時に表示する -->
-        <!-- ここはオリジナルに修正したのでそのままコピペする -->
-        <div
-          id="passwordDisMatch"
-          class="row text-center d-flex align-items-center mw-100 mb-3"
-        >
-          <!-- 江渡　idを追加した -->
-          <div id="passwordDisMatchMessage" class="col d-none">
-            ※パスワードが一致しません。
-          </div>
-        </div>
-
-        <div class="row text-center d-flex align-items-center mw-100 mb-3">
-          <label for="exampleTextarea" class="col-3">自己紹介</label>
-          <textarea
-            id="exampleTextarea"
-            class="form-control col-9"
-            placeholder="free"
-            autofocus=""
-          >
-          </textarea>
-        </div>
-
-        <div class="row text-center d-flex align-items-center mw-100 mb-3">
-          <label for="exampleTextarea" class="col-3">プロフィール画像</label>
-          <div class="container-fluid" style="margin-bottom:100px;">
-            <!-- 画像選択とプレビュー表示　の　コード -->
-            <div class="container-fluid">
-              <div class="mx-auto" style="width:300px">
-                <form action="" method="post" enctype="multipart/form-data">
-                  <div id="postImagePreview" class="imagePreview"></div>
-                  <div class="input-group">
-                    <label class="input-group-btn">
-                      <span class="btn btn-primary">
-                        ファイルを選択<input
-                          type="file"
-                          style="display:none"
-                          class="uploadFile"
-                          id="uploadFile"
-                        />
-                      </span>
-                    </label>
-                    <input type="text" class="form-control" readonly="" />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <!-- 画像選択とプレビュー表示 終わり -->
+      <!-- パスワードが間違っている時に表示する -->
+      <!-- ここはオリジナルに修正したのでそのままコピペする -->
+      <div id="passwordDisMatch" class="row text-center d-flex align-items-center mw-100 mb-3">
+        <!-- 江渡　idを追加した -->
+        <div id="passwordDisMatchMessage" class="col d-none">
+          ※パスワードが一致しません。
         </div>
       </div>
 
-      <!-- 江渡　idを追加した -->
-      <div class="row mx-auto">
-        <button type="button" id="newuser" class="btn btn-info mt-0 mx-auto">
-          登録
-        </button>
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <label for="exampleTextarea" class="col-3">自己紹介</label>
+        <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
+          </textarea>
+      </div>
+
+      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+        <label for="exampleTextarea" class="col-3">プロフィール画像</label>
+        <div class="container-fluid" style="margin-bottom:100px;">
+          <!-- 画像選択とプレビュー表示　の　コード -->
+          <div class="container-fluid">
+            <div class="mx-auto" style="width:300px">
+              <form action="" method="post" enctype="multipart/form-data">
+                <div id="postImagePreview" class="imagePreview"></div>
+                <div class="input-group">
+                  <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                      ファイルを選択<input type="file" style="display:none" class="uploadFile" id="uploadFile" />
+                    </span>
+                  </label>
+                  <input type="text" class="form-control" readonly="" />
+                </div>
+              </form>
+            </div>
+          </div>
+        <!-- 画像選択とプレビュー表示 終わり -->
       </div>
     </div>
 
-    <!-- firebase.js　と　追加で作る app.js　を読み込む -->
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <script src="js/apiConfig.js"></script>
-    <script src="js/user.js"></script>
-  </body>
+    <!-- 江渡　idを追加した -->
+    <div class="row mx-auto">
+      <button type="button" id="newuser" class="btn btn-info mt-0 mx-auto">
+        登録
+      </button>
+    </div>
+  </div>
+
+  <!-- 画像選択とプレビュー表示　の　JS -->　
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
+  <script>
+    $(document).on('change', ':file', function() {
+      var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+      input.parent().parent().next(':text').val(label);
+
+      var files = !!this.files ? this.files : [];
+      if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+      if (/^image/.test(files[0].type)) { // only image file
+        var reader = new FileReader(); // instance of the FileReader
+        reader.readAsDataURL(files[0]); // read the local file
+        reader.onloadend = function() { // set image data as background of div
+          input.parent().parent().parent().prev('.imagePreview').css("background-image", "url(" + this.result + ")");
+        }
+      }
+    });
+  </script>   <!-- 画像選択とプレビュー表示　の　JS 終わり-->
+
+
+  <!-- firebase.js　と　追加で作る app.js　を読み込む -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+  <script src="js/apiConfig.js"></script>
+  <script src="js/user.js"></script>
+
+</body>
+
 </html>

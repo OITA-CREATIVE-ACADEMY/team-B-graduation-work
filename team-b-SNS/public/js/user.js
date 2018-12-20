@@ -1,6 +1,7 @@
 // Initialize Firebase
 // APIコンフィグ情報を取得する
-var config = getApiConfing();
+// var config = getApiConfing();
+var config = getApiConfig();
 firebase.initializeApp(config);
 
 function create() {

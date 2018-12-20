@@ -37,7 +37,7 @@ firebase.initializeApp(config);
 
 //追加のユーザー情報
     function writeUserData(displayName) {
-  firebase.database().ref('users/').set({
+  firebase.database().ref('users/').push({
     displayName: name,
     console.log(name);
   });
