@@ -10,6 +10,7 @@ function create() {
   // まず、ユーザ登録に必要なメール、パスワード情報をDOMから取得して定義しておく
   var email = document.getElementById("inputEmail").value;
   var password = document.getElementById("inputPassword").value;
+
   // ユーザーの登録
   firebase
     .auth()
@@ -23,15 +24,29 @@ function create() {
       var userSecondName = document.getElementById("inputSecondName").value; //名前(姓)
       var profileText = document.getElementById("exampleTextarea").value; //自己紹介
       var profilePic = document.getElementById("uploadFile").value; //プロフィール画像
+// ＜＜田中先生＞＞
       // user.updateProfileを使用してユーザ情報を更新する
-      user
-        .updateProfile({
-          firstName: userFirstName,
-          lastName: userSecondName,
-          displayName: displayName,
-          profiletext: profileText,
-          photoURL: profilePic
-        })
+      // user
+      //   .updateProfile({
+      //     firstName: userFirstName,
+      //     lastName: userSecondName,
+      //     displayName: displayName,
+      //     profiletext: profileText,
+      //     photoURL: profilePic
+      //   })
+// ＜＜青木先生＞＞
+// RealTimeDatabase　にuidをキーとしてユーザー情報を登録する
+      var uid = user.uid;
+      firebase
+       .database()
+       .ref('users/' + uid)
+           .set({
+             firstName: userFirstName,
+             secondName: userSecondName,
+             username: displayName,
+             comment: profileText
+           })
+
         .then(function() {
           // 登録成功時の処理
           alert("登録完了！");
