@@ -4,8 +4,7 @@ var config = getApiConfing();
 firebase.initializeApp(config);
 
 
-
-
+// Createの始まり
 function create() {
   // まず、ユーザ登録に必要なメール、パスワード情報をDOMから取得して定義しておく
   var email = document.getElementById("inputEmail").value;
@@ -44,20 +43,24 @@ function create() {
              firstName: userFirstName,
              secondName: userSecondName,
              username: displayName,
-             comment: profileText
+             comment: profileText,
            })
 
         .then(function() {
           // 登録成功時の処理
-          alert("登録完了！");
+          alert("登録が完了しました！お楽しみください(^^)");
         });
     })
     .catch(function(error) {
       console.log(error);
       // 登録失敗時の処理
-      alert("登録失敗");
-    });
+      alert("登録に失敗しました( ´△｀)");
+    })
 }
+// Createの終わり
+
+
+
 function read() {
   // ユーザ情報取得処理を記述する
   return;
