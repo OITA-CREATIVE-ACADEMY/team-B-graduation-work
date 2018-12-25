@@ -1,12 +1,13 @@
 /* 【body】 */
-body{
+
+body {
   background-color: white;
 }
 
 hr {
-  width:95%;
+  width: 95%;
   background-color: gray;
-  opacity:0.7;
+  opacity: 0.7;
 }
 
 /*==================
@@ -18,55 +19,57 @@ hr {
  *960px〜小型PC
  *1280px〜大型PC
 ==================*/
+
 /* 【container-fluid クラス】*/
+
 /*  画面サイズが480pxまで  */
+
 /* .pageTitle h3 {
  font-size:12px;
 }
 /* @media screen and (min-width:480px) and ( max-width:600px) { */
-    /*　画面サイズが480pxからはここを読み込む　*/
+
+/*　画面サイズが480pxからはここを読み込む　*/
+
 .pageTitle h3 {
-  font-size:15px;
+  font-size: 15px;
 }
 
 @media screen and (min-width:600px) and ( max-width:960px) {
-    /*　画面サイズが600pxから960pxまではここを読み込む　*/
-.pageTitle h3 {
-  font-size:20px;
-    }
+  /*　画面サイズが600pxから960pxまではここを読み込む　*/
+  .pageTitle h3 {
+    font-size: 20px;
   }
+}
 
 @media screen and (min-width:960px) and ( max-width:1280px) {
-    /*　画面サイズが960pxから1280pxまではここを読み込む　*/
-.pageTitle h3 {
-   font-size:20px;
-        }
-      }
+  /*　画面サイズが960pxから1280pxまではここを読み込む　*/
+  .pageTitle h3 {
+    font-size: 20px;
+  }
+}
 
 @media screen and (min-width:1280px) {
-    /*　画面サイズが1280pxからはここを読み込む　*/
-.pageTitle h3 {
-   font-size:20px;
-      }
-    }
-
-
-
+  /*　画面サイズが1280pxからはここを読み込む　*/
+  .pageTitle h3 {
+    font-size: 20px;
+  }
+}
 
 /* 【headerタグ内の項目】 */
+
 header {
   padding-bottom: 15px;
   margin-bottom: 15px;
   border-bottom: 1px solid #aaa;
   background: white;
-  box-shadow: 0 2px 2px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .templateStickyTopSectionBoxLogoMark {
-  height:30px;
-  margin-bottom:10px;
+  height: 30px;
+  margin-bottom: 10px;
 }
-
 
 .templateStickyTopSectionBoxPageTitle {
   text-align: right;
@@ -85,10 +88,11 @@ header {
 /* 【containerクラス内の項目】 */
 
 .box {
-  padding:20px;
+  padding: 20px;
 }
 
 /* 【ボタンの仕様】 */
+
 /* .btn{
     padding: 0.5em 1em;
     text-decoration: none;
@@ -97,47 +101,73 @@ header {
     border-radius: 3px;
 }
 /* .btn:active { ボタンを押したとき */
-    /* -ms-transform: translateY(4px);
+
+/* -ms-transform: translateY(4px);
     -webkit-transform: translateY(4px);  */
-    /* transform: translateY(4px); /* 下に動く */
-    /* border-bottom: none; /* 線を消す  */
+
+/* transform: translateY(4px); /* 下に動く */
+
+/* border-bottom: none; /* 線を消す  */
+
 /* }  */
 
 /* 【footerの仕様】 */
+
 footer {
   border-top: 1px solid #aaa;
-  box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
   background: white;
 }
 
 .spaceC {
   background-color: white;
-  height:50px;
+  height: 50px;
 }
-
-
-
 
 /* loginError.htmlのCSS */
-.error-text{
-  width:400px;
-  margin:0 auto;
+
+.error-text {
+  width: 400px;
+  margin: 0 auto;
 }
 
-.error-text p{
+.error-text p {
   text-align: center;
-  font-size:20px;
-  padding:20px 0;
+  font-size: 20px;
+  padding: 20px 0;
 }
 
 /* timeline.htmlのCSS */
+
 .box-tags {
   width: 90%;
   margin: 0 auto;
 }
 
-.btn-tag{
+.btn-tag {
   border-style: solid;
   border-color: gray;
-  margin:5px;
+  margin: 5px;
+}
+
+/* パソコンで見たときは"pc"のclassがついた画像が表示される */
+
+.pc {
+  display: block !important;
+}
+
+.sp {
+  display: none !important;
+}
+
+/* スマートフォンで見たときは"sp"のclassがついた画像が表示される */
+
+@media only screen and (max-width: 750px) {
+  .pc {
+    display: none !important;
+  }
+
+  .sp {
+    display: block !important;
+  }
 }
