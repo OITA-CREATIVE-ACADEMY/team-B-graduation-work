@@ -36,6 +36,7 @@ function create() {
 // ＜＜青木先生＞＞
 // RealTimeDatabase　にuidをキーとしてユーザー情報を登録する
       var uid = user.uid;
+
       firebase
        .database()
        .ref('users/' + uid)
@@ -49,6 +50,8 @@ function create() {
         .then(function() {
           // 登録成功時の処理
           alert("登録が完了しました！お楽しみください(^^)");
+
+          location.replace('timeline.html')
         });
     })
     .catch(function(error) {
