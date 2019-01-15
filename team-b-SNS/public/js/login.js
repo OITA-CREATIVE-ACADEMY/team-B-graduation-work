@@ -1,7 +1,27 @@
+// // Initialize Firebase
+// // APIコンフィグ情報を取得する
+// var config = getApiConfing();
+// firebase.initializeApp(config);
+
+
 // Initialize Firebase
-// APIコンフィグ情報を取得する
-var config = getApiConfing();
+var config = {
+  apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
+  authDomain: "team-b-sns.firebaseapp.com",
+  databaseURL: "https://team-b-sns.firebaseio.com",
+  projectId: "team-b-sns",
+  storageBucket: "team-b-sns.appspot.com",
+  messagingSenderId: "895377669050"
+};
+
 firebase.initializeApp(config);
+
+
+//DOM取得
+var inputarea = document.getElementById("input-area"); //inputエリア全体
+var login = document.getElementById("login"); //ログインボタン
+var logout = document.getElementById("logout"); //ログアウトボタン
+var info = document.getElementById("info"); //infoエリア
 
 
 function signIn() {
@@ -11,12 +31,17 @@ function signIn() {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(function(result) {
       alert("サインインが完了しました！お楽しみください(^^)");
+      console.log("OK")
+
+// タイムラインへ移動する
       // location.replace('timeline.html')
       // document.getElementById('log').innerText = 'サインイン成功';
     }).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
       alert("サインインに失敗しました");
+      console.log("NG")
+
       // document.getElementById('log').innerText = 'サインイン失敗: ' + errorCode + ', ' + errorMessage;
     });
 
@@ -26,11 +51,22 @@ function signIn() {
     });
 }
 
+
+//ログアウト処理
+logout.addEventListener('click', function() {
+  firebase.auth().signOut();
+  location.replace('index.html')
+});
+
+
 //認証状態の確認(ログインしているユーザーを取得する)
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     //ユーザーがログインしている状態
     loginDisplay();
+    setTimeout(function(){
+    window.location.href = 'timeline.html';
+  }, 3*1000);
   } else {
     //ユーザーがログインしていない状態
     logoutDisplay();
@@ -38,15 +74,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 function loginDisplay() {
-  logout.classList.remove('hide');
-  inputarea.classList.add('hide');
-
+  logout.classList.remove('d-none');
   info.textContent = "あなたはログイン中です";
 }
 
-function logoutDisplay() {
-  logout.classList.add('hide');
-  inputarea.classList.remove('hide');
 
-  info.textContent = "ログインしていません";
+
+function logoutDisplay() {
+  logout.classList.add('d-none');
+ document.getElementById('info').innerText = 'サインインしてください';
 }
