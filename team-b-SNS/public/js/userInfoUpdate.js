@@ -1,35 +1,29 @@
-
-
-$(function(){// Initialize Firebase
+// $(function(){// Initialize Firebase
 // APIコンフィグ情報を取得する
 var config = getApiConfing();
 firebase.initializeApp(config);
-var user = select();
-console.log(user);
+// var user = select();
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+    console.log(user.uid);
+    var userInfo = firebase
+      .database()
+      .ref("/users/" + user.uid)
+      .once("value")
+      .then(function(snapshot) {
+        var username = snapshot.val().username;
+        var firstName = snapshot.val().userFirstName;
+        var lastName = snapshot.val().userSecondName;
+        // ...
+      });
+    console.log(userInfo); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+  } else {
+    // location.replace("logIn.html");
+    // No user is signed in.
+  }
 });
-// function getUser(){
-// firebase.auth().onAuthStateChanged(function(user) {
-//   if (user) {
-//     return user;
-//     // User is signed in.
-//   } else {
-//     location.replace('logIn.html')
-//     // No user is signed in.
-//   }
-// });
-// }
-
-function select(){
-  // var user = function getUser();
-  var userId = firebase.auth().currentUser.uid;
-  return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-  var username = snapshot.val().username;
-  var firstName = snapshot.val().userFirstName;
-  var lastName= snapshot.val().userSecondName;
-  // ...
-});
-}
-
 
 // ユーザー除法の更新の始まり
 // function update() {

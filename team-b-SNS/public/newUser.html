@@ -1,234 +1,363 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>新規ユーザー登録</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>新規ユーザー登録</title>
+    <link href="css/logo.css" rel="stylesheet" />
 
- <link href="css/logo.css" rel="stylesheet" />
+    <!-- BootstrapのCSS読み込み -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- style.cssの読み込み -->
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
 
-  <!-- BootstrapのCSS読み込み -->
-  <link href="css/bootstrap.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- style.cssの読み込み -->
-  <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <!-- jQuery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="js/bootstrap.min.js"></script>
 
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
 
-  <!-- jQuery読み込み -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- BootstrapのJS読み込み -->
-  <script src="js/bootstrap.min.js"></script>
-
-
-  <!-- update the version number as needed -->
-  <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
-
-  <style media="screen">
-    body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+    <style media="screen">
+      body {
+        background: white;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      #message {
+        background: white;
+        max-width: 360px;
+        margin: 100px auto 16px;
+        padding: 32px 24px;
+        border-radius: 3px;
+      }
+      #message h2 {
+        color: #ffa100;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0 0 8px;
+      }
+      #message h1 {
+        font-size: 22px;
+        font-weight: 300;
+        color: rgba(0, 0, 0, 0.6);
+        margin: 0 0 16px;
+      }
+      #message p {
+        line-height: 140%;
+        margin: 16px 0 24px;
+        font-size: 14px;
+      }
+      #message a {
+        display: block;
+        text-align: center;
+        background: #039be5;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: white;
+        padding: 16px;
+        border-radius: 4px;
+      }
+      #message,
+      #message a {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+      #load {
+        color: rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-size: 13px;
+      }
       @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body,
+        #message {
+          margin-top: 0;
+          background: white;
+          box-shadow: none;
+        }
         /* body { border-top: 16px solid #ffa100; } */
       }
     </style>
-    <!-- 画像選択とプレビュー表示　の　CSS -->　
+    <!-- 画像選択とプレビュー表示　の　CSS -->
     <style>
       .imagePreview {
-              width: 100%;
-              height: 200px;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: contain;
-              -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
-              display: inline-block;
-          }
-      </style>    <!-- 画像選択とプレビュー表示　の　CSS 終わり-->　
-</head>
-
-<body>
-  <header class="sticky-top mb-2 bg-white">
-    <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
-    <div class="col-12">　
-      <div class="row align-items-end">
-        <div id="logo-space" class="col-6  text-left">
-          <img class="pc" src="img/logo_2.svg" alt="パソコン用の画像">
-          <img class="sp" src="img/logo.svg" alt="スマートフォン用の画像">
-        </div>
-
-        <div id="title-space" class="col-6 text-right ">
-          <span class="">新規ユーザー登録</span>
-        </div>
-      </div>
-    </div>
-    <hr class="mw-100  bg-light my-4">
-  </header>
-
-
-
-  <div class="container-fluid" style="margin-bottom:100px;">
-
-    <div class="form-label-group">
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputUserName" class="col-3">名前</label>
-        <input type="text" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required="" autofocus="">
-        <input type="text" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required="" autofocus="">
-      </div>
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputUserName" class="col-3">ユーザーネーム</label>
-        <input type="text" id="inputUserName" class="form-control col-9" placeholder="User name" required="" autofocus="">
-      </div>
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputEmail" class="col-3">E-mail</label>
-        <input type="text" id="inputEmail" class="form-control col-9" placeholder="E-mail" required="" autofocus="">
-      </div>
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputPassword" class="col-3">password</label>
-        <input type="password" id="inputPassword" class="form-control col-9" placeholder="Password" required="" autofocus="">
-      </div>
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="inputPassword" class="col-3">確認用password</label>
-        <input type="password" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required="" autofocus="">
-      </div>
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        ※パスワードが一致しません。
-      </div>
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleTextarea" class="col-3">自己紹介</label>
-        <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
-        </textarea>
-      </div>
-
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        <label for="exampleTextarea" class="col-3">プロフィール画像</label>
-        <div class="container-fluid" style="margin-bottom:100px;">
-      <!-- 画像選択とプレビュー表示　の　コード -->　
-      <div class="container-fluid">
-        <div class="mx-auto" style="width:300px">
-          <form action="" method="post" enctype="multipart/form-data">
-            <div id="postImagePreview" class="imagePreview"></div>
-            <div class="input-group">
-              <label class="input-group-btn">
-                <span class="btn btn-primary">
-                  ファイルを選択<input type="file" style="display:none">
-                </span>
-              </label>
-              <input type="text" class="form-control" readonly=""  id="uploadFile">
-            </div>
-          </form>
-        </div>
-      </div>
-      </div> <!-- 画像選択とプレビュー表示 終わり-->
-      </div>
-
-    </div>
-
-    <div class="row mx-auto">
-      <button id="profilePicUpload" type="button" class="btn btn-danger mt-0 mx-auto mb-4">テスト用画像登録</button>
-    </div>
-
-
-    <div class="row mx-auto">
-      <button type="button" class="btn btn-info mt-0 mx-auto">次へ</button>
-    </div>
-
-  </div>
-
-
-  <footer class="fixed-bottom bg-white pb-2">
-    <hr class="mw-100 bg-light">
-    <div class="col-12">
-      <div class="row">
-        <!-- ホームアイコン -->
-        <div id="timeLine" class="col-4 text-center">
-          <a href="timeLine.html">
-            <img id="timeLineIcon" src="img/home_icon.svg" style="width: 40px;" />
-          </a>
-        </div>
-        <!-- 新規投稿アイコン -->
-        <div id="newPost" class="col-4 text-center">
-          <a href="newPostPic.html">
-            <img id="newPostIcon" src="img/newPost_icon.svg" style="width: 40px;" />
-          </a>
-        </div>
-        <!-- マイページアイコン -->
-        <div id="myPage" class="col-4 text-center">
-          <a href="myPage.html">
-            <img id="myPageIcon" src="img/myPage_icon.svg" style="width: 40px;" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-      authDomain: "team-b-sns.firebaseapp.com",
-      databaseURL: "https://team-b-sns.firebaseio.com",
-      projectId: "team-b-sns",
-      storageBucket: "team-b-sns.appspot.com",
-      messagingSenderId: "895377669050"
-    };
-    firebase.initializeApp(config);
-  </script>
-
-  <!-- 画像選択とプレビュー表示　の　JS -->　
-  <script>
-    $(document).on('change', ':file', function() {
-      var input = $(this),
-        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-      input.parent().parent().next(':text').val(label);
-
-      var files = !!this.files ? this.files : [];
-      if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
-      if (/^image/.test(files[0].type)) { // only image file
-        var reader = new FileReader(); // instance of the FileReader
-        reader.readAsDataURL(files[0]); // read the local file
-        reader.onloadend = function() { // set image data as background of div
-          input.parent().parent().parent().prev('.imagePreview').css("background-image", "url(" + this.result + ")");
-        }
+        width: 100%;
+        height: 200px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+        display: inline-block;
       }
-    });
-  </script>   <!-- 画像選択とプレビュー表示　の　JS 終わり-->
+    </style>
+    <!-- 画像選択とプレビュー表示　の　CSS 終わり-->
+  </head>
 
-<!-- プロフィール画像アップロードのコード -->
-<script>
-      document.getElementById('profilePicUpload').addEventListener('click', function() {
-        var files = document.getElementById('file').files;
-        var image = files[0];
+  <body>
+    <header class="sticky-top mb-2 bg-white">
+      <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
+      <div class="col-12">
+        <div class="row align-items-end">
+          <div id="logo-space" class="col-6  text-left">
+            <img class="pc" src="img/logo_2.svg" alt="パソコン用の画像" />
+            <img class="sp" src="img/logo.svg" alt="スマートフォン用の画像" />
+          </div>
 
-        var ref = firebase.storage().ref().child(image.name);
-        ref.put(file).then(function(snapshot) {
-  console.log('プロフィール画像アップ完了');
-});
-});
-    </script><!-- プロフィール画像アップロードのコード -->
+          <div id="title-space" class="col-6 text-right ">
+            <span class="">新規ユーザー登録</span>
+          </div>
+        </div>
+      </div>
+      <hr class="mw-100  bg-light my-4" />
+    </header>
 
+    <div class="container-fluid" style="margin-bottom:100px;">
+      <div class="form-label-group">
+        <div class="row text-center d-flex align-items-center mw-100 mb-3">
+          <label for="inputUserName" class="col-3">名前</label>
+          <input
+            type="text"
+            id="inputFirstName"
+            class="form-control col-4 mr-2"
+            placeholder="姓"
+            required=""
+            autofocus=""
+          />
+          <input
+            type="text"
+            id="inputSecondName"
+            class="form-control col-4 ml-2"
+            placeholder="名"
+            required=""
+            autofocus=""
+          />
+        </div>
 
+        <div class="row text-center d-flex align-items-center mw-100 mb-3">
+          <label for="inputUserName" class="col-3">ユーザーネーム</label>
+          <input
+            type="text"
+            id="inputUserName"
+            class="form-control col-9"
+            placeholder="User name"
+            required=""
+            autofocus=""
+          />
+        </div>
 
-</body>
+        <div class="row text-center d-flex align-items-center mw-100 mb-3">
+          <label for="inputEmail" class="col-3">E-mail</label>
+          <input
+            type="text"
+            id="inputEmail"
+            class="form-control col-9"
+            placeholder="E-mail"
+            required=""
+            autofocus=""
+          />
+        </div>
 
+        <div class="row text-center d-flex align-items-center mw-100 mb-3">
+          <label for="inputPassword" class="col-3">password</label>
+          <input
+            type="password"
+            id="inputPassword"
+            class="form-control col-9"
+            placeholder="Password"
+            required=""
+            autofocus=""
+          />
+        </div>
+
+        <div class="row text-center d-flex align-items-center mw-100 mb-3">
+          <label for="inputPassword" class="col-3">確認用password</label>
+          <input
+            type="password"
+            id="inputConfirmationPassword"
+            class="form-control col-9"
+            placeholder="確認用Password"
+            required=""
+            autofocus=""
+          />
+        </div>
+
+        <div class="row text-center d-flex align-items-center mw-100 mb-3">
+          ※パスワードが一致しません。
+        </div>
+
+        <div class="row text-center d-flex align-items-center mw-100 mb-3">
+          <label for="exampleTextarea" class="col-3">自己紹介</label>
+          <textarea
+            id="exampleTextarea"
+            class="form-control col-9"
+            placeholder="free"
+            autofocus=""
+          >
+          </textarea>
+        </div>
+
+        <div class="row text-center d-flex align-items-center mw-100 mb-3">
+          <label for="exampleTextarea" class="col-3">プロフィール画像</label>
+          <div class="container-fluid" style="margin-bottom:100px;">
+            <!-- 画像選択とプレビュー表示　の　コード -->
+            <div class="container-fluid">
+              <div class="mx-auto" style="width:300px">
+                <form action="" method="post" enctype="multipart/form-data">
+                  <div id="postImagePreview" class="imagePreview"></div>
+                  <div class="input-group">
+                    <label class="input-group-btn">
+                      <span class="btn btn-primary">
+                        ファイルを選択<input
+                          type="file"
+                          style="display:none"
+                          id="file"
+                        />
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      readonly=""
+                      id="uploadFile"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- 画像選択とプレビュー表示 終わり-->
+        </div>
+      </div>
+
+      <div class="row mx-auto">
+        <button
+          id="profilePicUpload"
+          type="button"
+          class="btn btn-danger mt-0 mx-auto mb-4"
+        >
+          テスト用画像登録
+        </button>
+      </div>
+
+      <div class="row mx-auto">
+        <button type="button" class="btn btn-info mt-0 mx-auto">次へ</button>
+      </div>
+    </div>
+
+    <footer class="fixed-bottom bg-white pb-2">
+      <hr class="mw-100 bg-light" />
+      <div class="col-12">
+        <div class="row">
+          <!-- ホームアイコン -->
+          <div id="timeLine" class="col-4 text-center">
+            <a href="timeLine.html">
+              <img
+                id="timeLineIcon"
+                src="img/home_icon.svg"
+                style="width: 40px;"
+              />
+            </a>
+          </div>
+          <!-- 新規投稿アイコン -->
+          <div id="newPost" class="col-4 text-center">
+            <a href="newPostPic.html">
+              <img
+                id="newPostIcon"
+                src="img/newPost_icon.svg"
+                style="width: 40px;"
+              />
+            </a>
+          </div>
+          <!-- マイページアイコン -->
+          <div id="myPage" class="col-4 text-center">
+            <a href="myPage.html">
+              <img
+                id="myPageIcon"
+                src="img/myPage_icon.svg"
+                style="width: 40px;"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
+        authDomain: "team-b-sns.firebaseapp.com",
+        databaseURL: "https://team-b-sns.firebaseio.com",
+        projectId: "team-b-sns",
+        storageBucket: "team-b-sns.appspot.com",
+        messagingSenderId: "895377669050"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <!-- 画像選択とプレビュー表示　の　JS -->
+    <script>
+      $(document).on("change", ":file", function() {
+        var input = $(this),
+          numFiles = input.get(0).files ? input.get(0).files.length : 1,
+          label = input
+            .val()
+            .replace(/\\/g, "/")
+            .replace(/.*\//, "");
+        input
+          .parent()
+          .parent()
+          .next(":text")
+          .val(label);
+
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+        if (/^image/.test(files[0].type)) {
+          // only image file
+          var reader = new FileReader(); // instance of the FileReader
+          reader.readAsDataURL(files[0]); // read the local file
+          reader.onloadend = function() {
+            // set image data as background of div
+            input
+              .parent()
+              .parent()
+              .parent()
+              .prev(".imagePreview")
+              .css("background-image", "url(" + this.result + ")");
+          };
+        }
+      });
+    </script>
+    <!-- 画像選択とプレビュー表示　の　JS 終わり-->
+
+    <!-- プロフィール画像アップロードのコード -->
+    <script>
+      document
+        .getElementById("profilePicUpload")
+        .addEventListener("click", function() {
+          var files = document.getElementById("file").files;
+          var image = files[0];
+
+          var ref = firebase
+            .storage()
+            .ref()
+            .child(image.name);
+          ref.put(file).then(function(snapshot) {
+            console.log("プロフィール画像アップ完了");
+          });
+        });</script
+    ><!-- プロフィール画像アップロードのコード -->
+  </body>
 </html>
