@@ -29,7 +29,6 @@ function create() {
 
 // RealTimeDatabase　にuidをキーとしてユーザー情報を登録する
       var uid = user.uid;
-
       firebase
        .database()
        .ref('users/' + uid)
