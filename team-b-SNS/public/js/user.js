@@ -22,21 +22,13 @@ function create() {
       var userFirstName = document.getElementById("inputFirstName").value; //名前(姓)
       var userSecondName = document.getElementById("inputSecondName").value; //名前(姓)
       var profileText = document.getElementById("exampleTextarea").value; //自己紹介
-      var profilePic = document.getElementById("uploadFile").value; //プロフィール画像
-// ＜＜田中先生＞＞
-      // user.updateProfileを使用してユーザ情報を更新する
-      // user
-      //   .updateProfile({
-      //     firstName: userFirstName,
-      //     lastName: userSecondName,
-      //     displayName: displayName,
-      //     profiletext: profileText,
-      //     photoURL: profilePic
-      //   })
-// ＜＜青木先生＞＞
+      var profilePic = document.getElementById("file").value;
+      console.log(profilePic) //プロフィール画像
+
+
+
 // RealTimeDatabase　にuidをキーとしてユーザー情報を登録する
       var uid = user.uid;
-
       firebase
        .database()
        .ref('users/' + uid)
@@ -45,7 +37,11 @@ function create() {
              secondName: userSecondName,
              username: displayName,
              comment: profileText,
+             photoURL: profilePic
            })
+
+
+
 
         .then(function() {
           // 登録成功時の処理
