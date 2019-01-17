@@ -17,14 +17,14 @@
 
 
       // // プロフィール画像アップ
-      document.getElementById('upload').addEventListener('click', function() {
+      document.getElementById('profilePicUpload').addEventListener('click', function() {
             var storage = firebase.storage();
             var storageRef = storage.ref();
             var files = document.getElementById('file').files;
             var image = files[0];
 
               if(files[0].type.indexOf('image') >= 0) {
-                ref = storageRef.child("profilePic/" + profilePic);
+                var ref = storageRef.child("profilePic/" + files);
                 ref.put(image).then(function(snapshot) {
                   alert('画像をアップロードしました！');
 
