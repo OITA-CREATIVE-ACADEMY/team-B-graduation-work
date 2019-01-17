@@ -104,7 +104,7 @@
       <!-- １つ目のイベント -->
       <div id="event_1" class="tab-pane active" role="tabpanel" aria-labelledby="event_1-tab">
         <!-- ＃タグのボタン -->
-        <div class="btnEvent_1 container-fluid">
+        <div class="eventBtn btnEvent_1 container-fluid">
           <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#コスプレ</button>
           <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#魔女</button>
           <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#渋ハロ</button>
@@ -119,7 +119,7 @@
       <!-- ２つ目のイベント -->
       <div id="event_2" class="tab-pane" role="tabpanel" aria-labelledby="event_2-tab">
         <!-- ＃タグのボタン -->
-        <div class="btnEvent_2 container-fluid">
+        <div class="eventBtn btnEvent_2 container-fluid">
           <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#サンタ</button>
           <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#ツリー</button>
           <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#プレゼント</button>
@@ -133,7 +133,7 @@
 
       <!-- 3つ目のイベント -->
       <div id="event_3" class="tab-pane" role="tabpanel" aria-labelledby="event_3-tab">
-        <div class="btnEvent_3 container-fluid">
+        <div class="eventBtn btnEvent_3 container-fluid">
           <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#鏡餅</button>
           <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#お年玉</button>
           <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#おせち</button>
@@ -158,7 +158,9 @@
             <div class="input-group">
               <label class="input-group-btn">
                 <span class="btn btn-primary">
-                  Choose File<input type="file" style="display:none" class="uploadFile">
+                  Choose File<input type="file" style="display:none" id="postPic" class="uploadFile">
+                  <!-- <input type="file" name="file" id="file"> -->
+
                 </span>
               </label>
               <input type="text" class="form-control" readonly="">
@@ -208,7 +210,7 @@
     <div class="card border-primary mb-3">
       <div class="card-header p-1">投稿イベント</div>
       <div class="card-body text-primary p-1">
-        <p class="card-title m-0" id="tagSelected">クリスマス</p>
+        <p class="card-title m-0" id="eventSelected">クリスマス</p>
       </div>
     </div>
 
@@ -249,7 +251,7 @@
   <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">戻る</button>
 </div>
 <div class=" col-6 text-left">
-  <button id="forwardBtn" type="button" class="btn btn-primary" style="width:100px">投稿</button>
+  <button id="postBtn" type="button" class="btn btn-primary" style="width:100px">投稿</button>
 </div>
 </div>
 
@@ -330,6 +332,21 @@
     　　$(‘#postImagePreview‘).clone().appendTo($(‘#postImagePreviewCopy‘));
     });
     </script>　<!-- cloneで画像プレビューを複製するJS 終わり-->
+
+<!-- 選択した#タグを　id="tagSelected"　反映する -->
+<script>
+  // function change(ctrl){
+  // var g = document.getElementById(‘guest’);
+  // g.value = ctrl.value;
+  // }
+    function get(tag){
+      var postTag = document.getElementsByClassName("eventBtn");
+      postTag.value = 
+    }
+</script>
+
+
+<script src="js/newPost.js"></script>
 
 </body>
 
