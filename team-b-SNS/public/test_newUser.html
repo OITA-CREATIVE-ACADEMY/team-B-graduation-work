@@ -20,24 +20,15 @@
  <script src="js/bootstrap.min.js"></script>
 
  <!-- update the version number as needed -->
- <!-- <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
- <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
- <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
- <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
- <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script> -->
+ <!-- 1月17日　田中先生にて修正 -->
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
-
-
- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-messaging.js"></script>
- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-functions.js"></script> -->
-
-
- <!-- initialize the SDK after all desired features are loaded -->
- <!-- <script defer src="https://www.gstatic.com/firebase/init.js"></script> -->
 
  <style media="screen">
    body {
@@ -189,7 +180,9 @@
                     <input type="file" name="file" id="file">
                    </span>
                  </label>
-                 <input type="text" class="form-control" readonly="" />
+                 <input type="text" id="picName" class="form-control" readonly="" />
+                 <!-- <input type="text" class="form-control" readonly="" /> -->
+
                </div>
              </form>
            </div>
@@ -276,7 +269,7 @@
 
  <script src="js/apiConfig.js"></script>
  <script src="js/user.js"></script>
- <!-- <script src="js/userPicUp.js"></script> -->
+ <script src="js/userPicUp.js"></script>
 
 
 </body>
