@@ -85,9 +85,11 @@ function drop() {
   return;
 }
 
+
 function validation() {
   var password = $("#inputPassword").val();
   var confirmationPassword = $("#inputConfirmationPassword").val();
+  
   // 入力されたパスワードと確認用のパスワードが同一かチェックする
   if (password != confirmationPassword) {
     // 同一でなかった場合、エラーメッセージを返して処理終了る（ユーザ登録処理まで進まないようにする）
@@ -95,6 +97,7 @@ function validation() {
     return false;
   }
 }
+
 
 // 登録ボタン押下イベント
 $("#newuser").on("click", function() {
