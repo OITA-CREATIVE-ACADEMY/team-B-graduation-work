@@ -20,6 +20,7 @@
  <script src="js/bootstrap.min.js"></script>
 
  <!-- update the version number as needed -->
+ <!-- 1月17日　田中先生にて修正 -->
  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
@@ -27,6 +28,7 @@
 <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
+
 
  <style media="screen">
    body {
@@ -178,7 +180,9 @@
                     <input type="file" name="file" id="file">
                    </span>
                  </label>
-                 <input type="text" class="form-control" readonly="" />
+                 <input type="text" id="picName" class="form-control" readonly="" />
+                 <!-- <input type="text" class="form-control" readonly="" /> -->
+
                </div>
              </form>
            </div>

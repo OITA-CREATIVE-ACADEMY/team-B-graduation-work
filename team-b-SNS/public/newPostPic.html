@@ -22,14 +22,27 @@
 
 
   <!-- update the version number as needed -->
-  <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
+  <!-- <script defer src="/__/firebase/5.5.7/firebase-app.js"></script> -->
   <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
+  <!-- <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
   <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
   <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
+  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script> -->
   <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
+  <!-- <script defer src="/__/firebase/init.js"></script> -->
+
+ <!-- 1月17日　田中先生にて修正 -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
+
+
+
+
 
   <style media="screen">
     body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -288,10 +301,12 @@
     </div>
   </footer>
 
+  <script src="js/apiConfig.js"></script>
+  <script src="js/newPost.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-  <script>
-    // Initialize Firebase
+
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script> -->
+  <!-- <script>
     var config = {
       apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
       authDomain: "team-b-sns.firebaseapp.com",
@@ -301,7 +316,7 @@
       messagingSenderId: "895377669050"
     };
     firebase.initializeApp(config);
-  </script>
+  </script> -->
 
   <!-- 画像プレビューのJS -->
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
@@ -327,11 +342,12 @@
   </script>   <!-- 画像プレビューのJS 終わり-->
 
 <!-- cloneで画像プレビューを複製するJS -->
-<script>
+<!-- <script>
     $(function(){
     　　$(‘#postImagePreview‘).clone().appendTo($(‘#postImagePreviewCopy‘));
     });
-    </script>　<!-- cloneで画像プレビューを複製するJS 終わり-->
+    </script>　 -->
+    <!-- cloneで画像プレビューを複製するJS 終わり-->
 
 <!-- 選択した#タグを　id="tagSelected"　反映する -->
 <script>
@@ -341,12 +357,11 @@
   // }
     function get(tag){
       var postTag = document.getElementsByClassName("eventBtn");
-      postTag.value = 
+      // postTag.value = 
     }
 </script>
 
 
-<script src="js/newPost.js"></script>
 
 </body>
 
