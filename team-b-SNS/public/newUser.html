@@ -128,10 +128,13 @@
             <div class="input-group">
               <label class="input-group-btn">
                 <span class="btn btn-primary">
-                  ファイルを選択<input type="file" style="display:none">
+                  ファイルを選択
+                  <input  type="file" name="file" id="file" style="display:none">
                 </span>
               </label>
-              <input type="text" class="form-control" readonly=""  id="uploadFile">
+              <!-- <input type="text" class="form-control" readonly=""  id="uploadFile"> -->
+              <input type="text" class="form-control" readonly="">
+
             </div>
           </form>
         </div>
@@ -141,15 +144,13 @@
 
     </div>
 
-    <div class="row mx-auto">
-      <button id="profilePicUpload" type="button" class="btn btn-danger mt-0 mx-auto mb-4">テスト用画像登録</button>
-    </div>
-
 
     <div class="row mx-auto">
-      <button type="button" class="btn btn-info mt-0 mx-auto">次へ</button>
+      <button type="button" id="newuser" class="btn btn-info mt-0 mx-auto">
+        登録
+      </button>
     </div>
-
+ 
   </div>
 
 
@@ -180,18 +181,6 @@
   </footer>
 
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-      authDomain: "team-b-sns.firebaseapp.com",
-      databaseURL: "https://team-b-sns.firebaseio.com",
-      projectId: "team-b-sns",
-      storageBucket: "team-b-sns.appspot.com",
-      messagingSenderId: "895377669050"
-    };
-    firebase.initializeApp(config);
-  </script>
 
   <!-- 画像選択とプレビュー表示　の　JS -->　
   <script>
@@ -214,18 +203,8 @@
   </script>   <!-- 画像選択とプレビュー表示　の　JS 終わり-->
 
 <!-- プロフィール画像アップロードのコード -->
-<script>
-      document.getElementById('profilePicUpload').addEventListener('click', function() {
-        var files = document.getElementById('file').files;
-        var image = files[0];
-
-        var ref = firebase.storage().ref().child(image.name);
-        ref.put(file).then(function(snapshot) {
-  console.log('プロフィール画像アップ完了');
-});
-});
-    </script><!-- プロフィール画像アップロードのコード -->
-
+<script src="js/apiConfig.js"></script>
+<script src="js/user.js"></script>
 
 
 </body>
