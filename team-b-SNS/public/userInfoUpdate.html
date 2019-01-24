@@ -284,11 +284,12 @@
         read();
         // class="update" エレメントがクリックされたときに実行される
         $(".update").on("click", function() {
-          // var firstNameUpdate = document.getElementById("inputFirstName");
-          // var secondNameUpdate = document.getElementById("inputSecondName");
-          // var userNameUpdate = document.getElementById("inputUserName");
-          // var emailUpdate = document.getElementById("inputEmail");
-          // var exampleTextareaUpdate = document.getElementById("exampleTextarea");
+          var firstNameUpdate = $("#inputFirstName").val();
+          var userSecondNameUpdate = $("#inputSecondName").val();
+          var displayNameUpdate = $("#inputUserName").val();
+          var emailUpdate = $("#inputEmail").val();
+          var profileTextUpdate = $("#exampleTextarea").val();
+          var profilePicUpdate = $("").val();
 
           var emailUpdate = $("#inputEmail").val();
           var user = firebase.auth().currentUser;
@@ -303,13 +304,18 @@
                 console.log(error);
               });
 
+            var usersRef =  firebase
+                .database()
+                .ref("users/")
             var usersUpdate = usersRef.child("users");
-            hopperRef.update({
+
+
+            usersRef.update({
               firstName: firstNameUpdate,
               secondName: userSecondNameUpdate,
               username: displayNameUpdate,
               comment: profileTextUpdate,
-              photoURL: profilePicUpdate
+              photoURL: profilePicUpdate,
             });
 
             alert("登録処理実行！");

@@ -100,6 +100,7 @@ function read() {
             document.getElementById("inputSecondName").value = secondName;
             document.getElementById("exampleTextarea").value = comment;
             document.getElementById("inputEmail").value = email;
+            document.getElementById("photoURL").value = photoURL;
             // ...
           });
         console.log(userInfo); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
