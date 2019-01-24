@@ -28,6 +28,8 @@
   <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-messaging.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-functions.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <!-- <script defer src="https://www.gstatic.com/firebasejs/init.js"></script> -->
 
 
   <style media="screen">
@@ -139,7 +141,7 @@
 
       <div class="text-center m-5">
         <li style="list-style: none;">
-          <button id="logout-btn" type="button" class="btn btn-info">ログアウト</button>
+          <button id="logout" type="button" class="btn btn-info">ログアウト</button>
         </li>
       </div>
 
@@ -225,20 +227,13 @@
   </footer>
 
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-      authDomain: "team-b-sns.firebaseapp.com",
-      databaseURL: "https://team-b-sns.firebaseio.com",
-      projectId: "team-b-sns",
-      storageBucket: "team-b-sns.appspot.com",
-      messagingSenderId: "895377669050"
-    };
-    firebase.initializeApp(config);
-  </script>
+<!-- apiConfig情報の読み込み -->
+<script src="js/apiConfig.js"></script>
+
 <!-- ログアウトのjs読み込み -->
+<!-- <script src="js/login.js"></script> -->
 <script src="js/logout.js"></script>
+
 
 </body>
 
