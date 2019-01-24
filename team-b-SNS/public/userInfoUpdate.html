@@ -22,15 +22,13 @@
   <script src="js/bootstrap.min.js"></script>
 
 
-  <!-- update the version number as needed -->
-  <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
 
   <style media="screen">
     body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -145,7 +143,7 @@
 
       <a href="userPicUpdate.html">
       <div class="row mx-auto">
-        <button type="button" class="btn btn-info mt-0 mx-auto" onclick="OnButtonClick();">更新内容を確定</button>
+        <button type="button" class="btn btn-info mt-0 mx-auto update">更新内容を確定</button>
       </div>
       </a>
 
@@ -183,6 +181,36 @@
  <script>
  $(function(){
    read();
+   // class="update" エレメントがクリックされたときに実行される
+  $(".update").on("click", function() {
+    var firstNameUpdate = document.getElementById("inputFirstName");
+    var secondNameUpdate = document.getElementById("inputSecondName");
+    var userNameUpdate = document.getElementById("inputUserName");
+    var emailUpdate = document.getElementById("inputEmail");
+    var exampleTextareaUpdate = document.getElementById("exampleTextarea");
+
+    var user = firebase.auth().currentUser;
+
+      user.updateEmail(emailUpdate).then(function() {
+        // Update successful.
+      }).catch(function(error) {
+        // An error happened.
+        console.log(error);
+      });
+
+    var usersUpdate = usersRef.child("users");
+      hopperRef.update({
+        "firstName": firstNameUpdate,
+        "secondName": userSecondNameUpdate,
+        "username": displayNameUpdate,
+        "comment": profileTextUpdate,
+        "photoURL": profilePicUpdate,
+      });
+
+    alert("登録処理実行！");
+    return false;
+  });
+
  });</script>
 
 </body>
