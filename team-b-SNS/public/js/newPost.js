@@ -44,45 +44,51 @@ function createNewPost() {
       firebase
        .database()
       //  .ref('users/' + uid)
-       .ref('post')
-　       .push({
-             userID: uid,
-             event: eventTitle,
-             tag: tagTitle,
-             comment: postComment,
-             photoURL: postPic,
-             date: postTime,
-           });
+       .ref('post') 
+　      .push({
+          userID: uid,
+          event: eventTitle,
+          tag: tagTitle,
+          comment: postComment,
+          photoURL: postPic,
+          date: postTime,
+        })   
+        .then(function() {　//ここのthenは、push　の処理が正常に処理されたかどうかを判断するもの
 
+        //投稿画像の登録は、この上のthen　の処理が正常に行われたら走る
 
-           //投稿画像の登録
-          var storage = firebase.storage();
-          var files = document.getElementById('postPic').files;　
-          // var files = document.getElementById('postPicCopy').files;　
+        var storage = firebase.storage();
+        var files = document.getElementById('postPic').files;　
+        // var files = document.getElementById('postPicCopy').files;　
 
-          var image = files[0];
-          // fileの名前を取得
-          var file_name = files[0].name;
+        var image = files[0];
+        // fileの名前を取得
+        var file_name = files[0].name;
 
-          if(files[0].type.indexOf('image') >= 0) {　
-              var ref = storage.ref('images/').child(file_name);
-              ref.put(image).then(function(snapshot) {
-              });
-            }  
+        if(files[0].type.indexOf('image') >= 0) {
+          var ref = storage.ref('images/').child(file_name);
+          ref.put(image).then(function(snapshot) {
+           //画像の登録まで正常に終わったら、投稿が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
 
-        .then(function() {
-          // 新規投稿成功時の処理
-          alert("投稿しました");
-          location.replace('timeline.html')
-        })
+            // 新規投稿成功時の処理
+            alert("投稿しました");
+            location.replace('timeline.html')
+          }).catch(function(error) {
+            console.log(error);
+            // 画像登録失敗時の処理
+            alert("画像が選択されていません( ´△｀)");
+        });
+      }
+    }
+        //ここが投稿全体のエラーを返す
     .catch(function(error) {
       console.log(error);
       登録失敗時の処理
       alert("投稿に失敗しました( ´△｀)");
-    });
-
-}
-// Createの終わり
+    })
+    );
+  }
+    // Createの終わり
 
 
 
