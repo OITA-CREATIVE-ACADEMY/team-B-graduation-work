@@ -16,20 +16,21 @@ function createNewPost() {
       var postPic = document.getElementById("postPic").value;//投稿画像のURL
       var eventTitle = document.getElementById("eventSelected").innerHTML;//選択したイベント
       var tagTitle = document.getElementById("tagSelected").innerHTML;//選択したタグ
-      var postTime = document.getElementById("DateTimeDisp").innerHTML;//投稿日時 postDate の取得 を追加する
+      // var postTime = document.getElementById("DateTimeDisp").innerHTML;//投稿日時 postDate の取得 を追加する
+      var postDate =moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
       var uid = user.uid;
 
-      //投稿した日付を取得
-      function dateFunction6() {
-        //日付オブジェクトを作成する
-        var date6 = new Date();
-        //日付オブジェクトから「年」を取得する
-        var year = date6.getFullYear();
-        console.log(year);
-        // //段落タグの中身を"date6"で置き換える
-        // var pelem006 = document.getElementById("date006");
-        // pelem006.innerHTML = "今は" + year + "年です。";
-        }
+      // //投稿した日付を取得
+      // function dateFunction6() {
+      //   //日付オブジェクトを作成する
+      //   var date6 = new Date();
+      //   //日付オブジェクトから「年」を取得する
+      //   var year = date6.getFullYear();
+      //   console.log(year);
+      //   // //段落タグの中身を"date6"で置き換える
+      //   // var pelem006 = document.getElementById("date006");
+      //   // pelem006.innerHTML = "今は" + year + "年です。";
+      //   }
 
 
 
@@ -39,7 +40,7 @@ function createNewPost() {
       console.log(postPic);
       console.log(eventTitle);
       console.log(tagTitle);
-      console.log(postTime);
+      console.log(postDate);
 
       firebase
        .database()
@@ -51,7 +52,7 @@ function createNewPost() {
           tag: tagTitle,
           comment: postComment,
           photoURL: postPic,
-          date: postTime,
+          date: postDate
         })   
         .then(function() {　//ここのthenは、push　の処理が正常に処理されたかどうかを判断するもの
 
@@ -79,14 +80,14 @@ function createNewPost() {
             alert("画像が選択されていません( ´△｀)");
         });
       }
-    }
+    })
         //ここが投稿全体のエラーを返す
     .catch(function(error) {
       console.log(error);
-      登録失敗時の処理
+      // 登録失敗時の処理
       alert("投稿に失敗しました( ´△｀)");
     })
-    );
+    
   }
     // Createの終わり
 

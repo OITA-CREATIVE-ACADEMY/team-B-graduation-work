@@ -73,7 +73,9 @@
 
 </head>
 
-<body onload="LoadProc();">
+<body>
+    <!-- <body onload="LoadProc();"> ロードしたら、時刻を取得する指示-->　
+
   <header class="sticky-top mb-2 bg-white">
     <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
     <div class="col-12">　
@@ -192,7 +194,7 @@
       </div>
     </div> <!-- 画像選択とプレビュー表示 終わり-->
 
-    <hr class="mw-100  bg-light my-4">
+    <!-- <hr class="mw-100  bg-light my-4">
 
     <div class="row">
 
@@ -208,7 +210,7 @@
         </div>
       </a>
 
-    </div><!-- 新規投稿ー①イベント・#タグ・②画像選択 終わり-->
+    </div>新規投稿ー①イベント・#タグ・②画像選択 終わり -->
 
 
 <!-- ここから、class="d-none"　にする -->
@@ -216,7 +218,7 @@
 <div class="container-fluid my-3">
   <h3 class="text-center">③ 投稿するコメントを作成してください。</h3>
   <div class="text-center d-flex align-items-center mw-100 mb-3">
-    <textarea id="exampleTextarea" cols="30" rows="5" class="form-control mx-auto" placeholder="free" autofocus="" style="width:90%">
+    <textarea id="exampleTextarea" cols="30" rows="5" class="form-control mx-auto" placeholder="free" style="width:90%">
     </textarea>
   </div>
 </div>　<!-- 新規投稿ー③　コメント投稿 終わり-->
@@ -412,7 +414,7 @@
   </script>
   
 
-  <script>
+  <!-- <script>
   //  現在の日時の取得
   var now = new Date();
   function LoadProc() {
@@ -429,9 +431,11 @@
 
     console.log(target.innerHTML);
   }
-</script>
+</script> -->
 
 <script src="js/newPost.js"></script>
+<script src="js/moment.js"></script>
+
 
 
 
