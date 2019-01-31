@@ -13,7 +13,7 @@ function createNewPost() {
       var user = firebase.auth().currentUser; // ※firebase.auth().currentUser　を使うと現在ログイン中のユーザが取得できる
       //　投稿関係の変数を登録
       var postComment = document.getElementById("exampleTextarea").value; //投稿コメント
-      var postPic = document.getElementById("postPic").value;//投稿画像のURL
+      // var postPic = document.getElementById("postPic").value;//投稿画像のURL
       var eventTitle = document.getElementById("eventSelected").innerHTML;//選択したイベント
       var tagTitle = document.getElementById("tagSelected").innerHTML;//選択したタグ
       // var postTime = document.getElementById("DateTimeDisp").innerHTML;//投稿日時 postDate の取得 を追加する
@@ -37,7 +37,7 @@ function createNewPost() {
 
       console.log(uid);
       console.log(postComment);
-      console.log(postPic);
+      // console.log(postPic);
       console.log(eventTitle);
       console.log(tagTitle);
       console.log(postDate);
@@ -51,25 +51,41 @@ function createNewPost() {
           event: eventTitle,
           tag: tagTitle,
           comment: postComment,
-          photoURL: postPic,
+          // photoURL: postPic,
           date: postDate
-        })   
-        .then(function() {　//ここのthenは、push　の処理が正常に処理されたかどうかを判断するもの
+        })  
+        
+        
+       //ここのthenは、push　の処理が正常に処理されたかどうかを判断するもの
+        .then(function(data) {  //引数で　data　をとってきて、投稿IDを次に取得する
+
+          // ここで投稿IDをとる　そしてその投稿IDを使って画像名を変更することで、storage内の画像の上書きを防ぐ
+          console.log(data);
+          console.log(data.key);  //投稿IDを取得　data.key　全部！
+
 
         //投稿画像の登録は、この上のthen　の処理が正常に行われたら走る
+        
+        var newPostId = data.key;
 
         var storage = firebase.storage();
         var files = document.getElementById('postPic').files;　
-        // var files = document.getElementById('postPicCopy').files;　
 
         var image = files[0];
         // fileの名前を取得
         var file_name = files[0].name;
 
+        var newFileName = (image.type.indexOf('png') !== -1) ? `${newPostId}.png`: `${newPostId}.jpg`;
+        console.log(newFileName);
+
         if(files[0].type.indexOf('image') >= 0) {
-          var ref = storage.ref('images/').child(file_name);
+          var ref = storage.ref('images/').child(newFileName);
           ref.put(image).then(function(snapshot) {
            //画像の登録まで正常に終わったら、投稿が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
+
+            ここに、photoURL　を update　で登録する
+
+
 
             // 新規投稿成功時の処理
             alert("投稿しました");
