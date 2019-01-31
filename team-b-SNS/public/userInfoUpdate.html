@@ -199,30 +199,22 @@
                 <label for="exampleTextarea" class="col-3"
                   >プロフィール画像を変更</label
                 >
-                <div class="container-fluid" style="margin-bottom:100px;">
-                  <!-- 画像選択とプレビュー表示　の　コード -->
-                  <div class="container-fluid">
-                    <div class="mx-auto" style="width:300px">
-                      <form
-                        action=""
-                        method="post"
-                        enctype="multipart/form-data"
-                      >
-                        <div id="postImagePreview" class="imagePreview"></div>
-                        <div class="input-group">
-                          <label class="input-group-btn">
-                            <span class="btn btn-primary">
-                              ファイルを選択<input
-                                type="file"
-                                style="display:none"
-                                class="uploadFile"
-                              />
-                            </span>
-                          </label>
-                          <input type="text" class="form-control" readonly="" />
-                        </div>
-                      </form>
-                    </div>
+                <div class="container-fluid">
+                  <div class="mx-auto" style="width:300px">
+                    <form action="" method="post" enctype="multipart/form-data">
+                      <div id="postImagePreview" class="imagePreview"></div>
+                      <div class="input-group">
+                        <label class="input-group-btn">
+                          <span class="btn btn-primary">
+                            ファイルを選択
+                            <input  type="file" name="file" id="file" style="display:none">
+                          </span>
+                        </label>
+                        <!-- <input type="text" class="form-control" readonly=""  id="uploadFile"> -->
+                        <input type="text" class="form-control" readonly="">
+
+                      </div>
+                    </form>
                   </div>
                 </div>
                 <!-- 画像選択とプレビュー表示 終わり-->
@@ -284,12 +276,17 @@
         read();
         // class="update" エレメントがクリックされたときに実行される
         $(".update").on("click", function() {
+
+          // アップデートテスト関数
+          databaseUpdate();
+
+
           var firstNameUpdate = $("#inputFirstName").val();
           var userSecondNameUpdate = $("#inputSecondName").val();
           var displayNameUpdate = $("#inputUserName").val();
           var emailUpdate = $("#inputEmail").val();
           var profileTextUpdate = $("#exampleTextarea").val();
-          
+
           // var profilePicUpdate = $("").val();
 
           var emailUpdate = $("#inputEmail").val();
@@ -316,14 +313,35 @@
               secondName: userSecondNameUpdate,
               username: displayNameUpdate,
               comment: profileTextUpdate,
-              photoURL: profilePicUpdate,
+              // photoURL: profilePicUpdate,
             });
 
             alert("登録処理実行！");
+            console.log("登録処理実行！");
             return false;
           }
+
         });
       });
     </script>
+    <!-- 画像選択とプレビュー表示　の　JS -->　
+    <script>
+      $(document).on('change', ':file', function() {
+        var input = $(this),
+          numFiles = input.get(0).files ? input.get(0).files.length : 1,
+          label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.parent().parent().next(':text').val(label);
+
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+        if (/^image/.test(files[0].type)) { // only image file
+          var reader = new FileReader(); // instance of the FileReader
+          reader.readAsDataURL(files[0]); // read the local file
+          reader.onloadend = function() { // set image data as background of div
+            input.parent().parent().parent().prev('.imagePreview').css("background-image", "url(" + this.result + ")");
+          }
+        }
+      });
+    </script>   <!-- 画像選択とプレビュー表示　の　JS 終わり-->
   </body>
 </html>

@@ -71,6 +71,8 @@ function create() {
 // Createの終わり
 
 function read() {
+
+  console.log('Firebaseからデータ取得');
   firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
@@ -100,7 +102,7 @@ function read() {
             document.getElementById("inputSecondName").value = secondName;
             document.getElementById("exampleTextarea").value = comment;
             document.getElementById("inputEmail").value = email;
-            document.getElementById("photoURL").value = photoURL;
+            // document.getElementById("photoURL").value = photoURL;
             // ...
           });
         console.log(userInfo); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
@@ -113,63 +115,80 @@ function read() {
 
 
 
+function databaseUpdate() {
+  console.log('ユーザーデータ変更');
+  var userid = 'XnVDOfD3mjOXh7XdKsSfmW0Gvyw1';
+
+  var updates = {};
+  updates['users/' + userid + '/firstName'] = '12123334444';
+  firebase.database().ref().update(updates);
+
+  // firebase.database().ref('users/' + userid ).set({
+  //   firstName: '1212'
+  // });
+}
+
 
 function update() {
-  // // ユーザ情報更新処理を記述する
-  // // ユーザーのプロフィールを更新する
-  // var usersInfoUpdate = firebase.auth().currentUser;
+
+  console.log('アップデート処理実行');
+  // ユーザ情報更新処理を記述する
+  // ユーザーのプロフィールを更新する
+  var usersInfoUpdate = firebase.auth().currentUser;
+
+  user.updateProfile({
+    displayName: username,
+    // photoURL: 関数を入れる
+  }).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+
+
+  // // ユーザーのメールアドレスを設定する
+  // var userEmailUpdate = firebase.auth().currentUser;
   //
-  // user.updateProfile({
-  //   displayName: username,
-  //   // photoURL: 関数を入れる
-  // }).then(function() {
+  // user.updateEmail(email).then(function() {
   //   // Update successful.
   // }).catch(function(error) {
   //   // An error happened.
   // });
   //
   //
-  // // // ユーザーのメールアドレスを設定する
-  // // var userEmailUpdate = firebase.auth().currentUser;
-  // //
-  // // user.updateEmail(email).then(function() {
-  // //   // Update successful.
-  // // }).catch(function(error) {
-  // //   // An error happened.
-  // // });
-  // //
-  // //
-  // // // ユーザーに確認メールを送信する
-  // // var userEmailSend = firebase.auth().currentUser;
-  // //
-  // // user.sendEmailVerification().then(function() {
-  // //   // Email sent.
-  // // }).catch(function(error) {
-  // //   // An error happened.
-  // // });
+  // // ユーザーに確認メールを送信する
+  // var userEmailSend = firebase.auth().currentUser;
   //
-  //
-  //   // A post entry.
-  //   var postData = {
-  //     firstName: firstNameUpdate,
-  //     secondName: userSecondNameUpdate,
-  //     comment: profileTextUpdate,
-  //     photoURL: profilePicUpdate,
-  //     starCount: 0
-  //   };
-  //
-  // // Get a key for a new Post.
-  //   var newPostKey = firebase.database().ref().child('posts').push().key;
-  //
-  // // Write the new post's data simultaneously in the posts list and the user's post list.
-  //   var updates = {};
-  //   updates['/users/' + newPostKey] = postData;
-  //
-  //   // 複数の保存場所がある時は同時にアップデートできるよ
-  //   // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-  //
-  //   return firebase.database().ref().update(updates);
-  // return;
+  // user.sendEmailVerification().then(function() {
+  //   // Email sent.
+  // }).catch(function(error) {
+  //   // An error happened.
+  // });
+
+
+    // A post entry.
+    var postData = {
+      firstName: firstNameUpdate,
+      secondName: userSecondNameUpdate,
+      comment: profileTextUpdate,
+      photoURL: profilePicUpdate,
+    };
+
+  // Get a key for a new Post.
+    // var newPostKey = firebase.database().ref().child('posts/' + uid).push().key;
+
+
+
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/users/' + newPostKey] = postData;
+
+    // 複数の保存場所がある時は同時にアップデートできるよ
+    // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+    return firebase.database().ref().update(updates);
+  return;
 }
 
 function drop() {
