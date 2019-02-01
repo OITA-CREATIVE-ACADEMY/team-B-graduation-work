@@ -73,8 +73,9 @@ function createNewPost() {
 
         var image = files[0];
         // fileの名前を取得
-        var file_name = files[0].name;
+        // var file_name = files[0].name;
 
+        //ここで画像のファイル名を投稿IDをベースに拡張子別に変更する。
         var newFileName = (image.type.indexOf('png') !== -1) ? `${newPostId}.png`: `${newPostId}.jpg`;
         console.log(newFileName);
 
