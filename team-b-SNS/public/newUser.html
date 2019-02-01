@@ -30,6 +30,7 @@
   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
 
+
   <style media="screen">
     body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
       #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
@@ -83,28 +84,28 @@
     <div class="form-label-group">
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="inputUserName" class="col-3">名前</label>
-        <input type="text" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required="" autofocus="">
-        <input type="text" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required="" autofocus="">
+        <input type="text" name="inputFirstName" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required="" autofocus="">
+        <input type="text" name="inputSecondName" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required="" autofocus="">
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="inputUserName" class="col-3">ユーザーネーム</label>
-        <input type="text" id="inputUserName" class="form-control col-9" placeholder="User name" required="" autofocus="">
+        <input type="text" name="inputUserName" id="inputUserName" class="form-control col-9" placeholder="User name" required="" autofocus="">
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="inputEmail" class="col-3">E-mail</label>
-        <input type="text" id="inputEmail" class="form-control col-9" placeholder="E-mail" required="" autofocus="">
+        <input type="text" name="inputEmail" id="inputEmail" class="form-control col-9" placeholder="E-mail" required="" autofocus="">
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="inputPassword" class="col-3">password</label>
-        <input type="password" id="inputPassword" class="form-control col-9" placeholder="Password" required="" autofocus="">
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control col-9" placeholder="Password" required="" autofocus="">
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="inputPassword" class="col-3">確認用password</label>
-        <input type="password" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required="" autofocus="">
+        <input type="password" name="inputConfirmationPassword" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required="" autofocus="">
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
@@ -150,7 +151,7 @@
         登録
       </button>
     </div>
- 
+
   </div>
 
 
@@ -205,7 +206,6 @@
 <!-- プロフィール画像アップロードのコード -->
 <script src="js/apiConfig.js"></script>
 <script src="js/user.js"></script>
-
 
 </body>
 
