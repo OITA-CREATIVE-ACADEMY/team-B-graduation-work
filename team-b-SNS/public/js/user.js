@@ -1,7 +1,7 @@
 // Initialize Firebase
 // APIコンフィグ情報を取得する
 var config = getApiConfing();
-firebase.initializeApp(config);
+// firebase.initializeApp(config);
 
 // Createの始まり
 function create() {
@@ -34,7 +34,7 @@ function create() {
           secondName: userSecondName,
           username: displayName,
           comment: profileText,
-          photoURL: profilePic
+          photoURL: profilePic,
         });
 
       //プロフィール画像の登録
@@ -146,24 +146,24 @@ function update() {
   });
 
 
-  // // ユーザーのメールアドレスを設定する
-  // var userEmailUpdate = firebase.auth().currentUser;
-  //
-  // user.updateEmail(email).then(function() {
-  //   // Update successful.
-  // }).catch(function(error) {
-  //   // An error happened.
-  // });
-  //
-  //
-  // // ユーザーに確認メールを送信する
-  // var userEmailSend = firebase.auth().currentUser;
-  //
-  // user.sendEmailVerification().then(function() {
-  //   // Email sent.
-  // }).catch(function(error) {
-  //   // An error happened.
-  // });
+  // ユーザーのメールアドレスを設定する
+  var userEmailUpdate = firebase.auth().currentUser;
+  
+  user.updateEmail(email).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+  
+  
+  // ユーザーに確認メールを送信する
+  var userEmailSend = firebase.auth().currentUser;
+  
+  user.sendEmailVerification().then(function() {
+    // Email sent.
+  }).catch(function(error) {
+    // An error happened.
+  });
 
 
     // A post entry.
@@ -192,15 +192,15 @@ function update() {
 }
 
 function drop() {
-  // // ユーザーを削除する
-  // var userDelete = firebase.auth().currentUser;
-  //
-  // user.delete().then(function() {
-  //   // User deleted.
-  // }).catch(function(error) {
-  //   // An error happened.
-  // });
-  // return;
+  // ユーザーを削除する
+  var userDelete = firebase.auth().currentUser;
+  
+  user.delete().then(function() {
+    // User deleted.
+  }).catch(function(error) {
+    // An error happened.
+  });
+  return;
 }
 
 
