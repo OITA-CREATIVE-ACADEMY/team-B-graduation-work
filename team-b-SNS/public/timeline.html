@@ -19,49 +19,40 @@
   <script>
  window.onload = 
   function readPost() {
-    console.log('Firebaseからpostデータ取得');
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+    var postRef = firebase.database().ref('post');    
+    postRef.on("child_added", function(snapshot) {
+        // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
+        var postId = snapshot.key; //投稿ID
+        var postDate =  snapshot.val().date; //投稿した日時
+        var userId = snapshot.val().userId; //投稿者のユーザーID
+        var eventTitle = snapshot.val().event; //投稿イベント名
+        var tagTitle = snapshot.val().tag; //選択したタグ
+        var postPic = snapshot.val().photoURL; //投稿した画像名
+        var postComment =  snapshot.val().comment; //投稿したコメント
 
-          console.log(user.uid);
-          var postBoxRef = firebase.database().ref("/post/");
-          postBoxRef.on('value',function(snapshot){
-              var uniqId =
-                (snapshot.val() && snapshot.val().uniqId) || "Anonymous";
-              var postComment =
-                (snapshot.val() && snapshot.val().comment) ;
-              var postPic =
-                (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
-              var eventTitle =
-                (snapshot.val() && snapshot.val().event) || "Anonymous";
-              var photoURL =
-                (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
-              var tagTitle =
-                (snapshot.val() && snapshot.val().tag) || "Anonymous";
-              var postDate =
-                (snapshot.val() && snapshot.val().date) || "Anonymous";
-              var userId =
-                (snapshot.val() && snapshot.val().userID) || "Anonymous";
-            //   // ...
-            //   document.getElementById("inputUserName").value = username;
-            //   document.getElementById("inputFirstName").value = firstName;
-            //   document.getElementById("inputSecondName").value = secondName;
-            //   document.getElementById("exampleTextarea").value = comment;
-            //   document.getElementById("inputEmail").value = email;
-            //   // document.getElementById("photoURL").value = photoURL;
-            //   // ...
-            console.log(postComment); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+        console.log("投稿ID="+ postId);
+        console.log("投稿した日時="+ postDate);
+        console.log("投稿者のユーザーID="+ userId);
+        console.log("投稿イベント名="+ eventTitle);
+        console.log("選択した#タグ="+ tagTitle);
+        console.log("投稿した画像名="+ postPic);
+        console.log("投稿したコメント="+ postComment);
 
-            });
-        } else {
-          // location.replace("logIn.html");
-          // No user is signed in.
-        }
-      });
+
+        // $('#task-list').append(task);
+    });
+
+    var userPicNameRef = firebase.database().ref('users');
+    userPicNameRef.on("child_added", function(snapshot) {
+      var userId = snapshot.key; //投稿者のユーザーID
+      var postUser =  snapshot.val().username; //投稿ユーザーの写真
+      var userPic = snapshot.val().photoURL; //投稿ユーザーの写真
+
+      console.log("投稿したユーザーID="+ userId);
+      console.log("投稿したユーザー名="+ postUser);
+      console.log("投稿したユーザーのご尊顔="+ userPic);
+    });
   }
-
   
 
   </script>

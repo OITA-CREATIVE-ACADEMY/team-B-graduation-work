@@ -21,16 +21,6 @@
   <script src="js/bootstrap.min.js"></script>
 
 
-  <!-- update the version number as needed -->
-  <!-- <script defer src="/__/firebase/5.5.7/firebase-app.js"></script> -->
-  <!-- include only the Firebase features as you need -->
-  <!-- <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script> -->
-  <!-- initialize the SDK after all desired features are loaded -->
-  <!-- <script defer src="/__/firebase/init.js"></script> -->
-
  <!-- 1月17日　田中先生にて修正 -->
   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
@@ -39,7 +29,8 @@
   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
-
+<!-- 　これも必要。ページの下の方に入っているかもしれないのでチェックする -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 
 
 
@@ -307,27 +298,8 @@
     </div>
   </footer>
 
-  <script src="js/apiConfig.js"></script>
-  <script src="js/newPost.js"></script>
-
-
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script> -->
-  <!-- <script>
-    var config = {
-      apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-      authDomain: "team-b-sns.firebaseapp.com",
-      databaseURL: "https://team-b-sns.firebaseio.com",
-      projectId: "team-b-sns",
-      storageBucket: "team-b-sns.appspot.com",
-      messagingSenderId: "895377669050"
-    };
-    firebase.initializeApp(config);
-  </script> -->
 
   <!-- 画像プレビューのJS -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
   <script>
     $(document).on('change', ':file', function() {
       var input = $(this),
@@ -347,13 +319,6 @@
     });
   </script>   <!-- 画像プレビューのJS 終わり-->
 
-<!-- cloneで画像プレビューを複製するJS -->
-<!-- <script>
-    $(function(){
-    　　$(‘#postImagePreview‘).clone().appendTo($(‘#postImagePreviewCopy‘));
-    });
-    </script>　 -->
-    <!-- cloneで画像プレビューを複製するJS 終わり-->
 
   <!-- #タグのボタンのON と　OFF　の切り替え -->
   <script>
@@ -399,28 +364,10 @@
       }
   </script>
   
+  <script src="js/apiConfig.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/newPost.js"></script>
 
-  <!-- <script>
-  //  現在の日時の取得
-  var now = new Date();
-  function LoadProc() {
-    var target = document.getElementById("DateTimeDisp");
-
-    var Year = now.getFullYear();
-    var Month = now.getMonth()+1;
-    var Date = now.getDate();
-    var Hour = now.getHours();
-    var Min = now.getMinutes();
-    var Sec = now.getSeconds();
-
-    target.innerHTML = Year + "年" + Month + "月" + Date + "日" + Hour + ":" + Min + ":" + Sec;
-
-    console.log(target.innerHTML);
-  }
-</script> -->
-
-<script src="js/newPost.js"></script>
-<script src="js/moment.js"></script>
 
 
 
