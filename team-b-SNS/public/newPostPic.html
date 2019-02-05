@@ -131,7 +131,7 @@
               <button type="button" name="button" id="" class="btn-sm btn-outline-primary shadow-sm m-1">#コウモリ</button>
               <button type="button" name="button" id="" class="btn-sm btn-outline-primary shadow-sm m-1">#ドンキホーテ</button>
             </div>
-            <hr class="mw-100 mb-3 w-90 bg-gradient-light">
+            <!-- <hr class="mw-100 mb-3 w-90 bg-gradient-light"> -->
           </div>
           </div>
 
@@ -148,7 +148,7 @@
               <button type="button" name="button" id="" class="btn-sm btn-outline-primary shadow-sm m-1">#イブ</button>
               <button type="button" name="button" id="" class="btn-sm btn-outline-primary shadow-sm m-1">#セブンのケーキ</button>
             </div>
-            <hr class="mw-100 mb-3 w-90 bg-gradient-light">
+            <!-- <hr class="mw-100 mb-3 w-90 bg-gradient-light"> -->
           </div>
         </div>
 
@@ -165,9 +165,12 @@
               <button type="button" name="button" id="" class="btn-sm btn-outline-primary shadow-sm m-1">#お正月ライブ</button>
               <button type="button" name="button" id="" class="btn-sm btn-outline-primary shadow-sm m-1">#福袋</button>
             </div>
-            <hr class="mw-100 mb-3 w-90 bg-gradient-light">
           </div>
         </div>
+        <hr class="mw-100 mb-3 w-90 bg-gradient-light">
+        <span id="span0"></span>
+        <span id="span1"></span>
+       <hr class="mw-100 mb-3 w-90 bg-gradient-light">
 
     </div><!-- タブのコンテンツ部分　終わり -->
 
@@ -187,43 +190,28 @@
                       <input type="file" name="file" id="postPic" style="display:none" class="uploadFile">
                     </span>
               </label>
-              <input type="text" class="form-control" readonly="">
+              <input type="text" class="form-control postElement" readonly="">
             </div>
           </form>
         </div>
+        <hr class="mw-100 mb-3 w-90 bg-gradient-light">
+        <span id="span2"></span>
+       <hr class="mw-100 mb-3 w-90 bg-gradient-light">
       </div>
     </div> <!-- 画像選択とプレビュー表示 終わり-->
 
-    <!-- <hr class="mw-100  bg-light my-4">
-
-    <div class="row">
-
-      <a href="timeline.html">
-        <div class=" col-6 text-right">
-          <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">キャンセル</button>
-        </div>
-      </a>
-
-      <a href="postEditDelete.html">
-        <div class=" col-6 text-left">
-          <button id="forwardBtn" type="button" class="btn btn-primary" style="width:100px">次へ</button>
-        </div>
-      </a>
-
-    </div>新規投稿ー①イベント・#タグ・②画像選択 終わり -->
-
-
-<!-- ここから、class="d-none"　にする -->
 <!-- 新規投稿ー③　コメント投稿 -->　
 <div class="container-fluid my-3">
   <h3 class="text-center">③ 投稿するコメントを作成してください。</h3>
   <div class="text-center d-flex align-items-center mw-100 mb-3">
-    <textarea id="exampleTextarea" cols="30" rows="5" class="form-control mx-auto" placeholder="free" style="width:90%">
+    <textarea id="exampleTextarea" cols="30" rows="5" class="form-control mx-auto postElement" placeholder="free" style="width:90%">
     </textarea>
   </div>
 </div>　<!-- 新規投稿ー③　コメント投稿 終わり-->
 
-<hr class="mw-100  bg-light my-4">
+<hr class="mw-100 mb-3 w-90 bg-gradient-light">
+<span id="span4"></span>
+<hr class="mw-100 mb-3 w-90 bg-gradient-light">
 
 <!-- 投稿内容　全体　の確認 -->
 <div class="row container-fluid m-0 text-center">
@@ -235,7 +223,7 @@
       <div class="card-header p-1">投稿イベント</div>
       <div class="card-body text-primary p-1">
         <!-- <p class="card-title m-0" id="eventSelected">クリスマス</p> -->
-        <p class="card-title m-0" id="eventSelected">
+        <p class="card-title m-0 postElement" id="eventSelected">
           </p>
 
       </div>
@@ -245,7 +233,7 @@
       <div class="card-header p-1">選択したタグ</div>
       <div class="card-body text-primary p-1">
         <!-- <input class="card-title m-0" id="tagSelected"> -->
-        <p class="card-title m-0" id="tagSelected">
+        <p class="card-title m-0 postElement" id="tagSelected">
           </p>
 
       </div>
@@ -277,16 +265,14 @@
 
 <div class="row">
 <div class=" col-6 text-right">
-  <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">戻る</button>
+    <a href="timeline.html">
+      <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">戻る</button>
+    </a>
 </div>
 <div class=" col-6 text-left">
   <button id="postBtn" type="button" class="btn btn-primary" style="width:100px">投稿</button>
 </div>
 </div>
-
-現在の時刻:
-   <div id="DateTimeDisp"></div>
-
 
 </div>　
 

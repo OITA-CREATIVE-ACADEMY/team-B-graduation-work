@@ -6,6 +6,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>マイページ</title>
 
+  <!-- ページを開いた時に、ユーザー登録情報の読み込みを行う -->
+  <!-- <script>
+      window.onload = function() {
+        read();
+        return;
+      }
+  </script> -->
+  <script>
+    window.onload = 
+      function read() {
+      
+      console.log('Firebaseからデータ取得');
+      firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+            console.log(user.uid);
+            var userInfo = firebase
+              .database()
+              .ref("/users/" + user.uid)
+              .once("value")
+              .then(function(snapshot) {
+                var firstName =
+                  (snapshot.val() && snapshot.val().firstName) || "Anonymous";
+                var secondName =
+                  (snapshot.val() && snapshot.val().secondName) || "Anonymous";
+                var username =
+                  (snapshot.val() && snapshot.val().username) || "Anonymous";
+      
+                var comment =
+                  (snapshot.val() && snapshot.val().comment) || "Anonymous";
+                var photoURL =
+                  (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
+      
+                var email = user.email;
+                // ...
+                document.getElementById("inputUserName").value = username;
+                document.getElementById("inputFirstName").value = firstName;
+                document.getElementById("inputSecondName").value = secondName;
+                document.getElementById("exampleTextarea").value = comment;
+                document.getElementById("inputEmail").value = email;
+                // document.getElementById("photoURL").value = photoURL;
+                // ...
+              });
+            console.log(userInfo); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+          } else {
+            // location.replace("logIn.html");
+            // No user is signed in.
+          }
+        });
+      }
+      </script>
+      
+
+
+
  <link href="css/logo.css" rel="stylesheet" />
 
   <!-- BootstrapのCSS読み込み -->
@@ -74,61 +130,71 @@
           <img id="logo" src="img/prof_icon.svg" style="width: 120px;" />
     </div>
 
-    <!-- マイページ用　名前の項目 -->
-    <div class="container-fluid w-75　">
-      <div class="row">
-        <div class="col">
-          <span>
-            <small>【名前】</small>
-          </span>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col border-bottom text-center">
-          <span id="userName">
-            オシエ　ビー太郎
-          </span>
-        </div>
-      </div>
-    </div>
-    <!-- マイページ用　名前の項目 終わり-->
-
-    <div class="container-fluid w-75 mt-5">
-
-      <div class="row">
-        <div class="col">
-          <span>
-            <small>【ユーザーネーム】</small>
-          </span>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col border-bottom text-center">
-          <span id="userName">
-            OCA-Btarou
-          </span>
-        </div>
-      </div>
 
 
-
-    <div class="container-fluid w-75 mt-5">
-      <div class="row">
-        <div class="col">
-          <span>
-            <small>【自己紹介】</small>
-          </span>
-        </div>
-      </div>
-
-      <div class="row">
-          <textarea></textarea>
-      </div>
-    </div>
-
-
+    <div class="container-fluid" style="margin-bottom:100px;">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form class="form-horizontal">
+              <div class="form-group has-error">
+                <label class="control-label">名前</label>
+                <div class="text-center d-flex align-items-center mw-100 mb-3">
+                  <input
+                    type="text"
+                    id="inputFirstName"
+                    class="form-control col-6 mr-2"
+                    placeholder="姓"
+                    required=""
+                    readonly=""
+                  />
+                  <input
+                    type="text"
+                    id="inputSecondName"
+                    class="form-control col-6"
+                    placeholder="名"
+                    required=""
+                    readonly=""
+                  />
+                </div>
+              </div>
+  
+              <div class="form-group has-error">
+                <label class="control-label">ユーザーネーム</label>
+                <div class="text-center d-flex align-items-center mw-100 mb-3">
+                  <input
+                    type="text"
+                    id="inputUserName"
+                    class="form-control col-12"
+                    placeholder="User name"
+                    required=""
+                    readonly=""
+                  />
+                </div>
+              </div>
+  
+              <div class="form-group has-error">
+                <label class="control-label">E-mail</label>
+                <div class="text-center d-flex align-items-center mw-100 mb-3">
+                  <input
+                    type="text"
+                    id="inputEmail"
+                    class="form-control col-12"
+                    placeholder="E-mail"
+                    required=""
+                    readonly=""
+                  />
+                </div>
+              </div>
+  
+              <div class="form-group has-error">
+                  <label class="control-label">自己紹介</label>
+                <input
+                  id="exampleTextarea"
+                  class="form-control col-12"
+                  placeholder="free"
+                  readonly=""
+                />
+              </div>
 
       <div class="newSignUp text-center mt-5">
         <p class="mb-2"> 登録情報変更は、
@@ -226,12 +292,12 @@
     </div>
   </footer>
 
-  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-<!-- apiConfig情報の読み込み -->
-<script src="js/apiConfig.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
 
-<!-- ログアウトのjs読み込み -->
-<!-- <script src="js/login.js"></script> -->
+
+
+<script src="js/apiConfig.js"></script>
+<!-- <script src="js/user.js"></script> -->
 <script src="js/logout.js"></script>
 
 
