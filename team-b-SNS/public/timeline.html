@@ -14,6 +14,59 @@
   <!-- style.cssの読み込み -->
   <!-- <link href="css/style.css" rel="stylesheet"> -->
 
+<!-- 
+  realtimedababseからの情報取得テスト -->
+  <script>
+ window.onload = 
+  function readPost() {
+    console.log('Firebaseからpostデータ取得');
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+
+          console.log(user.uid);
+          var postBoxRef = firebase.database().ref("/post/");
+          postBoxRef.on('value',function(snapshot){
+              var uniqId =
+                (snapshot.val() && snapshot.val().uniqId) || "Anonymous";
+              var postComment =
+                (snapshot.val() && snapshot.val().comment) ;
+              var postPic =
+                (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
+              var eventTitle =
+                (snapshot.val() && snapshot.val().event) || "Anonymous";
+              var photoURL =
+                (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
+              var tagTitle =
+                (snapshot.val() && snapshot.val().tag) || "Anonymous";
+              var postDate =
+                (snapshot.val() && snapshot.val().date) || "Anonymous";
+              var userId =
+                (snapshot.val() && snapshot.val().userID) || "Anonymous";
+            //   // ...
+            //   document.getElementById("inputUserName").value = username;
+            //   document.getElementById("inputFirstName").value = firstName;
+            //   document.getElementById("inputSecondName").value = secondName;
+            //   document.getElementById("exampleTextarea").value = comment;
+            //   document.getElementById("inputEmail").value = email;
+            //   // document.getElementById("photoURL").value = photoURL;
+            //   // ...
+            console.log(postComment); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+
+            });
+        } else {
+          // location.replace("logIn.html");
+          // No user is signed in.
+        }
+      });
+  }
+
+  
+
+  </script>
+
+
 
   <!-- jQuery読み込み -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -99,10 +152,10 @@
           </div>
           <hr class="mw-100 mb-3 w-90 bg-gradient-light">
         </div>
-        <!-- タイムラインのarea 1 -->
-        <div class="container-fluid bg-white mw-100 p-2" id="postArea">
-          <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
-            <!-- タイムラインのbox -->
+<!-- タイムラインのarea 1 　この中にchildを作っていく-->
+        <div class="container-fluid bg-white mw-100 p-2" id="postArea">         
+<!-- タイムラインのbox これが中身の元になるもの-->
+           <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
             <div class="row">
               <!-- 投稿のbox -->
 
@@ -164,7 +217,9 @@
                 </div><!-- 投稿情報・コメントのbox 終わり-->
               </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
             </div><!-- 投稿のbox 終わり-->
-          </div><!-- タイムラインのbox 終わり-->
+          </div>
+<!-- タイムラインのbox 終わり-->
+
           <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
             <!-- タイムラインのbox -->
             <div class="row">
