@@ -1,7 +1,7 @@
 // Initialize Firebase
 // APIコンフィグ情報を取得する
 var config = getApiConfing();
-// firebase.initializeApp(config);
+firebase.initializeApp(config);
 
 // Createの始まり
 function create() {
@@ -78,6 +78,8 @@ function read() {
         // User is signed in.
         // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
         console.log(user.uid);
+        var uid = user.uid;
+        console.log(uid);
         var userInfo = firebase
           .database()
           .ref("/users/" + user.uid)
@@ -116,12 +118,25 @@ function read() {
 
 
 function databaseUpdate() {
-  console.log('ユーザーデータ変更');
-  var userid = 'XnVDOfD3mjOXh7XdKsSfmW0Gvyw1';
+  var firstName = document.getElementById("inputFirstName").value;
+  var username = document.getElementById("inputUserName").value;
+  var secondName = document.getElementById("inputSecondName").value;
+  var comment = document.getElementById("exampleTextarea").value;
 
-  var updates = {};
-  updates['users/' + userid + '/firstName'] = '12123334444';
-  firebase.database().ref().update(updates);
+  var userid = firebase.auth().currentUser.uid;
+  var updatesFirstName = {};
+  updatesFirstName['users/' + userid + '/firstName'] = firstName;
+  var updatesSecondName = {};
+  updatesSecondName['users/' + userid + '/secondName'] = secondName;
+  var updatesUsername = {};
+  updatesUsername['users/' + userid + '/username'] = username;
+  var updatesComment = {};
+  updatesComment ['users/' + userid + '/comment'] = comment;
+
+  firebase.database().ref().update(updatesFirstName);
+  firebase.database().ref().update(updatesSecondName);
+  firebase.database().ref().update(updatesUsername);
+  firebase.database().ref().update(updatesComment);
 
   // firebase.database().ref('users/' + userid ).set({
   //   firstName: '1212'
@@ -148,17 +163,17 @@ function update() {
 
   // ユーザーのメールアドレスを設定する
   var userEmailUpdate = firebase.auth().currentUser;
-  
+
   user.updateEmail(email).then(function() {
     // Update successful.
   }).catch(function(error) {
     // An error happened.
   });
-  
-  
+
+
   // ユーザーに確認メールを送信する
   var userEmailSend = firebase.auth().currentUser;
-  
+
   user.sendEmailVerification().then(function() {
     // Email sent.
   }).catch(function(error) {
@@ -174,27 +189,23 @@ function update() {
       photoURL: profilePicUpdate,
     };
 
-  // Get a key for a new Post.
-    // var newPostKey = firebase.database().ref().child('posts/' + uid).push().key;
 
+// emailの更新
+  var updatesEmail = document.getElementById("inputEmail").value;
+  var user = firebase.auth().currentUser;
+  user.updateEmail(updatesEmail).then(function() {
+  // Update successful.
+}).catch(function(error) {
+  // An error happened.
+});
 
-
-
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-    var updates = {};
-    updates['/users/' + newPostKey] = postData;
-
-    // 複数の保存場所がある時は同時にアップデートできるよ
-    // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
-    return firebase.database().ref().update(updates);
-  return;
 }
+
 
 function drop() {
   // ユーザーを削除する
   var userDelete = firebase.auth().currentUser;
-  
+
   user.delete().then(function() {
     // User deleted.
   }).catch(function(error) {
