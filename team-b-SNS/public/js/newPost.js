@@ -17,7 +17,9 @@ function createNewPost() {
       var eventTitle = document.getElementById("eventSelected").innerHTML;//選択したイベント
       var tagTitle = document.getElementById("tagSelected").innerHTML;//選択したタグ
       // var postTime = document.getElementById("DateTimeDisp").innerHTML;//投稿日時 postDate の取得 を追加する
-      var postDate =moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+      var postDate =moment().format('YYYY年MM月DD日HH時MM分');
+
+
       // var likes =
       var uid = user.uid;
 
