@@ -16,9 +16,21 @@
 
 <!-- 
   realtimedababseからの情報取得テスト -->
+  <script src="js/apiConfig.js"></script>
+
   <script>
  window.onload = 
-  function readPost() {
+
+//  firebase.auth().onAuthStateChanged(function(user) {
+//       if (user) {
+//         // User is signed in.
+//         // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+//         console.log(user.uid);
+//       }
+// });
+
+ function readPost(){
+
     var postRef = firebase.database().ref('post');    
     postRef.on("child_added", function(snapshot) {
         // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
@@ -38,22 +50,109 @@
         console.log("投稿した画像名="+ postPic);
         console.log("投稿したコメント="+ postComment);
 
+//         ref = firebase.storage().ref().child('img/samle.jpg');
+//         ref.getDownloadURL().then((url) => {
+//         document.getElementById('boxPic').src = url;
+// 　　　　　});
 
-        // $('#task-list').append(task);
-    });
-
-    var userPicNameRef = firebase.database().ref('users');
+var userPicNameRef = firebase.database().ref('users');
     userPicNameRef.on("child_added", function(snapshot) {
       var userId = snapshot.key; //投稿者のユーザーID
-      var postUser =  snapshot.val().username; //投稿ユーザーの写真
+      var postUser = snapshot.val().username; //投稿ユーザーの写真
       var userPic = snapshot.val().photoURL; //投稿ユーザーの写真
 
       console.log("投稿したユーザーID="+ userId);
       console.log("投稿したユーザー名="+ postUser);
       console.log("投稿したユーザーのご尊顔="+ userPic);
+
+
+      // //    画像取得
+var storage = firebase.storage(); 
+var storageRef = storage.ref(); 
+var spaceRef = storageRef.child('images/-LXc-NaAie-mD1vgLCr7.png'); 
+storageRef.child('images/-LXc-NaAie-mD1vgLCr7.png').getDownloadURL().then(function(url) { 
+var test = url; 
+// add this line here: 
+document.getElementsByClassName('postImg').src = test; 
+}).catch(function(error) { 
+}); 
+var test = 'firebase_url';  
+document.getElementsByClassName('postImg').src = test;
+
+
+
+
+
+        const text =`<div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="postBox">
+            <div class="row">
+              <!-- 投稿のbox -->
+
+              <div class="col-md">
+                <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+                <div class="mx-100">
+                  <div class="">
+                    <!-- 画像 --> <img class="mw-100 postImg" ${test} id="boxPic">
+
+                  </div>
+                </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+              </div>
+
+              <div class="col-md mt-2">
+                <!-- プロフ画像・投稿者名・投稿日・いいね！のbox -->
+
+                <div class=" container-fluid">
+
+                  <div class="row">
+                    <!-- プロフ画像 のbox-->
+                    <div class="col-2 p-1 text-center">
+                      <!-- プロフ画像 --> <img id="postUserPic" class="rounded-circle bg-primary shadow" src="img/img_sample1.jpg" alt="" style="width: 50px;height: 50px;" />
+                    </div><!-- プロフ画像 のbox 終わり-->
+                    <div class="col-6 container-fluid">
+                      <!-- 投稿者名・投稿日 のbox -->
+                      <div class="row">
+                        <!-- 投稿者名 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">${postUser}</span></small>
+                        </div>
+                      </div><!-- 投稿者名 のbox 終わり-->
+                      <div class="row">
+                        <!-- 投稿日 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postDate" class="">${postDate}</span></small>
+                        </div>
+                      </div><!-- 投稿日 のbox 終わり-->
+                    </div><!-- 投稿者名・投稿日のbox 終わり-->
+
+                    <div class="col-2 p-0 text-right">
+                      <!-- ハート のbox -->
+                      <!-- 白ハート --> <img id="whiteHeart" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                       <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                    </div> <!-- ハート のbox 終わり-->
+                    <div id="likesNumber" class="col-2 p-0">
+                      <!-- いいねの数 のbox -->
+                      <!-- いいね！の数 -->
+                      <div class="mw-100 text-left" style="font-size:24px">110</div>
+                    </div> <!-- いいねの数 のbox 終わり-->
+                  </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+
+                  <div class="row">
+                    <!-- コメントのbox -->
+                    <!-- コメント -->
+                    <div class="col mw-100 p-1">
+                      <div class="mw-100 border border-light shadow-sm">
+                        <span class="p-1">${postComment}</span>
+                      </div>
+                    </div>
+                  </div><!-- コメントのbox 終わり-->
+                </div><!-- 投稿情報・コメントのbox 終わり-->
+              </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+            </div><!-- 投稿のbox 終わり-->
+          </div>`
+  $('.postList').append(text);
     });
-  }
-  
+  });
+
+}
 
   </script>
 
@@ -110,6 +209,8 @@
   </header>
 
 
+  <div id="postBox111"></div>
+
   <!-- タイムライン全体のbox -->
   <div class="container-fluid pb-3" style="margin-bottom:100px;">
 
@@ -143,8 +244,8 @@
           </div>
           <hr class="mw-100 mb-3 w-90 bg-gradient-light">
         </div>
-<!-- タイムラインのarea 1 　この中にchildを作っていく-->
-        <div class="container-fluid bg-white mw-100 p-2" id="postArea">         
+<!-- タイムラインのarea 1 　この中にchildを作っていく　postListを追加した-->
+        <div class="container-fluid bg-white mw-100 p-2 postList" id="postArea">         
 <!-- タイムラインのbox これが中身の元になるもの-->
            <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
             <div class="row">
@@ -187,8 +288,9 @@
 
                     <div class="col-2 p-0 text-right">
                       <!-- ハート のbox -->
-                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
-                    </div> <!-- ハート のbox 終わり-->
+                      <!-- 白ハート --> <img id="whiteHeart" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                       <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                      </div> <!-- ハート のbox 終わり-->
                     <div id="likesNumber" class="col-2 p-0">
                       <!-- いいねの数 のbox -->
                       <!-- いいね！の数 -->
@@ -253,8 +355,9 @@
 
                     <div class="col-2 p-0 text-right">
                       <!-- ハート のbox -->
-                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
-                    </div> <!-- ハート のbox 終わり-->
+                      <!-- 白ハート --> <img id="heartPic" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                       <!-- 赤ハート --> <img id="heartPic" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                      </div> <!-- ハート のbox 終わり-->
                     <div id="likesNumber" class="col-2 p-0">
                       <!-- いいねの数 のbox -->
                       <!-- いいね！の数 -->
@@ -337,7 +440,9 @@
 
                     <div class="col-2 p-0 text-right">
                       <!-- ハート のbox -->
-                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                      <!-- 白ハート --> <img id="heartPic" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                       <!-- 赤ハート --> <img id="heartPic" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+
                     </div> <!-- ハート のbox 終わり-->
                     <div id="likesNumber" class="col-2 p-0">
                       <!-- いいねの数 のbox -->
@@ -401,8 +506,9 @@
 
                     <div class="col-2 p-0 text-right">
                       <!-- ハート のbox -->
-                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
-                    </div> <!-- ハート のbox 終わり-->
+                      <!-- 白ハート --> <img id="heartPic" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                       <!-- 赤ハート --> <img id="heartPic" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                      </div> <!-- ハート のbox 終わり-->
                     <div id="likesNumber" class="col-2 p-0">
                       <!-- いいねの数 のbox -->
                       <!-- いいね！の数 -->
@@ -485,8 +591,9 @@
 
                     <div class="col-2 p-0 text-right">
                       <!-- ハート のbox -->
-                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
-                    </div> <!-- ハート のbox 終わり-->
+                      <!-- 白ハート --> <img id="heartPic" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                       <!-- 赤ハート --> <img id="heartPic" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                      </div> <!-- ハート のbox 終わり-->
                     <div id="likesNumber" class="col-2 p-0">
                       <!-- いいねの数 のbox -->
                       <!-- いいね！の数 -->
@@ -549,8 +656,9 @@
 
                     <div class="col-2 p-0 text-right">
                       <!-- ハート のbox -->
-                      <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
-                    </div> <!-- ハート のbox 終わり-->
+                      <!-- 白ハート --> <img id="heartPic" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                       <!-- 赤ハート --> <img id="heartPic" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                      </div> <!-- ハート のbox 終わり-->
                     <div id="likesNumber" class="col-2 p-0">
                       <!-- いいねの数 のbox -->
                       <!-- いいね！の数 -->
@@ -629,7 +737,6 @@
   </script>
 
 
-  <script src="js/apiConfig.js"></script>
 
 
 </body>
