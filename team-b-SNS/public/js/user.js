@@ -231,8 +231,8 @@ function validation() {
 
 // 登録ボタン押下イベント
 $("#newuser").on("click", function() {
-  if (!validation()) {
-    return false;
-  } // フォームに入力された値の整合性のチェックを行う
+  // if (!validation()) {
+  //   return false;
+  // } // フォームに入力された値の整合性のチェックを行う
   create(); // 新規ユーザ登録処理
 });
