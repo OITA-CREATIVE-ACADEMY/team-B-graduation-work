@@ -70,15 +70,22 @@ var userPicNameRef = firebase.database().ref('users');
 
 //    画像取得
 var storage = firebase.storage(); 
-var storageRef = storage.ref(); 
-var spaceRef = storageRef.child('images/'); 
-storageRef.child('images/').getDownloadURL().then(function(url) { 
-var test = url; 
+console.log(postPic);
+
+var storageRef = storage.ref('images/').child(postPic); 
+// var spaceRef = storageRef.child('images/' + postPic); 
+var test = "";
+storageRef.getDownloadURL().then(function(url) { 
+test = url; 
+console.log(url);
+
 // add this line here: 
 document.getElementsByClassName('postImg').src = test; 
 }).catch(function(error) { 
+  console.log(error);
+  
 }); 
-var test = 'firebase_url';  
+// var test = 'firebase_url';  
 document.getElementsByClassName('postImg').src = test;
 
 
@@ -95,7 +102,7 @@ document.getElementsByClassName('postImg').src = test;
                 <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
                 <div class="mx-100">
                   <div class="">
-                    <!-- 画像 --> <img class="mw-100 postImg" id="boxPic">
+                    <!-- 画像 --> <img class="mw-100 postImg" id="boxPic" src="${test}">
 
                   </div>
                 </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
