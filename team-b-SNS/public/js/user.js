@@ -71,7 +71,7 @@ function create() {
 // Createの終わり
 
 function read() {
-  
+
   console.log('Firebaseからデータ取得');
   firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
@@ -125,7 +125,6 @@ $(function() {
     var firstNameUpdate = $("#inputFirstName").val();
     var userSecondNameUpdate = $("#inputSecondName").val();
     var displayNameUpdate = $("#inputUserName").val();
-    var emailUpdate = $("#inputEmail").val();
     var profileTextUpdate = $("#exampleTextarea").val();
 
     // var profilePicUpdate = $("").val();
@@ -202,10 +201,13 @@ var secondName = document.getElementById("inputSecondName").value;
 var comment = document.getElementById("exampleTextarea").value;
 
 var userid = firebase.auth().currentUser.uid;
+
 var updatesFirstName = {};
 updatesFirstName['users/' + userid + '/firstName'] = firstName;
+
 var updatesSecondName = {};
 updatesSecondName['users/' + userid + '/secondName'] = secondName;
+
 var updatesUsername = {};
 updatesUsername['users/' + userid + '/username'] = username;
 var updatesComment = {};
