@@ -1122,18 +1122,6 @@
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <!-- <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-      authDomain: "team-b-sns.firebaseapp.com",
-      databaseURL: "https://team-b-sns.firebaseio.com",
-      projectId: "team-b-sns",
-      storageBucket: "team-b-sns.appspot.com",
-      messagingSenderId: "895377669050"
-    };
-    firebase.initializeApp(config);
-  </script> -->
 
     <!-- #タグのボタンのON と　OFF　の切り替え -->
     <script>
@@ -1142,6 +1130,7 @@
         $(this).addClass("active");
       });
     </script>
+    <!-- 投稿の読み込み -->
     <script>
       window.onload =
         //  firebase.auth().onAuthStateChanged(function(user) {
@@ -1199,7 +1188,6 @@
                 .getDownloadURL()
                 .then(function(url) {
                   imageSrc = url;
-
                   // add this line here:
                   document.getElementsByClassName("postImg").src = url;
                 })

@@ -21,8 +21,8 @@ function create() {
       var userFirstName = document.getElementById("inputFirstName").value; //名前(姓)
       var userSecondName = document.getElementById("inputSecondName").value; //名前(姓)
       var profileText = document.getElementById("exampleTextarea").value; //自己紹介
-      var profilePic = document.getElementById("file").value;
-      console.log(profilePic); //プロフィール画像
+      var userProfilePic = document.getElementById("file").value;
+      console.log(userProfilePic); //プロフィール画像
 
       // RealTimeDatabase　にuidをキーとしてユーザー情報を登録する
       var uid = user.uid;
@@ -34,39 +34,49 @@ function create() {
           secondName: userSecondName,
           username: displayName,
           comment: profileText,
-          photoURL: profilePic,
+          photoURL: userProfilePic,
         });
 
       //プロフィール画像の登録
+      var user = firebase.auth().currentUser; // ※firebase.auth().currentUser　を使うと現在ログイン中のユーザが取得できる
+      var profPicId = user.uid;
+      console.log("ユーザーID=" + profPicId)
+
+
       var storage = firebase.storage();
       var files = document.getElementById("file").files;
       var image = files[0];
       // fileの名前を取得
-      var file_name = files[0].name;
+      // var file_name = files[0].name;
+        // fileの名前を取得
+        // var file_name = files[0].name;
+
+        //ここで画像のファイル名を投稿IDをベースに拡張子別に変更する。
+        var newProfPicName = (image.type.indexOf('png') !== -1) ? `${profPicId}.png`: `${profPicId}.jpg`;
+        console.log(newProfPicName);//この名前がuserIDに変更した画像名
 
       if (files[0].type.indexOf("image") >= 0) {
-        var ref = storage.ref("profilePic/").child(file_name);
+        var ref = storage.ref("profilePic/").child(newProfPicName);//ここでstorageに画像を登録
         ref.put(image).then(function(snapshot) {
-          // alert('画像をアップロードしました！');
-          alert("登録が完了しました！お楽しみください(^^)");
-          location.replace("timeline.html");
-          // ref.getDownloadURL().then(function(url){
-          //   document.getElementById('image').src = url;
-          // });
+
+           //画像の登録まで正常に終わったら、ユーザー登録が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
+
+            // ここに、photoURL　を update　で登録する
+            console.log("変更後のプロフ画像名=" + newProfPicName)
+            var profPhotoUpdates = {};
+            profPhotoUpdates['users/' + profPicId + '/photoURL'] = newProfPicName;　//ここでRDの画像名を書き換え
+            firebase.database().ref().update(profPhotoUpdates);
+
+          // 新規登録成功時の処理
+          alert("おめでとうございます！ユーザー登録が完了しました！");
+          // location.replace('timeline.html')
+        }).catch(function(error) {
+          console.log(error);
+          // 画像登録失敗時の処理
+          alert("画像が選択されていません( ´△｀)");
         });
       }
-
-      // .then(function() {
-      //       // 登録成功時の処理
-      //       alert("登録が完了しました！お楽しみください(^^)");
-      //       location.replace('timeline.html')
-      //     });
     });
-  //   .catch(function(error) {
-  //   console.log(error);
-  //   // 登録失敗時の処理
-  //   alert("登録に失敗しました( ´△｀)");
-  // })
 }
 // Createの終わり
 
