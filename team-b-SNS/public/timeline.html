@@ -277,7 +277,7 @@
                             <!-- 投稿者名 -->
                             <small
                               ><span id="postUserName" class=" font-weight-bold"
-                                >ユーザー名</span
+                                >ダミーユーザー</span
                               ></small
                             >
                           </div>
@@ -334,7 +334,7 @@
                       <!-- コメント -->
                       <div class="col mw-100 p-1">
                         <div class="mw-100 border border-light shadow-sm">
-                          <span class="p-1">コメントコメントコメント</span>
+                          <span class="p-1">ダミーのHTML</span>
                         </div>
                       </div>
                     </div>
@@ -393,7 +393,7 @@
                             <!-- 投稿者名 -->
                             <small
                               ><span id="postUserName" class=" font-weight-bold"
-                                >ユーザー名</span
+                                >ダミーユーザー</span
                               ></small
                             >
                           </div>
@@ -450,7 +450,7 @@
                       <!-- コメント -->
                       <div class="col mw-100 p-1">
                         <div class="mw-100 border border-light shadow-sm">
-                          <span class="p-1">コメントコメントコメント</span>
+                          <span class="p-1">ダミーのHTML2</span>
                         </div>
                       </div>
                     </div>
@@ -1142,22 +1142,35 @@
         // });
 
         function readPost() {
-          var userPicNameRef = firebase.database().ref("users");
-          userPicNameRef.on("child_added", function(snapshot) {
-            var userId = snapshot.key; //投稿者のユーザーID
-            var postUser = snapshot.val().username; //投稿ユーザーの写真
-            var userPic = snapshot.val().photoURL; //投稿ユーザーの写真
+      //ログインしているユーザー情報の取得
+      var userId = firebase.auth().currentUser
+      var uid = userId;
 
-            console.log("投稿したユーザーID=" + userId);
-            console.log("投稿したユーザー名=" + postUser);
-            console.log("投稿したユーザーのご尊顔=" + userPic);
 
+        // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+        // var postUserName = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        // var postUserPic = (snapshot.val() && snapshot.val().photoURL) || 'Anonymous';
+        // console.log("投稿ユーザー名" + postUserName);
+        // console.log("投稿ユーザープロフィール画像" + postUserPic);
+
+          // var userPicNameRef = firebase.database().ref("users");
+          // userPicNameRef.on("child_added", function(snapshot) {
+          //   var userId = snapshot.key; //投稿者のユーザーID
+          //   var postUser = snapshot.val().username; //投稿ユーザーの名
+          //   var userPic = snapshot.val().photoURL; //投稿ユーザーの写真
+
+          //   console.log("投稿したユーザーID=" + userId);
+          //   console.log("投稿したユーザー名=" + postUser);
+          //   console.log("投稿したユーザーのご尊顔=" + userPic);
+          
             var postRef = firebase.database().ref("post");
             postRef.on("child_added", function(snapshot) {
               // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
               var postId = snapshot.key; //投稿ID
               var postDate = snapshot.val().date; //投稿した日時
               var postUserID = snapshot.val().userID; //投稿者のユーザーID
+              var postUserName = snapshot.val().userName; //投稿者のユーザーID
+              var postUserPic = snapshot.val().userPic; //投稿者のユーザーID
               var eventTitle = snapshot.val().event; //投稿イベント名
               var tagTitle = snapshot.val().tag; //選択したタグ
               var postPic = snapshot.val().photoURL; //投稿した画像名
@@ -1179,17 +1192,16 @@
               //    画像取得
               var storage = firebase.storage();
               console.log(postPic);
-
               var storageRef = storage.ref("images/").child(postPic);
-              console.log(storageRef);
-              // var spaceRef = storageRef.child('images/' + postPic);
+              console.log("投稿画像ストレージの参照"+storageRef);
+                var spaceRef = storageRef.child('images/' + postPic);
               var imageSrc = '';
               storageRef
                 .getDownloadURL()
                 .then(function(url) {
                   imageSrc = url;
                   // add this line here:
-                  document.getElementsByClassName("postImg").src = url;
+                  document.getElementById("postImg").src = url;
                 })
                 .catch(function(error) {
                   console.log(error);
@@ -1205,7 +1217,7 @@
                 <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
                 <div class="mx-100">
                   <div class="">
-                    <!-- 画像 --> <img class="mw-100 postImg" id="boxPic" src="${imageSrc}">
+                    <!-- 画像 --> <img class="mw-100 postImg" id="${postId}" src="${imageSrc}">
 
                   </div>
                 </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
@@ -1226,7 +1238,7 @@
                       <div class="row">
                         <!-- 投稿者名 のbox -->
                         <div class="col-xl">
-                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">${postUser}</span></small>
+                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">${postUserName}</span></small>
                         </div>
                       </div><!-- 投稿者名 のbox 終わり-->
                       <div class="row">
@@ -1264,8 +1276,9 @@
           </div>`;
               $(".postList").append(text);
             });
-          });
+          // });
         };
+
     </script>
   </body>
 </html>

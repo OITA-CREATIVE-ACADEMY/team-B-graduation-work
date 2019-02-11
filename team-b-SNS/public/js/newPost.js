@@ -8,10 +8,17 @@ firebase.initializeApp(config);
 // RealTimeDatabase　にuidをキーとして　新規投稿　を登録する
 
 function createNewPost() {
-  // ユーザーの情報を取得
-      // ログインしているユーザーを取得する
-      var user = firebase.auth().currentUser; // ※firebase.auth().currentUser　を使うと現在ログイン中のユーザが取得できる
-      //　投稿関係の変数を登録
+
+      //ログインしているユーザー情報の取得
+        var userId = firebase.auth().currentUser.uid;
+        return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+        var postUserName = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        var postUserPic = (snapshot.val() && snapshot.val().photoURL) || 'Anonymous';
+        console.log("投稿ユーザー名" + postUserName);
+        console.log("投稿ユーザープロフィール画像" + postUserPic);
+
+
+        //　投稿関係の変数を登録
       var postComment = document.getElementById("exampleTextarea").value; //投稿コメント
       var postPic = document.getElementById("postPic").value;//投稿画像のURL
       var eventTitle = document.getElementById("eventSelected").innerHTML;//ユーザーへの表示用：選択したイベント
@@ -23,7 +30,7 @@ function createNewPost() {
       var postDate =moment().format('YYYY年MM月DD日HH時MM分');
 
       // var likes =
-      var uid = user.uid;
+      var uid = userId;
 
       console.log(uid);
       console.log(postComment);
@@ -40,6 +47,8 @@ function createNewPost() {
        .ref('post') 
 　      .push({
           userID: uid,
+          userName:postUserName,//テスト追加
+          userPic:postUserPic,//テスト追加
           event: postedEventTitle,
           tag: postedTagTitle,
           comment: postComment,
@@ -97,7 +106,10 @@ function createNewPost() {
       // 登録失敗時の処理
       alert("投稿に失敗しました( ´△｀)");
     })
-    
+
+  });//ログインしているユーザー情報の取得終わり
+
+
   }
     // Createの終わり
 

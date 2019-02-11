@@ -78,8 +78,6 @@ function loginDisplay() {
   info.textContent = "あなたはログイン中です";
 }
 
-
-
 function logoutDisplay() {
   logout.classList.add('d-none');
  document.getElementById('info').innerText = 'サインインしてください';
