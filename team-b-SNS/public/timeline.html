@@ -13,7 +13,7 @@
     <!-- style.cssの読み込み -->
     <!-- <link href="css/style.css" rel="stylesheet"> -->
 
-    <!-- 
+    <!--
   realtimedababseからの情報取得テスト -->
     <script src="js/apiConfig.js"></script>
     <!-- jQuery読み込み -->
@@ -1162,7 +1162,7 @@
           //   console.log("投稿したユーザーID=" + userId);
           //   console.log("投稿したユーザー名=" + postUser);
           //   console.log("投稿したユーザーのご尊顔=" + userPic);
-          
+
             var postRef = firebase.database().ref("post");
             postRef.on("child_added", function(snapshot) {
               // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
@@ -1196,12 +1196,17 @@
               console.log("投稿画像ストレージの参照"+storageRef);
                 var spaceRef = storageRef.child('images/' + postPic);
               var imageSrc = '';
-              storageRef
-                .getDownloadURL()
+              storageRef.getDownloadURL()
                 .then(function(url) {
                   imageSrc = url;
                   // add this line here:
-                  document.getElementById("postImg").src = url;
+                  $(".postImg").attr("src", url);
+                  console.log(url);
+                  var updates = {};
+                   updates['/posts/' + postId + '/photoURL'] = url;
+                  firebase.database().ref().update(updates).then(function () {
+                    console.log('update成功');
+                  });
                 })
                 .catch(function(error) {
                   console.log(error);

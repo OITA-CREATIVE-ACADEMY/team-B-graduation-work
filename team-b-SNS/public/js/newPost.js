@@ -2,7 +2,7 @@
 // APIコンフィグ情報を取得する
 var config = getApiConfing();
 firebase.initializeApp(config);
-
+var storageRef = firebase.storage().ref();
 
 // Createの始まり
 // RealTimeDatabase　にuidをキーとして　新規投稿　を登録する
@@ -41,10 +41,7 @@ function createNewPost() {
       console.log(postedTagTitle);
       console.log(postDate);
 
-      firebase
-       .database()
-      //  .ref('users/' + uid)
-       .ref('post') 
+      firebase.database().ref('post')
 　      .push({
           userID: uid,
           userName:postUserName,//テスト追加
@@ -54,8 +51,8 @@ function createNewPost() {
           comment: postComment,
           photoURL: postPic,
           date: postDate
-        })  
-        
+        })
+
        //ここのthenは、push　の処理が正常に処理されたかどうかを判断するもの
         .then(function(data) {  //引数で　data　をとってきて、投稿IDを次に取得する
 
@@ -65,7 +62,7 @@ function createNewPost() {
 
 
         //投稿画像の登録は、この上のthen　の処理が正常に行われたら走る
-        
+
         var newPostId = data.key;
         var storage = firebase.storage();
         var files = document.getElementById('postPic').files;　
@@ -79,25 +76,59 @@ function createNewPost() {
         console.log(newFileName);
 
         if(files[0].type.indexOf('image') >= 0) {
-          var ref = storage.ref('images/').child(newFileName);
-          ref.put(image).then(function(snapshot) {
-           //画像の登録まで正常に終わったら、投稿が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
 
-            // ここに、photoURL　を update　で登録する
-              console.log('投稿写真のURLを　投稿ID + 拡張子　に変更');
-              console.log(newFileName)
-              var postPhotoUpdates = {};
-              postPhotoUpdates['post/' + newPostId + '/photoURL'] = newFileName;
-              firebase.database().ref().update(postPhotoUpdates);
+          var uploadTask = storageRef.child('images/' + newFileName).put(image);
+          uploadTask.on('state_changed', function(snapshot){
 
-            // 新規投稿成功時の処理
-            alert("投稿しました");
-            location.replace('timeline.html')
-          }).catch(function(error) {
-            console.log(error);
-            // 画像登録失敗時の処理
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+
+          }, function(error) {
             alert("画像が選択されていません( ´△｀)");
-        });
+          }, function() {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+              alert('File available at', downloadURL);
+              var postPhotoUpdates = {};
+              postPhotoUpdates['post/' + newPostId + '/photoURL'] = downloadURL;
+              firebase.database().ref().update(postPhotoUpdates);
+              alert('ファイアベースに画像登録できました。');
+              location.replace('timeline.html');
+            });
+          });
+
+        //
+        //   var ref = storage.ref('images/').child(newFileName);
+        //   ref.put(image).then(function(snapshot) {
+        //    //画像の登録まで正常に終わったら、投稿が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
+        //
+        //     // ここに、photoURL　を update　で登録する
+        //       // console.log('投稿写真のURLを　投稿ID + 拡張子　に変更');
+        //       // console.log(newFileName)
+        //       // var postPhotoUpdates = {};
+        //       // postPhotoUpdates['post/' + newPostId + '/photoURL'] = newFileName;
+        //       // firebase.database().ref().update(postPhotoUpdates);
+        //
+        //
+        //       ref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+        //         console.log('File available at', downloadURL);
+        //         alert(downloadURL);
+        //         var postPhotoUpdates = {};
+        //         postPhotoUpdates['post/' + newPostId + '/photoURL'] = downloadURL;
+        //         firebase.database().ref().update(postPhotoUpdates);
+        //         alert('ファイアベースに画像登録できました。');
+        //         location.replace('timeline.html');
+        //       });
+        //
+        //     // 新規投稿成功時の処理
+        //     alert("投稿しました");
+        //     location.replace('timeline.html')
+        // }).catch(function(error) {
+        //     console.log(error);
+        //     // 画像登録失敗時の処理
+        //     alert("画像が選択されていません( ´△｀)");
+        // });
       }
     })
         //ここが投稿全体のエラーを返す
@@ -108,6 +139,7 @@ function createNewPost() {
     })
 
   });//ログインしているユーザー情報の取得終わり
+
 
 
   }
