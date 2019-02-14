@@ -126,28 +126,28 @@
    <div class="form-label-group">
      <div class="row text-center d-flex align-items-center mw-100 mb-3">
        <label for="inputUserName" class="col-3">名前</label>
-       <input type="text" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required="" autofocus="" />
-       <input type="text" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required="" autofocus="" />
+       <input type="text" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required autofocus="" />
+       <input type="text" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required/>
      </div>
 
      <div class="row text-center d-flex align-items-center mw-100 mb-3">
        <label for="inputUserName" class="col-3">ユーザーネーム</label>
-       <input type="text" id="inputUserName" class="form-control col-9" placeholder="User name" required="" autofocus="" />
+       <input type="text" id="inputUserName" class="form-control col-9" placeholder="User name" required/>
      </div>
 
      <div class="row text-center d-flex align-items-center mw-100 mb-3">
        <label for="inputEmail" class="col-3">E-mail</label>
-       <input type="text" id="inputEmail" class="form-control col-9" placeholder="E-mail" required="" autofocus="" />
+       <input type="email" id="inputEmail" class="form-control col-9" placeholder="E-mail" required/>
      </div>
 
      <div class="row text-center d-flex align-items-center mw-100 mb-3">
        <label for="inputPassword" class="col-3">password</label>
-       <input type="password" id="inputPassword" class="form-control col-9" placeholder="Password" required="" autofocus="" />
+       <input type="password" id="inputPassword" class="form-control col-9" placeholder="Password" required/>
      </div>
 
      <div class="row text-center d-flex align-items-center mw-100 mb-3">
        <label for="inputPassword" class="col-3">確認用password</label>
-       <input type="password" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required="" autofocus="" />
+       <input type="password" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required/>
      </div>
 
      <!-- パスワードが間違っている時に表示する -->
@@ -161,8 +161,7 @@
 
      <div class="row text-center d-flex align-items-center mw-100 mb-3">
        <label for="exampleTextarea" class="col-3">自己紹介</label>
-       <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
-         </textarea>
+       <textarea id="exampleTextarea" class="form-control col-9"></textarea>
      </div>
 
      <div class="row text-center d-flex align-items-center mw-100 mb-3">
@@ -180,7 +179,7 @@
                     <input type="file" name="file" id="file">
                    </span>
                  </label>
-                 <input type="text" id="picName" class="form-control" readonly="" />
+                 <input type="text" id="picName" class="form-control" readonly="" required />
                  <!-- <input type="text" class="form-control" readonly="" /> -->
 
                </div>
@@ -208,31 +207,6 @@
 
 
 
- <footer class="fixed-bottom bg-white pb-2">
-   <hr class="mw-100 bg-light">
-   <div class="col-12">
-     <div class="row">
-       <!-- ホームアイコン -->
-       <div id="timeLine" class="col-4 text-center">
-         <a href="timeLine.html">
-           <img id="timeLineIcon" src="img/home_icon.svg" style="width: 40px;" />
-         </a>
-       </div>
-       <!-- 新規投稿アイコン -->
-       <div id="newPost" class="col-4 text-center">
-         <a href="newPostPic.html">
-           <img id="newPostIcon" src="img/newPost_icon.svg" style="width: 40px;" />
-         </a>
-       </div>
-       <!-- マイページアイコン -->
-       <div id="myPage" class="col-4 text-center">
-         <a href="myPage.html">
-           <img id="myPageIcon" src="img/myPage_icon.svg" style="width: 40px;" />
-         </a>
-       </div>
-     </div>
-   </div>
- </footer>
  </div>
 
  <!-- 画像選択とプレビュー表示　の　JS -->　
@@ -265,7 +239,7 @@
  <!-- firebase.js　と　追加で作る app.js　を読み込む -->
 
  <!-- このコードを読み込み直した（１月１１日） -->
- <!-- <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script> -->
+ <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
 
  <script src="js/apiConfig.js"></script>
  <script src="js/user.js"></script>

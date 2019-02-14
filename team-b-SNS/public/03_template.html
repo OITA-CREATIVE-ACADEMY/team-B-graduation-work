@@ -344,48 +344,53 @@
   マイページ用
   アーカイブに最適化　背景色をとった最終形態
   <!-- 投稿アーカイブのbox -->
-  <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
-    <div class="row">
+  <div class="cotainer">
+    <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+      <div class="row">
 
-      <div class="col-md">
-        <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
-        <div class="mx-100">
-          <div class="">
-            <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
-          </div>
-        </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+        <div class="col-md">
+          <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+          <div class="mx-100">
+            <div class="">
+              <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
+            </div>
+          </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+        </div>
+        <!-- いいね！・投稿日時・編集のbox -->
+        <div class="col-md mt-2">
+
+          <!-- いいね！・投稿日時・編集のcontainer 終わり-->
+          <div class=" container-fluid">
+
+            <div class="row">
+              <!-- ハート のbox -->
+              <div class="col-1 p-0 text-right">
+                <!-- ハート --> <img id="heartPic" class="h-50" src="img/likes_heart.svg" alt="" style="width: 35px;height: 35px;" />
+              </div> <!-- ハート のbox 終わり-->
+              <div id="likesNumber" class="col-2 p-0">
+                <!-- いいねの数 のbox -->
+                <!-- いいね！の数 -->
+                <div class="mw-100 text-left" style="font-size:24px">110</div>
+              </div> <!-- いいねの数 のbox 終わり-->
+              <!-- 投稿日 のbox -->
+              <div class="col-7 text-right">
+                <small><span id="postDate" class="">2018年12月25日</span></small>
+              </div> <!-- 投稿日 のbox 終わり-->
+              <!-- 編集ボタン のbox -->
+              <div class="col-2 p-0 text-right">
+                <!-- 編集ボタン --> <img id="editBtn" class="h-75" src="img/edit_icon.svg" alt="" style="width: 35px;height: 35px;" />
+              </div> <!-- 編集ボタン のbox 終わり-->
+
+            </div>
+          </div><!-- いいね！・投稿日時・編集のcontainer 終わり-->
+        </div><!-- いいね！・投稿日時・編集のbox 終わり-->
       </div>
-      <!-- いいね！・投稿日時・編集のbox -->
-      <div class="col-md mt-2">
+    </div><!-- 投稿アーカイブのbox 終わり-->
+  </div>
 
-        <!-- いいね！・投稿日時・編集のcontainer 終わり-->
-        <div class=" container-fluid">
 
-          <div class="row">
-            <!-- ハート のbox -->
-            <div class="col-1 p-0 text-right">
-              <!-- ハート --> <img id="heartPic" class="h-50" src="img/likes_heart.svg" alt="" style="width: 35px;height: 35px;" />
-            </div> <!-- ハート のbox 終わり-->
-            <div id="likesNumber" class="col-2 p-0">
-              <!-- いいねの数 のbox -->
-              <!-- いいね！の数 -->
-              <div class="mw-100 text-left" style="font-size:24px">110</div>
-            </div> <!-- いいねの数 のbox 終わり-->
-            <!-- 投稿日 のbox -->
-            <div class="col-7 text-right">
-              <small><span id="postDate" class="">2018年12月25日</span></small>
-            </div> <!-- 投稿日 のbox 終わり-->
-            <!-- 編集ボタン のbox -->
-            <div class="col-2 p-0 text-right">
-              <!-- 編集ボタン --> <img id="editBtn" class="h-75" src="img/edit_icon.svg" alt="" style="width: 35px;height: 35px;" />
-            </div> <!-- 編集ボタン のbox 終わり-->
-
-          </div>
-        </div><!-- いいね！・投稿日時・編集のcontainer 終わり-->
-      </div><!-- いいね！・投稿日時・編集のbox 終わり-->
-    </div>
-  </div><!-- 投稿アーカイブのbox 終わり-->
-
+  
+  
 
 
 
