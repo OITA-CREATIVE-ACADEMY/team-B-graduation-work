@@ -104,8 +104,60 @@ function read() {
             document.getElementById("inputEmail").value = email;
             // document.getElementById("photoURL").value = photoURL;
             // ...
+
+
+            // プロフィール画像の読み込み
+// 参照
+            var fileName = '-LXbzbl_D4G7Bn2kvpSw.png';
+            var imgRef = 'images';
+
+            var storage = firebase.storage();
+
+            var storageRef = storage.ref();
+
+            var imagesRef = storageRef.child(imgRef);
+
+
+            var spaceRef = storageRef.child(imgRef + '/' + fileName);
+
+            // File path is 'images/space.jpg'
+            var path = spaceRef.fullPath
+
+            // File name is 'space.jpg'
+            var name = spaceRef.name
+
+            // Points to 'images'
+            var imagesRef = spaceRef.parent;
+
+
+            var pathReference = storage.ref(imgRef + '/' + fileName);
+
+// ダウンロード
+            storageRef.child(imgRef + '/' + fileName).getDownloadURL().then(function(url) {
+            // `url` is the download URL for 'images/stars.jpg'
+
+        console.log(url);
+
+            // This can be downloaded directly:
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = function(event) {
+              var blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+
+            // Or inserted into an <img> element:
+            var img = document.getElementById('userPic');
+            img.src = url;
+          }).catch(function(error) {
+            // Handle any errors
           });
-        console.log(userInfo); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+
+
+
+          });
+// ユーザー情報をコンソール出力してデータが取得できていることを確認する
       } else {
         // location.replace("logIn.html");
         // No user is signed in.
@@ -119,13 +171,14 @@ $(function() {
   $(".update").on("click", function() {
 
     // アップデートテスト関数
-    databaseUpdate();
-
+    // databaseUpdate();
+    var userid = firebase.auth().currentUser.uid;
 
     var firstNameUpdate = $("#inputFirstName").val();
     var userSecondNameUpdate = $("#inputSecondName").val();
     var displayNameUpdate = $("#inputUserName").val();
     var profileTextUpdate = $("#exampleTextarea").val();
+
 
     // var profilePicUpdate = $("").val();
 
@@ -172,8 +225,8 @@ $(function() {
 
       var usersRef =  firebase
           .database()
-          .ref("users/")
-      var usersUpdate = usersRef.child("users");
+          .ref("users/" + userid)
+      // var usersUpdate = usersRef.child("users");
 
 
       usersRef.update({
@@ -183,6 +236,8 @@ $(function() {
         comment: profileTextUpdate,
         // photoURL: profilePicUpdate,
       });
+
+
 
       alert("登録処理実行！");
       console.log("登録処理実行！");
