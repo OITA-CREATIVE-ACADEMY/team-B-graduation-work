@@ -1133,34 +1133,10 @@
     <!-- 投稿の読み込み -->
     <script>
       window.onload =
-        //  firebase.auth().onAuthStateChanged(function(user) {
-        //       if (user) {
-        //         // User is signed in.
-        //         // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
-        //         console.log(user.uid);
-        //       }
-        // });
-
         function readPost() {
           //ログインしているユーザー情報の取得
           var userId = firebase.auth().currentUser;
           var uid = userId;
-
-          // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-          // var postUserName = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-          // var postUserPic = (snapshot.val() && snapshot.val().photoURL) || 'Anonymous';
-          // console.log("投稿ユーザー名" + postUserName);
-          // console.log("投稿ユーザープロフィール画像" + postUserPic);
-
-          // var userPicNameRef = firebase.database().ref("users");
-          // userPicNameRef.on("child_added", function(snapshot) {
-          //   var userId = snapshot.key; //投稿者のユーザーID
-          //   var postUser = snapshot.val().username; //投稿ユーザーの名
-          //   var userPic = snapshot.val().photoURL; //投稿ユーザーの写真
-
-          //   console.log("投稿したユーザーID=" + userId);
-          //   console.log("投稿したユーザー名=" + postUser);
-          //   console.log("投稿したユーザーのご尊顔=" + userPic);
 
           var postRef = firebase.database().ref("post");
           postRef.on("child_added", function(snapshot) {
@@ -1183,11 +1159,6 @@
             console.log("投稿した画像名=" + postPic);
             console.log("投稿したコメント=" + postComment);
 
-            //         ref = firebase.storage().ref().child('img/samle.jpg');
-            //         ref.getDownloadURL().then((url) => {
-            //         document.getElementById('boxPic').src = url;
-            // 　　　　　});
-            // const text =`<div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="postBox">
             const text = `<div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="${postId}">
 
             <div class="row">
@@ -1256,7 +1227,6 @@
           </div>`;
             $(".postList").append(text);
           });
-          // });
         };
     </script>
   </body>
