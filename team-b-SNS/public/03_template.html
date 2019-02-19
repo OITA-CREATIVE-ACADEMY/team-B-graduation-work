@@ -100,6 +100,31 @@
       /* body { border-top: 16px solid #ffa100; } */
     }
   </style>
+
+  <style> 
+  /* heart画像をホバーした */
+img.likes_btn_heart:hover{
+ 
+ /* 透明度を上げることで、画像の色を薄く見せる。*/
+ opacity:0.5;
+
+ /* リンクをホバーしたときのカーソルにする。*/
+ cursor: pointer;
+}
+
+/* twitter画像をクリックした瞬間 */
+img.likes_btn_heart:active{
+
+ /* 要素を若干下に下げることで、押した感じを出す。*/
+
+ /* 今いる位置から相対的に3px下に配置する。*/
+ position: relative;
+ top: 3px;
+
+}
+  
+  
+  </style>
 </head>
 
 <body>
@@ -269,10 +294,19 @@
               </div><!-- 投稿日 のbox 終わり-->
             </div><!-- 投稿者名・投稿日のbox 終わり-->
 
+            
             <div class="col-2 p-0 text-right">
               <!-- ハート のbox -->
-              <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
-            </div> <!-- ハート のbox 終わり-->
+              <!-- 白ハート --> 
+              <img id="whiteHeart" class="likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+               <!-- 赤ハート --> 
+               <img id="redHeart" class="d-none likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+
+<!-- クリックでハートを　白抜き・赤ベタ　に切り替える方法　 onclick="slideshow()　を使う -->
+<!-- 今回はボツにした  -->
+<!-- <img id="likesHeart" onclick="slideshow()" class="likes_btn_heart" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" /> -->
+ 
+              </div> <!-- ハート のbox 終わり-->
             <div id="likesNumber" class="col-2 p-0">
               <!-- いいねの数 のbox -->
               <!-- いいね！の数 -->
@@ -408,6 +442,25 @@
     };
     firebase.initializeApp(config);
   </script>
+
+
+<!-- onclick="slideshow()　でハートの画像を切り替えるスクリプト -->
+<!-- 今回は使えないので、ボツにした -->
+<script>
+    var heartSrc = new Array("img/likes_heart_white.svg","img/likes_heart.svg");
+    var num = 0;
+    function slideshow(){
+      if (num == 1 ) {
+        num = 0;
+      }
+      else {
+        num ++;
+      }
+      document.getElementById("likesHeart").src=heartSrc[num];
+    }
+</script>
+
+
 
 </body>
 
