@@ -41,6 +41,7 @@ function create() {
       var user = firebase.auth().currentUser; // ※firebase.auth().currentUser　を使うと現在ログイン中のユーザが取得できる
       var profPicId = user.uid;
       console.log("ユーザーID=" + profPicId)
+      //画像名を変更する指示を書く
 
 
       var storage = firebase.storage();
