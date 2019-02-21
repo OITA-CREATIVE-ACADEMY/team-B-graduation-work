@@ -1,85 +1,81 @@
+function updateUserPic() {
+
+  // Initialize Firebase
+  // APIコンフィグ情報を取得する
+  var config = getApiConfing();
+  firebase.initializeApp(config);
+  var storageRef = firebase.storage().ref();
+
+  //ログインしているユーザー情報の取得2
+  var userId = firebase.auth().currentUser.uid;
+  return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+    var uid = userId;
+        console.log("こんにちは");
+
+    firebase.database().ref('users')
+      // アップデード
+      .update({
+        photoURL: postPic,
+      })
+
+      //ここのthenは、update　の処理が正常に処理されたかどうかを判断するもの
+      .then(function(data) { //引数で　data　をとってきて、投稿IDを次に取得する
+        // ここで投稿IDをとる　そしてその投稿IDを使って画像名を変更することで、storage内の画像の上書きを防ぐ
+
+        // ストレージにアップロード1
+        //投稿画像の登録は、この上のthen　の処理が正常に行われたら走る
+
+        var userPictId = userId;
+        var storage = firebase.storage();
+        var files = document.getElementById('file').files;
+
+        var image = files[0];
+        // fileの名前を取得
+        // var file_name = files[0].name;
+
+        //ここで画像のファイル名を投稿IDをベースに拡張子別に変更する。
+        var newFileName = (image.type.indexOf('png') !== -1) ? `${userPictId}.png` : `${userPictId}.jpg`;
+
+
+        if (files[0].type.indexOf('image') >= 0) {
+          // var uploadTask = storageRef.child('images/' + newFileName).put(image);
+          var uploadTask = storageRef.child('profilePic/' + newFileName).put(image);
+          uploadTask.on('state_changed', function(snapshot) {
+
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+
+          }, function(error) {
+            alert("画像が選択されていません( ´△｀)");
+          }, function() {
 
 
 
+            // ふぉとURLの記述
 
-// ユーザー情報の更新の始まり
-// function update() {
-//   // まず、ユーザ登録に必要なメール、パスワード情報をDOMから取得して定義しておく
-//   var email = document.getElementById("inputEmail").value;
-//   var password = document.getElementById("inputPassword").value;
-//
-// // ユーザーの登録の更新
-// firebase
-//   .auth()
-//   .onAuthStateChanged(email, password)
-//   .then(function()  {
-//     var user = firebase.auth().currentUser;
-//     // ※firebase.auth().currentUser　を使うと現在ログイン中のユーザが取得できる
-//     // 更新するパラメータはスコープの関係でここで取得する
-//     var displayName = document.getElementById("inputUserName").value; //ユーザーネーム
-//     var userFirstName = document.getElementById("inputFirstName").value; //名前(姓)
-//     var userSecondName = document.getElementById("inputSecondName").value; //名前(姓)
-//     var profileText = document.getElementById("exampleTextarea").value; //自己紹介
-//     var profilePic = document.getElementById("uploadFile").value; //プロフィール画像
-//
-//     user
-//     .updateProfile({
-//       firstName: userFirstName,
-//       lastName: userSecondName,
-//       displayName: displayName,
-//       profiletext: profileText,
-//       photoURL: profilePic
-//     })
-//
-// var user = firebase.auth().currentUser;
-// var name, email, photoUrl, uid, emailVerified;
-//
-// if (user != null) {
-//   name = user.displayName;
-//   email = user.email;
-//   photoUrl = user.photoURL;
-//   emailVerified = user.emailVerified;
-//   uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-//                    // this value to authenticate with your backend server, if
-//                    // you have one. Use User.getToken() instead.
-// }
-//
-// var user = firebase.auth().currentUser;
-//
-// .then(function() {
-//   // Update successful.
-//   alert("更新が完了しました！お楽しみください(^^)");
-//
-//   location.replace('timeline.html')
-//
-// })
-// .catch(function(error) {
-//   console.log(error);
-//   // 失敗時の処理
-//   alert("更新に失敗しました( ´△｀)");
-//   // An error happened.
-// })
-//
-// // ユーザー除法の更新の終わり
-//
-//
-//
-// function read() {
-//   // ユーザ情報取得処理を記述する
-//   return;
-// }
-//
-// function update() {
-//   // ユーザ情報更新処理を記述する
-//   return;
-// }
-//
-// function drop() {
-//   // ユーザ情報削除処理を記述する
-//   return;
-// }
-//
-// // 登録ボタン押下イベント
-// $("#newuser").on("click", function() {
-//   create();
-// });
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+              alert('File available at', downloadURL);
+              var profilePicUpdates = {};
+              profilePicUpdates['users/' + userPictId] = downloadURL;
+              firebase.database().ref().update(profilePicUpdates);
+              alert('画像登録できました。');
+              location.replace('timeline.html');
+            });
+          });
+        }
+      })
+      //ここが投稿全体のエラーを返す
+      .catch(function(error) {
+        console.log(error);
+        // 登録失敗時の処理
+        alert("画像の登録に失敗しました( ´△｀)");
+      })
+
+  }); //ログインしているユーザー情報の取得終わり
+
+
+
+}
+// Createの終わり
