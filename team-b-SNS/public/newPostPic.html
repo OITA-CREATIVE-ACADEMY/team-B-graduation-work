@@ -32,7 +32,8 @@
 <!-- 　これも必要。ページの下の方に入っているかもしれないのでチェックする -->
   <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 
-
+  <script src="js/apiConfig.js"></script>
+  <script type="text/javascript" src="js/loginUser.js"></script>
 
 
   <style media="screen">
@@ -64,7 +65,7 @@
 
 </head>
 
-<body>
+<body id="body00" class="d-none" >
     <!-- <body onload="LoadProc();"> ロードしたら、時刻を取得する指示-->　
 
   <header class="sticky-top mb-2 bg-white">
@@ -344,7 +345,7 @@
 
         console.log(eventHref);
         console.log(eventId);
-        console.log(postEvent);    
+        console.log(postEvent);
 
         $('#eventSelected').text(postEvent); //選択したイベントのタイトルを反映
         $('#postedEvent').text(eventId); //サーバー登録用選択した#タグを反映
@@ -364,17 +365,17 @@
 
           var postTag = (e.target.innerText);//選択した#タグの値を直接取得するならこちら。
           var postTagId = $(e.target).attr("id");//選択した#タグのidを取得するならこちら。
-  
-          console.log(postTag);    
-          console.log(postTagId);    
-  
+
+          console.log(postTag);
+          console.log(postTagId);
+
           $('#tagSelected').text(postTag); //選択した#タグを反映
           $('#postedtag').text(postTagId); //サーバー登録用選択した#タグを反映
 
       }
   </script>
 
-  <script src="js/apiConfig.js"></script>
+
   <script src="js/moment.js"></script>
   <script src="js/newPost.js"></script>
 
