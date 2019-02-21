@@ -52,7 +52,7 @@ function create() {
         // fileの名前を取得
         // var file_name = files[0].name;
 
-        //ここで画像のファイル名を投稿IDをベースに拡張子別に変更する。
+        //ここで画像のファイル名をuserIDをベースに拡張子別に変更する。
         var newProfPicName = (image.type.indexOf('png') !== -1) ? `${profPicId}.png`: `${profPicId}.jpg`;
         console.log(newProfPicName);//この名前がuserIDに変更した画像名
 
