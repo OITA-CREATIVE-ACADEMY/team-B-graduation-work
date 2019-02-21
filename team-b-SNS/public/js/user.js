@@ -2,6 +2,8 @@
 // APIコンフィグ情報を取得する
 var config = getApiConfing();
 firebase.initializeApp(config);
+var storageRef = firebase.storage().ref();
+
 
 // Createの始まり
 function create() {
@@ -52,33 +54,73 @@ function create() {
         // fileの名前を取得
         // var file_name = files[0].name;
 
-        //ここで画像のファイル名をuserIDをベースに拡張子別に変更する。
+        //ここで画像のファイル名を投稿IDをベースに拡張子別に変更する。
         var newProfPicName = (image.type.indexOf('png') !== -1) ? `${profPicId}.png`: `${profPicId}.jpg`;
         console.log(newProfPicName);//この名前がuserIDに変更した画像名
 
       if (files[0].type.indexOf("image") >= 0) {
-        var ref = storage.ref("profilePic/").child(newProfPicName);//ここでstorageに画像を登録
-        ref.put(image).then(function(snapshot) {
 
-           //画像の登録まで正常に終わったら、ユーザー登録が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
+      //   //ここからーーーーーーー
+      //   var ref = storage.ref("profilePic/").child(newProfPicName);//ここでstorageに画像を登録
+      //   ref.put(image).then(function(snapshot) {
 
-            // ここに、photoURL　を update　で登録する
-            console.log("変更後のプロフ画像名=" + newProfPicName)
-            var profPhotoUpdates = {};
-            profPhotoUpdates['users/' + profPicId + '/photoURL'] = newProfPicName;　//ここでRDの画像名を書き換え
-            firebase.database().ref().update(profPhotoUpdates);
+      //      //画像の登録まで正常に終わったら、ユーザー登録が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
 
-          // 新規登録成功時の処理
-          alert("おめでとうございます！ユーザー登録が完了しました！");
-          // location.replace('timeline.html')
-        }).catch(function(error) {
-          console.log(error);
-          // 画像登録失敗時の処理
-          alert("画像が選択されていません( ´△｀)");
+      //       // ここに、photoURL　を update　で登録する
+      //       console.log("変更後のプロフ画像名=" + newProfPicName)
+      //       var profPhotoUpdates = {};
+      //       profPhotoUpdates['users/' + profPicId + '/photoURL'] = newProfPicName;　//ここでRDの画像名を書き換え
+      //       firebase.database().ref().update(profPhotoUpdates);
+
+      //     // 新規登録成功時の処理
+      //     alert("おめでとうございます！ユーザー登録が完了しました！");
+      //     location.replace('timeline.html')
+      //   }).catch(function(error) {
+      //     console.log(error);
+      //     // 画像登録失敗時の処理
+      //     alert("画像が選択されていません( ´△｀)");
+      //   });
+      // }//ここまでーーーーー
+
+      var uploadTask = storageRef.child('profilePic/' + newProfPicName).put(image);
+
+      // Register three observers:
+      // 1. 'state_changed' observer, called any time the state changes
+      // 2. Error observer, called on failure
+      // 3. Completion observer, called on successful completion
+      uploadTask.on('state_changed', function(snapshot){
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+      //   switch (snapshot.state) {
+      //     case firebase.storage.TaskState.PAUSED: // or 'paused'
+      //       console.log('Upload is paused');
+      //       break;
+      //     case firebase.storage.TaskState.RUNNING: // or 'running'
+      //       console.log('Upload is running');
+      //       break;
+      //   }
+      }, function(error) {
+        // Handle unsuccessful uploads
+        alert("画像が選択されていません( ´△｀)");
+      }, function() {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+          console.log('File available at', downloadURL);
+          var profPhotoUpdates = {};
+          profPhotoUpdates['users/' + profPicId + '/photoURL'] = downloadURL;
+          firebase.database().ref().update(profPhotoUpdates);
+          alert('ファイアベースに画像登録できました。');
+          location.replace('timeline.html');
         });
-      }
-    });
+      });
+      
+    };
+  });
 }
+
 // Createの終わり
 
 function read() {
@@ -126,8 +168,6 @@ function read() {
     });
 }
 
-
-
 function databaseUpdate() {
   var firstName = document.getElementById("inputFirstName").value;
   var username = document.getElementById("inputUserName").value;
@@ -153,7 +193,6 @@ function databaseUpdate() {
   //   firstName: '1212'
   // });
 }
-
 
 function update() {
 
