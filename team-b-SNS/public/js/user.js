@@ -183,19 +183,29 @@ var storageRef = firebase.storage().ref();
 var userId = firebase.auth().currentUser.uid;
 return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
   var uid = userId;
+        var updatesPotoUrl = {};
+        var userPictId = userId;
+        var storage = firebase.storage();
+        var files = document.getElementById('file').files;
+
+        var image = files[0];
+        // fileの名前を取得
+        // var file_name = files[0].name;
+
+        //ここで画像のファイル名を投稿IDをベースに拡張子別に変更する。
+        var newFileName = (image.type.indexOf('png') !== -1) ? `${userPictId}.png` : `${userPictId}.jpg`;
+
+        var potoURL = newFileName
       console.log("こんにちは");
 
-  firebase.database().ref('users')
+  firebase.database().ref('users/' + userId)
     // アップデード
     .update({
-      var updatesPotoUrl = {};
-      updatesPotoUrl['users/' + userid + '/photoURL'] = updatesPotoUrl;
-      firebase.database().ref().update(updatesPotoUrl);
+      // potoURL: potoURL,
     })
 
-
     //ここのthenは、update　の処理が正常に処理されたかどうかを判断するもの
-    .update(function(data) { //引数で　data　をとってきて、投稿IDを次に取得する
+    .then(function(data) { //引数で　data　をとってきて、投稿IDを次に取得する
       // ここで投稿IDをとる　そしてその投稿IDを使って画像名を変更することで、storage内の画像の上書きを防ぐ
 
       // ストレージにアップロード1
@@ -234,10 +244,65 @@ return firebase.database().ref('/users/' + userId).once('value').then(function(s
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             alert('File available at', downloadURL);
             var profilePicUpdates = {};
-            profilePicUpdates['users/' + userPictId] = downloadURL;
+            profilePicUpdates['users/' + uid + "/" + "photoURL"] = downloadURL;
             firebase.database().ref().update(profilePicUpdates);
-            alert('画像登録できました。');
-            location.replace('timeline.html');
+            var emailUpdate = $("#inputEmail").val();
+            console.log(emailUpdate);
+            var user = firebase.auth().currentUser;
+            if (user) {
+
+
+
+
+              // EmailとPassの入力を求める ---------------------------------------
+              // 入力ダイアログを表示 ＋ 入力内容を key に代入
+
+              key = window.prompt("パスワードを入力してください", "");
+
+              var email = user.email;
+              var password = key;
+
+              // ---------------------------------------
+
+              var credential = firebase.auth.EmailAuthProvider.credential(
+                email,
+                password
+              );
+
+              // Prompt the user to re-provide their sign-in credentials
+
+              user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
+                // User re-authenticated.
+                user
+                  .updateEmail(emailUpdate)
+                  .then(function() {
+                    // Update successful.
+                  })
+                  .catch(function(error) {
+                    // An error happened.
+                    console.log(error);
+                    if (error.code == 'auth/requires-recent-login') {
+
+                    }
+                  });
+              }).catch(function(error) {
+                // An error happened.
+              });
+
+              //
+              // var usersRef = firebase
+              //   .database()
+              //   .ref("users/" + userid)
+              // // var usersUpdate = usersRef.child("users");
+              //
+
+
+
+
+              alert("登録処理実行！");
+              console.log("登録処理実行！");
+              return false;
+            }
           });
         });
       }
@@ -260,60 +325,7 @@ return firebase.database().ref('/users/' + userId).once('value').then(function(s
 
       // var profilePicUpdate = $("").val();
 
-      var emailUpdate = $("#inputEmail").val();
-      console.log(emailUpdate);
-      var user = firebase.auth().currentUser;
-      if (user) {
 
-        // EmailとPassの入力を求める ---------------------------------------
-        // 入力ダイアログを表示 ＋ 入力内容を key に代入
-
-        key = window.prompt("パスワードを入力してください", "");
-
-        var email = user.email;
-        var password = key;
-
-        // ---------------------------------------
-
-        var credential = firebase.auth.EmailAuthProvider.credential(
-          email,
-          password
-        );
-
-        // Prompt the user to re-provide their sign-in credentials
-
-        user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
-          // User re-authenticated.
-          user
-            .updateEmail(emailUpdate)
-            .then(function() {
-              // Update successful.
-            })
-            .catch(function(error) {
-              // An error happened.
-              console.log(error);
-              if (error.code == 'auth/requires-recent-login') {
-
-              }
-            });
-        }).catch(function(error) {
-          // An error happened.
-        });
-
-
-        var usersRef = firebase
-          .database()
-          .ref("users/" + userid)
-        // var usersUpdate = usersRef.child("users");
-
-
-
-
-
-        alert("登録処理実行！");
-        console.log("登録処理実行！");
-        return false;
-      }
 
 
   });
