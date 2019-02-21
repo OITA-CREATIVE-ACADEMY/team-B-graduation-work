@@ -6,50 +6,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>マイページ</title>
 
+  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-functions.js"></script>
+
+  <script src="js/apiConfig.js"></script>
+  <script type="text/javascript" src="js/loginUser.js"></script>
+
+  <!-- <script>
+
+    function loginUser() {
+
+      //location.replace('index.html')
+      //});
+
+
+      //認証状態の確認(ログインしているユーザーを取得する)
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          //ユーザーがログインしている状態
+          //loginDisplay();
+          //setTimeout(function(){
+          //window.location.href = 'timeline.html';
+          //}, 3*1000);
+        } else {
+          //ユーザーがログインしていない状態
+          logoutDisplay();
+        }
+      });
+
+      //function loginDisplay() {
+      //logout.classList.remove('d-none');
+      //info.textContent = "あなたはログイン中です";
+      //}
+
+      function logoutDisplay() {
+        //logout.classList.add('d-none');
+        location.replace('404.html')
+  }
+  // return();
+  }
+  </script> -->
+
   <!-- ページを開いた時に、ユーザー登録情報の読み込みを行う -->
   <script>
-    window.onload = 
-      function read() {
-      
-      console.log('Firebaseからデータ取得');
+    window.onload = function read() {
+
+      console.log('Firebaseからデータ取得しました');
       firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
-            console.log(user.uid);
-            var userInfo = firebase
-              .database()
-              .ref("/users/" + user.uid)
-              .once("value")
-              .then(function(snapshot) {
-                var firstName =
-                  (snapshot.val() && snapshot.val().firstName) || "Anonymous";
-                var secondName =
-                  (snapshot.val() && snapshot.val().secondName) || "Anonymous";
-                var username =
-                  (snapshot.val() && snapshot.val().username) || "Anonymous";
-      
-                var comment =
-                  (snapshot.val() && snapshot.val().comment) || "Anonymous";
-                var photoURL =
-                  (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
-      
-                var email = user.email;
-                // ...
-                document.getElementById("inputUserName").value = username;
-                document.getElementById("inputFirstName").value = firstName;
-                document.getElementById("inputSecondName").value = secondName;
-                document.getElementById("exampleTextarea").value = comment;
-                document.getElementById("inputEmail").value = email;
-                // document.getElementById("photoURL").value = photoURL;
-                // ...
-              });
+        if (user) {
+          console.log(user.uid);
+          var userInfo = firebase
+            .database()
+            .ref("/users/" + user.uid)
+            .once("value")
+            .then(function(snapshot) {
+              var firstName =
+                (snapshot.val() && snapshot.val().firstName) || "Anonymous";
+              var secondName =
+                (snapshot.val() && snapshot.val().secondName) || "Anonymous";
+              var username =
+                (snapshot.val() && snapshot.val().username) || "Anonymous";
+
+              var comment =
+                (snapshot.val() && snapshot.val().comment) || "Anonymous";
+              var photoURL =
+                (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
+
+              var email = user.email;
+              // ...
+              document.getElementById("inputUserName").value = username;
+              document.getElementById("inputFirstName").value = firstName;
+              document.getElementById("inputSecondName").value = secondName;
+              document.getElementById("exampleTextarea").value = comment;
+              document.getElementById("inputEmail").value = email;
+            });
         };
       });
     };
-      
-      </script>
-      
+  </script>
+
 
 
 
@@ -68,12 +107,7 @@
   <script src="js/bootstrap.min.js"></script>
 
 
-  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-messaging.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-functions.js"></script>
+
   <!-- initialize the SDK after all desired features are loaded -->
   <!-- <script defer src="https://www.gstatic.com/firebasejs/init.js"></script> -->
 
@@ -94,7 +128,7 @@
     </style>
 </head>
 
-<body>
+<body id="body00" class="d-none" >
   <header class="sticky-top mb-2 bg-white">
     <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
     <div class="col-12">　
@@ -147,7 +181,7 @@
                   />
                 </div>
               </div>
-  
+
               <div class="form-group has-error">
                 <label class="control-label">ユーザーネーム</label>
                 <div class="text-center d-flex align-items-center mw-100 mb-3">
@@ -161,7 +195,7 @@
                   />
                 </div>
               </div>
-  
+
               <div class="form-group has-error">
                 <label class="control-label">E-mail</label>
                 <div class="text-center d-flex align-items-center mw-100 mb-3">
@@ -175,7 +209,7 @@
                   />
                 </div>
               </div>
-  
+
               <div class="form-group has-error">
                   <label class="control-label">自己紹介</label>
                 <input
@@ -285,10 +319,64 @@
   <!-- <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script> -->
 
 
+<!-- <script>
 
-<script src="js/apiConfig.js"></script>
+  function loginUser() {
+
+    //location.replace('index.html')
+    //});
+
+
+    //認証状態の確認(ログインしているユーザーを取得する)
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        //ユーザーがログインしている状態
+        //loginDisplay();
+        //setTimeout(function(){
+        //window.location.href = 'timeline.html';
+        //}, 3*1000);
+      } else {
+        //ユーザーがログインしていない状態
+        logoutDisplay();
+      }
+    });
+
+    //function loginDisplay() {
+    //logout.classList.remove('d-none');
+    //info.textContent = "あなたはログイン中です";
+    //}
+
+    function logoutDisplay() {
+      //logout.classList.add('d-none');
+      location.replace('index.html')
+}
+// return();
+}
+
+window.onload = function () { // ページ読み込み時に実行する無名関数
+    read(); // １つ目の関数呼び出し
+    loginUser(); // ２つ目の関数呼び出し
+}
+</script> -->
+
+
 <!-- <script src="js/user.js"></script> -->
-<script src="js/logout.js"></script>
+
+
+  <!-- エラーが出ていたのでとりあえずコメントアウト -->
+  <script src="/js/logout_v2.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>
