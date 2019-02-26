@@ -122,8 +122,10 @@ function read() {
           document.getElementById("inputSecondName").value = secondName;
           document.getElementById("exampleTextarea").value = comment;
           document.getElementById("inputEmail").value = email;
-          // document.getElementById("photoURL").value = photoURL;
+// プロフィール画像
+          document.getElementById("userPic").src = photoURL;
           // ...
+
 
           // 画像の読み込み
         });
