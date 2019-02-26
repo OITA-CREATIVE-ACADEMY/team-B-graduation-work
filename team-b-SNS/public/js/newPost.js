@@ -60,7 +60,12 @@ function createNewPost() {
           console.log(data);
           console.log(data.key);  //投稿IDを取得　data.key　全部！
 
-
+          
+//投稿IDをusersのDBへ追加する
+          // firebase.database().ref('/users/' + userId)
+          // .push({
+          //   userPostID: data.key,
+          // });
         //投稿画像の登録は、この上のthen　の処理が正常に行われたら走る
 
         var newPostId = data.key;
@@ -89,11 +94,12 @@ function createNewPost() {
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-              alert('File available at', downloadURL);
+              // alert('File available at', downloadURL);
               var postPhotoUpdates = {};
               postPhotoUpdates['post/' + newPostId + '/photoURL'] = downloadURL;
               firebase.database().ref().update(postPhotoUpdates);
-              alert('ファイアベースに画像登録できました。');
+              console.log(postPhotoUpdates);
+              alert('投稿が完了しました！');
               location.replace('timeline.html');
             });
           });
@@ -109,7 +115,6 @@ function createNewPost() {
         //       // var postPhotoUpdates = {};
         //       // postPhotoUpdates['post/' + newPostId + '/photoURL'] = newFileName;
         //       // firebase.database().ref().update(postPhotoUpdates);
-        //
         //
         //       ref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
         //         console.log('File available at', downloadURL);

@@ -6,7 +6,8 @@ var emailSent = document.getElementById("emailSentBtn"); //メール送信ボタ
 //メール処理
 emailSent.addEventListener('click', function() {
     var auth = firebase.auth();
-    var emailAddress = "user@example.com";
+    var emailAddress = document.getElementById("inputPassword").value;
+    console.log(emailAddress)
     
     auth.sendPasswordResetEmail(emailAddress).then(function() {
       // Email sent.
