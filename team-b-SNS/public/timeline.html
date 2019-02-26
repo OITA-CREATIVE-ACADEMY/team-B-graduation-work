@@ -6,30 +6,48 @@
     <title>タイムライン</title>
 
     <link href="css/logo.css" rel="stylesheet" />
+    <link href="css/backToTopBTN.css" rel="stylesheet" >
 
     <!-- BootstrapのCSS読み込み -->
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <!-- style.cssの読み込み -->
     <!-- <link href="css/style.css" rel="stylesheet"> -->
 
     <!--
   realtimedababseからの情報取得テスト -->
-    <script src="js/apiConfig.js"></script>
+    <!-- <script src="js/apiConfig.js"></script> -->
     <!-- jQuery読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
     <script src="js/bootstrap.min.js"></script>
 
     <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
+    <!-- <script defer src="/__/firebase/5.5.7/firebase-app.js"></script> -->
     <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
+    <!-- <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
     <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
     <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
+    <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script> -->
     <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    <!-- <script defer src="/__/firebase/init.js"></script> -->
+
+
+    <!-- 1月17日　田中先生にて修正 -->
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
+<!-- 　これも必要。ページの下の方に入っているかもしれないのでチェックする -->
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+ 
+ <script src="js/apiConfig.js"></script>
+  <script type="text/javascript" src="js/loginUser.js"></script>
+
 
     <style media="screen">
       body {
@@ -94,8 +112,8 @@
     </style>
   </head>
 
-  <body>
-    <header class="sticky-top mb-2 bg-white">
+  <body id="body00" class="d-none" >
+      <header class="sticky-top mb-2 bg-white">
       <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
       <div class="col-12">
         <div class="row align-items-end">
@@ -110,9 +128,14 @@
         </div>
       </div>
       <hr class="mw-100  bg-light my-4" />
+              <!-- 上へ戻るボタン -->
+              <div id="page_top"><a href="#"></a></div>
+
+
     </header>
 
     <div id="postBox111"></div>
+
 
     <!-- タイムライン全体のbox -->
     <div class="container-fluid pb-3" style="margin-bottom:100px;">
@@ -168,66 +191,17 @@
           <!-- ＃タグのボタン -->
           <div class="container-fluid">
             <div class="btnEvents btnEvent_1">
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1 active"
-              >
-                #コスプレ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #魔女
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #渋ハロ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #かぼちゃ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #準備大変！
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #コウモリ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #ドンキホーテ
-              </button>
-            </div>
+                <button type="button" name="button" id="cosplay" class="btn-sm btn-outline-primary shadow-sm m-1 active">#コスプレ</button>
+                <button type="button" name="button" id="witch" class="btn-sm btn-outline-primary shadow-sm m-1">#魔女</button>
+                <button type="button" name="button" id="shibuhallo" class="btn-sm btn-outline-primary shadow-sm m-1">#渋ハロ</button>
+                <button type="button" name="button" id="pumpkin" class="btn-sm btn-outline-primary shadow-sm m-1">#かぼちゃ</button>
+                <button type="button" name="button" id="preparepanic" class="btn-sm btn-outline-primary shadow-sm m-1">#準備大変！</button>
+                <button type="button" name="button" id="bats" class="btn-sm btn-outline-primary shadow-sm m-1">#コウモリ</button>
+                <button type="button" name="button" id="donki" class="btn-sm btn-outline-primary shadow-sm m-1">#ドンキホーテ</button>
+              </div>
             <hr class="mw-100 mb-3 w-90 bg-gradient-light" />
           </div>
-          <!-- タイムラインのarea 1 　この中にchildを作っていく　postListを追加した-->
+<!-- タイムラインのarea 1 　この中にchildを作っていく　postListを追加した-->
           <div
             class="container-fluid bg-white mw-100 p-2 postList"
             id="postArea"
@@ -463,7 +437,10 @@
               <!-- 投稿のbox 終わり-->
             </div>
             <!-- タイムラインのbox 終わり-->
+
           </div>
+<!-- タイムラインのarea 1 　この中にchildを作っていく　postListを追加した　この　divで終わり-->
+
           <!-- タイムラインのarea 1 終わり-->
         </div>
 
@@ -477,63 +454,14 @@
           <!-- ＃タグのボタン -->
           <div class="container-fluid">
             <div class="btnEvents btnEvent_2">
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1 active"
-              >
-                #サンタ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #ツリー
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #プレゼント
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #雪
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #イルミネーション
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #イブ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #セブンのケーキ
-              </button>
-            </div>
+                <button type="button" name="button" id="santaclause" class="btn-sm btn-outline-primary shadow-sm m-1 active">#サンタ</button>
+                <button type="button" name="button" id="xmastree" class="btn-sm btn-outline-primary shadow-sm m-1">#ツリー</button>
+                <button type="button" name="button" id="presents" class="btn-sm btn-outline-primary shadow-sm m-1">#プレゼント</button>
+                <button type="button" name="button" id="snow" class="btn-sm btn-outline-primary shadow-sm m-1">#雪</button>
+                <button type="button" name="button" id="illumination" class="btn-sm btn-outline-primary shadow-sm m-1">#イルミネーション</button>
+                <button type="button" name="button" id="xmaseve" class="btn-sm btn-outline-primary shadow-sm m-1">#イブ</button>
+                <button type="button" name="button" id="sevencake" class="btn-sm btn-outline-primary shadow-sm m-1">#セブンのケーキ</button>
+              </div>
             <hr class="mw-100 mb-3 w-90 bg-gradient-light" />
           </div>
           <!-- タイムラインのarea 2 -->
@@ -783,65 +711,21 @@
           <!-- ＃タグのボタン -->
           <div class="container-fluid">
             <div class="btnEvents btnEvent_3">
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1 active"
-              >
-                #鏡餅
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #お年玉
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #おせち
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #初詣
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #駅伝
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #お正月ライブ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id=""
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #福袋
-              </button>
-            </div>
+                <button type="button" name="button" id="kagamimochi" class="btn-sm btn-outline-primary shadow-sm m-1 active">#鏡餅</button>
+                <button type="button" name="button" id="otoshidama" class="btn-sm btn-outline-primary shadow-sm m-1">#お年玉</button>
+                <button type="button" name="button" id="osechi" class="btn-sm btn-outline-primary shadow-sm m-1">#おせち</button>
+                <button type="button" name="button" id="hatsumode" class="btn-sm btn-outline-primary shadow-sm m-1">#初詣</button>
+                <button type="button" name="button" id="ekiden" class="btn-sm btn-outline-primary shadow-sm m-1">#駅伝</button>
+                <button type="button" name="button" id="shougatsulive" class="btn-sm btn-outline-primary shadow-sm m-1">#お正月ライブ</button>
+                <button type="button" name="button" id="fukubukuro" class="btn-sm btn-outline-primary shadow-sm m-1">#福袋</button>
+              </div>
             <hr class="mw-100 mb-3 w-90 bg-gradient-light" />
           </div>
+
+
+
+          
+
           <!-- タイムラインのarea 3 -->
           <div class="container-fluid bg-white mw-100 p-2" id="postArea">
             <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
@@ -1080,8 +964,37 @@
         <!-- イベントのarea 3 終わり-->
       </div>
       <!-- タブのコンテンツ部分 終わり-->
-    </div>
-    <!-- タイムライン全体のbox 終わり-->
+
+
+
+<!-- 投稿内容　イベント・タグ　の確認 -->
+  <div class="col-sm-5">
+      <div class="card border-primary mb-3">
+        <div class="card-header p-1">選択したイベント</div>
+        <div class="card-body text-primary p-1">
+          <!-- <p class="card-title m-0" id="eventSelected">クリスマス</p> -->
+          <p class="card-title m-0 postElement" id="eventSelected">
+            </p>
+        </div>
+      </div>
+  
+      <div class="card border-primary mb-3">
+        <div class="card-header p-1">選択したタグ</div>
+        <div class="card-body text-primary p-1">
+          <!-- <input class="card-title m-0" id="tagSelected"> -->
+          <p class="card-title m-0 postElement" id="tagSelected">cosplay
+            </p>
+        </div>
+      </div>
+
+      <div class="d-none" id="postedEvent"></div>
+      <div class="d-none" id="postedtag"></div>
+      
+    </div>  <!-- 投稿内容　イベント・タグ　の確認 終わり-->
+
+  </div>
+  <!-- タイムライン全体のbox 終わり-->
+
 
     <footer class="fixed-bottom bg-white pb-2">
       <hr class="mw-100 bg-light" />
@@ -1121,7 +1034,37 @@
       </div>
     </footer>
 
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script> -->
+
+    <!-- 上へ戻るボタンの実装 -->
+    <script>
+     $(function() {
+      var appear = false;
+      var pagetop = $('#page_top');
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {  //100pxスクロールしたら
+          if (appear == false) {
+            appear = true;
+            pagetop.stop().animate({
+              'right': '0px' //右から0pxの位置に
+            }, 300); //0.3秒かけて現れる
+          }
+        } else {
+          if (appear) {
+            appear = false;
+            pagetop.stop().animate({
+              'right': '-50px' //右から-50pxの位置に
+            }, 300); //0.3秒かけて隠れる
+          }
+        }
+      });
+      pagetop.click(function () {
+        $('body, html').animate({ scrollTop: 0 }, 500); //0.5秒かけてトップへ戻る
+        return false;
+      });
+    });
+    </script>
+
 
     <!-- #タグのボタンのON と　OFF　の切り替え -->
     <script>
@@ -1130,90 +1073,84 @@
         $(this).addClass("active");
       });
     </script>
-    <!-- 投稿の読み込み -->
-    <script>
-      window.onload =
-        //  firebase.auth().onAuthStateChanged(function(user) {
-        //       if (user) {
-        //         // User is signed in.
-        //         // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
-        //         console.log(user.uid);
-        //       }
-        // });
-
-        function readPost() {
-      //ログインしているユーザー情報の取得
-      var userId = firebase.auth().currentUser
-      var uid = userId;
 
 
-        // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-        // var postUserName = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-        // var postUserPic = (snapshot.val() && snapshot.val().photoURL) || 'Anonymous';
-        // console.log("投稿ユーザー名" + postUserName);
-        // console.log("投稿ユーザープロフィール画像" + postUserPic);
+<!-- 選択されたtabと#タグを取得する /　#タグのリセット-->
+<script>
+    $(".nav-tabs a").click( tabClicked );
+      function tabClicked (e) {
+          //ここにクリックされたときの処理を書きます
+          e.preventDefault();
+          // alert(e.target.innerText);
+          // alert( $(e.target).attr("href") );
+          var eventHref = $(e.target).attr("href"); //選択したイベントのhrefを取得するならこっちを使う。
+          var eventId = $(e.target).attr("id"); //選択したイベントのidを取得するならこっちを使う。
+          var postEvent = (e.target.innerText);//選択したイベントのタイトルを取得
+  
+          console.log(eventHref);
+          console.log(eventId);
+          console.log(postEvent);    
+  
+          $('#eventSelected').text(postEvent); //選択したイベントのタイトルを反映
+          $('#postedEvent').text(eventId); //サーバー登録用選択した#タグを反映
+          $('#tagSelected').text(""); //イベントのtabを押したら、#タグの値がリセットされる
+          $('#postedtag').text(""); //イベントのtabを押したら、#タグの値がリセットされる
+  
+      }
+  </script>
 
-          // var userPicNameRef = firebase.database().ref("users");
-          // userPicNameRef.on("child_added", function(snapshot) {
-          //   var userId = snapshot.key; //投稿者のユーザーID
-          //   var postUser = snapshot.val().username; //投稿ユーザーの名
-          //   var userPic = snapshot.val().photoURL; //投稿ユーザーの写真
+<!--ここは#タグをクリックすると該当する投稿が表示される処理 -->
+  <script>
+      $(".tab-content button").click( tagClicked );
+        function tagClicked (e) {
+            //ここにクリックされたときの処理を書きます
+            // e.preventDefault();
+            // alert(e.target.innerText);
+            // alert( $(e.target).attr("href") );
+  
+            var postTag = (e.target.innerText);//選択した#タグの値を直接取得するならこちら。
+            var postTagId = $(e.target).attr("id");//選択した#タグのidを取得するならこちら。
+    
+            console.log(postTag);    
+            console.log(postTagId);    
+    
+            $('#tagSelected').text(postTag); //選択した#タグを反映
+            $('#postedtag').text(postTagId); //サーバー登録用選択した#タグを反映
 
-          //   console.log("投稿したユーザーID=" + userId);
-          //   console.log("投稿したユーザー名=" + postUser);
-          //   console.log("投稿したユーザーのご尊顔=" + userPic);
+            var postedTagTitle = document.getElementById("postedtag").innerHTML;//RD登録用：選択したタグ
+            console.log(postedTagTitle);
+            firebase.database().ref('/post')
+        // .orderByChild('tag').startAt("cosplay").endAt("cosplay")//ここの#タグの名前を選択したら取得できるようにする
+        .orderByChild('tag').startAt(postTagId).endAt(postTagId)//ここの#タグの名前を選択したら取得できるようにする
+        
+        .on("child_added", function(snapshot) {
 
-            var postRef = firebase.database().ref("post");
-            postRef.on("child_added", function(snapshot) {
-              // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
-              var postId = snapshot.key; //投稿ID
-              var postDate = snapshot.val().date; //投稿した日時
-              var postUserID = snapshot.val().userID; //投稿者のユーザーID
-              var postUserName = snapshot.val().userName; //投稿者のユーザーID
-              var postUserPic = snapshot.val().userPic; //投稿者のユーザーID
-              var eventTitle = snapshot.val().event; //投稿イベント名
-              var tagTitle = snapshot.val().tag; //選択したタグ
-              var postPic = snapshot.val().photoURL; //投稿した画像名
-              var postComment = snapshot.val().comment; //投稿したコメント
+        console.log(snapshot.val());//一位の#タグを使用した投稿IDを取得
 
-              console.log("投稿ID=" + postId);
-              console.log("投稿した日時=" + postDate);
-              console.log("投稿者のユーザーID=" + postUserID);
-              console.log("投稿イベント名=" + eventTitle);
-              console.log("選択した#タグ=" + tagTitle);
-              console.log("投稿した画像名=" + postPic);
-              console.log("投稿したコメント=" + postComment);
 
-              //         ref = firebase.storage().ref().child('img/samle.jpg');
-              //         ref.getDownloadURL().then((url) => {
-              //         document.getElementById('boxPic').src = url;
-              // 　　　　　});
 
-              //    画像取得
-              var storage = firebase.storage();
-              console.log(postPic);
-              var storageRef = storage.ref("images/").child(postPic);
-              console.log("投稿画像ストレージの参照"+storageRef);
-                var spaceRef = storageRef.child('images/' + postPic);
-              var imageSrc = '';
-              storageRef.getDownloadURL()
-                .then(function(url) {
-                  imageSrc = url;
-                  // add this line here:
-                  $(".postImg").attr("src", url);
-                  console.log(url);
-                  var updates = {};
-                   updates['/posts/' + postId + '/photoURL'] = url;
-                  firebase.database().ref().update(updates).then(function () {
-                    console.log('update成功');
-                  });
-                })
-                .catch(function(error) {
-                  console.log(error);
-                });
 
-              // const text =`<div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="postBox">
-              const text = `<div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="${postId}">
+            // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
+            var postId = snapshot.key; //投稿ID
+            var postDate = snapshot.val().date; //投稿した日時
+            var postUserID = snapshot.val().userID; //投稿者のユーザーID
+            var postUserName = snapshot.val().userName; //投稿者のユーザーID
+            var postUserPic = snapshot.val().userPic; //投稿者のプロフ画像
+            var eventTitle = snapshot.val().event; //投稿イベント名
+            var tagTitle = snapshot.val().tag; //選択したタグ
+            var postPic = snapshot.val().photoURL; //投稿した画像名
+            var postComment = snapshot.val().comment; //投稿したコメント
+
+            console.log("投稿ID=" + postId);
+            console.log("投稿した日時=" + postDate);
+            console.log("投稿者のユーザーID=" + postUserID);
+            console.log("投稿者のプロフ画像" + postUserPic)
+            console.log("投稿イベント名=" + eventTitle);
+            console.log("選択した#タグ=" + tagTitle);
+            console.log("投稿した画像名=" + postPic);
+            console.log("投稿したコメント=" + postComment);
+
+            const text = `<div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="${postId}">
 
             <div class="row">
               <!-- 投稿のbox -->
@@ -1222,7 +1159,7 @@
                 <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
                 <div class="mx-100">
                   <div class="">
-                    <!-- 画像 --> <img class="mw-100 postImg" id="${postId}" src="${imageSrc}">
+                    <!-- 画像 --> <img class="mw-100 postImg" id="${postId}" src="${postPic}">
 
                   </div>
                 </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
@@ -1236,7 +1173,8 @@
                   <div class="row">
                     <!-- プロフ画像 のbox-->
                     <div class="col-2 p-1 text-center">
-                      <!-- プロフ画像 --> <img id="postUserPic" class="rounded-circle bg-primary shadow" src="img/img_sample1.jpg" alt="" style="width: 50px;height: 50px;" />
+                       <!-- プロフ画像 -->
+                      <img id="${postUserID}" class="rounded-circle bg-primary shadow" src="${postUserPic}" alt="" style="width: 50px; height: 50px;" />
                     </div><!-- プロフ画像 のbox 終わり-->
                     <div class="col-6 container-fluid">
                       <!-- 投稿者名・投稿日 のbox -->
@@ -1257,7 +1195,7 @@
                     <div class="col-2 p-0 text-right">
                       <!-- ハート のbox -->
                       <!-- 白ハート --> <img id="whiteHeart" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
-                       <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
+                       <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px; height: 30px;" />
                     </div> <!-- ハート のbox 終わり-->
                     <div id="likesNumber" class="col-2 p-0">
                       <!-- いいねの数 のbox -->
@@ -1279,11 +1217,138 @@
               </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
             </div><!-- 投稿のbox 終わり-->
           </div>`;
-              $(".postList").append(text);
-            });
-          // });
-        };
-
+            $(".postList").append(text);
+          });
+        }
     </script>
+  
+
+
+
+  <!--ここはタイムラインを開いた時に最初に読み込まれる処理（一番目のイベントで一番目の#タグ） -->
+    <!-- 投稿の読み込み -->
+  <script>
+      window.onload =
+        function readPost() {
+          //ログインしているユーザー情報の取得
+          var userId = firebase.auth().currentUser;
+          var uid = userId;
+
+// 全ての投稿を取得する
+          // var postRef = firebase.database().ref("post");
+          // postRef.on("child_added", function(snapshot) {
+            
+          //   console.log(snapshot.val());
+          //   console.log('======================================================');
+
+
+//#タグでソートして投稿を取得  ここは別のjsファイルで処理をする
+        // var postedTagName = document.getElementById("selectedTagName").innerHTML;//RD登録用：選択したタグ
+        firebase.database().ref('/post')
+        // .orderByChild('tag').startAt("cosplay").endAt("cosplay")//ここの#タグの名前を選択したら取得できるようにする
+        .orderByChild('tag').startAt("cosplay").endAt("cosplay")//ここの#タグの名前を選択したら取得できるようにする
+        
+        .on("child_added", function(snapshot) {
+
+        console.log(snapshot.val());//一位の#タグを使用した投稿IDを取得
+
+
+
+
+            // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
+            var postId = snapshot.key; //投稿ID
+            var postDate = snapshot.val().date; //投稿した日時
+            var postUserID = snapshot.val().userID; //投稿者のユーザーID
+            var postUserName = snapshot.val().userName; //投稿者のユーザーID
+            var postUserPic = snapshot.val().userPic; //投稿者のプロフ画像
+            var eventTitle = snapshot.val().event; //投稿イベント名
+            var tagTitle = snapshot.val().tag; //選択したタグ
+            var postPic = snapshot.val().photoURL; //投稿した画像名
+            var postComment = snapshot.val().comment; //投稿したコメント
+
+            console.log("投稿ID=" + postId);
+            console.log("投稿した日時=" + postDate);
+            console.log("投稿者のユーザーID=" + postUserID);
+            console.log("投稿者のプロフ画像" + postUserPic)
+            console.log("投稿イベント名=" + eventTitle);
+            console.log("選択した#タグ=" + tagTitle);
+            console.log("投稿した画像名=" + postPic);
+            console.log("投稿したコメント=" + postComment);
+
+            const text = `<div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="${postId}">
+
+            <div class="row">
+              <!-- 投稿のbox -->
+
+              <div class="col-md">
+                <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+                <div class="mx-100">
+                  <div class="">
+                    <!-- 画像 --> <img class="mw-100 postImg" id="${postId}" src="${postPic}">
+
+                  </div>
+                </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+              </div>
+
+              <div class="col-md mt-2">
+                <!-- プロフ画像・投稿者名・投稿日・いいね！のbox -->
+
+                <div class=" container-fluid">
+
+                  <div class="row">
+                    <!-- プロフ画像 のbox-->
+                    <div class="col-2 p-1 text-center">
+                       <!-- プロフ画像 -->
+                      <img id="${postUserID}" class="rounded-circle bg-primary shadow" src="${postUserPic}" alt="" style="width: 50px; height: 50px;" />
+                    </div><!-- プロフ画像 のbox 終わり-->
+                    <div class="col-6 container-fluid">
+                      <!-- 投稿者名・投稿日 のbox -->
+                      <div class="row">
+                        <!-- 投稿者名 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">${postUserName}</span></small>
+                        </div>
+                      </div><!-- 投稿者名 のbox 終わり-->
+                      <div class="row">
+                        <!-- 投稿日 のbox -->
+                        <div class="col-xl">
+                          <!-- 投稿者名 --> <small><span id="postDate" class="">${postDate}</span></small>
+                        </div>
+                      </div><!-- 投稿日 のbox 終わり-->
+                    </div><!-- 投稿者名・投稿日のbox 終わり-->
+
+                    <div class="col-2 p-0 text-right">
+                      <!-- ハート のbox -->
+                      <!-- 白ハート --> <img id="whiteHeart" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                       <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px; height: 30px;" />
+                    </div> <!-- ハート のbox 終わり-->
+                    <div id="likesNumber" class="col-2 p-0">
+                      <!-- いいねの数 のbox -->
+                      <!-- いいね！の数 -->
+                      <div class="mw-100 text-left" style="font-size:24px">110</div>
+                    </div> <!-- いいねの数 のbox 終わり-->
+                  </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+
+                  <div class="row">
+                    <!-- コメントのbox -->
+                    <!-- コメント -->
+                    <div class="col mw-100 p-1">
+                      <div class="mw-100 border border-light shadow-sm">
+                        <span class="p-1">${postComment}</span>
+                      </div>
+                    </div>
+                  </div><!-- コメントのbox 終わり-->
+                </div><!-- 投稿情報・コメントのbox 終わり-->
+              </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
+            </div><!-- 投稿のbox 終わり-->
+          </div>`;
+            $(".postList").append(text);
+          });
+        };
+    </script>
+
+
+
+
   </body>
 </html>

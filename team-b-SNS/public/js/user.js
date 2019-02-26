@@ -2,6 +2,8 @@
 // APIコンフィグ情報を取得する
 var config = getApiConfing();
 firebase.initializeApp(config);
+var storageRef = firebase.storage().ref();
+
 
 // Createの始まり
 function create() {
@@ -40,7 +42,13 @@ function create() {
       //プロフィール画像の登録
       var user = firebase.auth().currentUser; // ※firebase.auth().currentUser　を使うと現在ログイン中のユーザが取得できる
       var profPicId = user.uid;
+<<<<<<< HEAD
       console.log("ユーザーID=" + profPicId);
+=======
+      console.log("ユーザーID=" + profPicId)
+      //画像名を変更する指示を書く
+
+>>>>>>> master
 
       var storage = firebase.storage();
       var files = document.getElementById("file").files;
@@ -58,6 +66,7 @@ function create() {
       console.log(newProfPicName); //この名前がuserIDに変更した画像名
 
       if (files[0].type.indexOf("image") >= 0) {
+<<<<<<< HEAD
         var ref = storage.ref("profilePic/").child(newProfPicName); //ここでstorageに画像を登録
         ref
           .put(image)
@@ -86,12 +95,76 @@ function create() {
           });
       }
     });
+=======
+
+      //   //ここからーーーーーーー
+      //   var ref = storage.ref("profilePic/").child(newProfPicName);//ここでstorageに画像を登録
+      //   ref.put(image).then(function(snapshot) {
+
+      //      //画像の登録まで正常に終わったら、ユーザー登録が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
+
+      //       // ここに、photoURL　を update　で登録する
+      //       console.log("変更後のプロフ画像名=" + newProfPicName)
+      //       var profPhotoUpdates = {};
+      //       profPhotoUpdates['users/' + profPicId + '/photoURL'] = newProfPicName;　//ここでRDの画像名を書き換え
+      //       firebase.database().ref().update(profPhotoUpdates);
+
+      //     // 新規登録成功時の処理
+      //     alert("おめでとうございます！ユーザー登録が完了しました！");
+      //     location.replace('timeline.html')
+      //   }).catch(function(error) {
+      //     console.log(error);
+      //     // 画像登録失敗時の処理
+      //     alert("画像が選択されていません( ´△｀)");
+      //   });
+      // }//ここまでーーーーー
+
+      var uploadTask = storageRef.child('profilePic/' + newProfPicName).put(image);
+
+      // Register three observers:
+      // 1. 'state_changed' observer, called any time the state changes
+      // 2. Error observer, called on failure
+      // 3. Completion observer, called on successful completion
+      uploadTask.on('state_changed', function(snapshot){
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+      //   switch (snapshot.state) {
+      //     case firebase.storage.TaskState.PAUSED: // or 'paused'
+      //       console.log('Upload is paused');
+      //       break;
+      //     case firebase.storage.TaskState.RUNNING: // or 'running'
+      //       console.log('Upload is running');
+      //       break;
+      //   }
+      }, function(error) {
+        // Handle unsuccessful uploads
+        alert("画像が選択されていません( ´△｀)");
+      }, function() {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+          console.log('File available at', downloadURL);
+          var profPhotoUpdates = {};
+          profPhotoUpdates['users/' + profPicId + '/photoURL'] = downloadURL;
+          firebase.database().ref().update(profPhotoUpdates);
+          alert('ファイアベースに画像登録できました。');
+          location.replace('timeline.html');
+        });
+      });
+      
+    };
+  });
+>>>>>>> master
 }
+
 // Createの終わり
 
 function read() {
   console.log("Firebaseからデータ取得");
   firebase.auth().onAuthStateChanged(function(user) {
+<<<<<<< HEAD
     if (user) {
       // User is signed in.
       // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
@@ -135,6 +208,73 @@ function read() {
       // No user is signed in.
     }
   });
+=======
+      if (user) {
+        // User is signed in.
+        // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+        console.log(user.uid);
+        var uid = user.uid;
+        console.log(uid);
+        var userInfo = firebase
+          .database()
+          .ref("/users/" + user.uid)
+          .once("value")
+          .then(function(snapshot) {
+            var firstName =
+              (snapshot.val() && snapshot.val().firstName) || "Anonymous";
+            var secondName =
+              (snapshot.val() && snapshot.val().secondName) || "Anonymous";
+            var username =
+              (snapshot.val() && snapshot.val().username) || "Anonymous";
+
+            var comment =
+              (snapshot.val() && snapshot.val().comment) || "Anonymous";
+            var photoURL =
+              (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
+
+            var email = user.email;
+            // ...
+            document.getElementById("inputUserName").value = username;
+            document.getElementById("inputFirstName").value = firstName;
+            document.getElementById("inputSecondName").value = secondName;
+            document.getElementById("exampleTextarea").value = comment;
+            document.getElementById("inputEmail").value = email;
+            // document.getElementById("photoURL").value = photoURL;
+            // ...
+          });
+        console.log(userInfo); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
+      } else {
+        // location.replace("logIn.html");
+        // No user is signed in.
+      }
+    });
+}
+
+function databaseUpdate() {
+  var firstName = document.getElementById("inputFirstName").value;
+  var username = document.getElementById("inputUserName").value;
+  var secondName = document.getElementById("inputSecondName").value;
+  var comment = document.getElementById("exampleTextarea").value;
+
+  var userid = firebase.auth().currentUser.uid;
+  var updatesFirstName = {};
+  updatesFirstName['users/' + userid + '/firstName'] = firstName;
+  var updatesSecondName = {};
+  updatesSecondName['users/' + userid + '/secondName'] = secondName;
+  var updatesUsername = {};
+  updatesUsername['users/' + userid + '/username'] = username;
+  var updatesComment = {};
+  updatesComment ['users/' + userid + '/comment'] = comment;
+
+  firebase.database().ref().update(updatesFirstName);
+  firebase.database().ref().update(updatesSecondName);
+  firebase.database().ref().update(updatesUsername);
+  firebase.database().ref().update(updatesComment);
+
+  // firebase.database().ref('users/' + userid ).set({
+  //   firstName: '1212'
+  // });
+>>>>>>> master
 }
 
 function update() {
