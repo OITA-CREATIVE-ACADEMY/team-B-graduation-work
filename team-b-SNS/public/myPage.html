@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>マイページ</title>
 
+
+
  <!-- 1月17日　田中先生にて修正 -->
  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
@@ -19,43 +21,6 @@
 
  <script src="js/apiConfig.js"></script>
   <script type="text/javascript" src="js/loginUser.js"></script>
-  <!-- <script type="text/javascript" src="js/mypagePostList.js"></script> -->
-  
-
-  <!-- <script>
-
-    function loginUser() {
-
-      //location.replace('index.html')
-      //});
-
-
-      //認証状態の確認(ログインしているユーザーを取得する)
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          //ユーザーがログインしている状態
-          //loginDisplay();
-          //setTimeout(function(){
-          //window.location.href = 'timeline.html';
-          //}, 3*1000);
-        } else {
-          //ユーザーがログインしていない状態
-          logoutDisplay();
-        }
-      });
-
-      //function loginDisplay() {
-      //logout.classList.remove('d-none');
-      //info.textContent = "あなたはログイン中です";
-      //}
-
-      function logoutDisplay() {
-        //logout.classList.add('d-none');
-        location.replace('404.html')
-  }
-  // return();
-  }
-  </script> -->
 
   <!-- ページを開いた時に、ユーザー登録情報の読み込みを行う -->
   <script>
@@ -71,6 +36,9 @@
             .ref("/users/" + user.uid)
             .once("value")
             .then(function(snapshot) {
+              var photoURL =
+                (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
+
               var firstName =
                 (snapshot.val() && snapshot.val().firstName) || "Anonymous";
               var secondName =
@@ -80,8 +48,6 @@
 
               var comment =
                 (snapshot.val() && snapshot.val().comment) || "Anonymous";
-              var photoURL =
-                (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
 
               var email = user.email;
               // ...
@@ -93,12 +59,8 @@
               document.getElementById("inputEmail").value = email;
               console.log(username)
               console.log(snapshot.val());
-
-
             });
         };
-
-        
         //ログインユーザーの投稿IDを取得
         firebase.database().ref('/post')
         .orderByChild('userID').startAt(user.uid).endAt(user.uid)
@@ -199,142 +161,11 @@
       </div>
     </div>
     </div><!-- 投稿のbox 終わり-- container-fluidに対応>`;
-    // }
-    //   )
-
-
-
-// // ここにログインユーザー（自分）の投稿を読み込む指示を追加
-//     var userId = firebase.auth().currentUser;
-//     var uid = userId;
-//     var postRef = firebase.database().ref("post");
-//     postRef.on("child_added", function(snapshot) {
-//       console.log(user.uid + "------------")
-//       console.log(snapshot.val());
-
-//       console.log('======================================================');
-
-
-
-//       // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
-//       var postId = snapshot.key; //投稿ID
-//       var postDate = snapshot.val().date; //投稿した日時
-//       var postUserID = snapshot.val().userID; //投稿者のユーザーID
-//       var postUserName = snapshot.val().userName; //投稿者のユーザーID
-//       var postUserPic = snapshot.val().userPic; //投稿者のプロフ画像
-//       var eventTitle = snapshot.val().event; //投稿イベント名
-//       var tagTitle = snapshot.val().tag; //選択したタグ
-//       var postPic = snapshot.val().photoURL; //投稿した画像名
-//       var postComment = snapshot.val().comment; //投稿したコメント
-
-//       console.log("投稿ID=" + postId);
-//       console.log("投稿した日時=" + postDate);
-//       console.log("投稿者のユーザーID=" + postUserID);
-
-//       console.log("ログインユーザーID=" + user.uid);
-
-//       console.log("投稿者のプロフ画像" + postUserPic)
-//       console.log("投稿イベント名=" + eventTitle);
-//       console.log("選択した#タグ=" + tagTitle);
-//       console.log("投稿した画像名=" + postPic);
-//       console.log("投稿したコメント=" + postComment);
-
-
- 
-// //ログインユーザー（自分）の投稿のみを表示する
-//       if (user.uid == postUserID) {
-//         var myPost = document.getElementsByClassName("myPost");
-//         myPost.classList.remove("d-none");
-//         //ユーザーがログインしている状態
-//         //loginDisplay();
-//         //setTimeout(function(){
-//         //window.location.href = 'timeline.html';
-//         //}, 3*1000);
-//       }else {
-//         //ユーザーがログインしていない状態
-//       }
-
-    //   const text = `<div id="${postId}" class="container-fluid myPost">
-    //     <div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}">
-    //   <div class="row">
-    //     <!-- 投稿のbox -->
-
-    //     <div class="col-md">
-    //       <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
-    //       <div class="mx-100">
-    //         <div class="">
-    //           <!-- 画像 --> <img class="mw-100 postImg" id="${postId}" src="${postPic}">
-
-    //         </div>
-    //       </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
-    //     </div>
-
-    //     <div class="col-md mt-2">
-    //       <!-- プロフ画像・投稿者名・投稿日・いいね！のbox -->
-
-    //       <div class=" container-fluid">
-
-    //         <div class="row">
-    //           <!-- プロフ画像 のbox-->
-    //           <div class="col-2 p-1 text-center">
-    //              <!-- プロフ画像 -->
-    //             <img id="${postUserID}" class="rounded-circle bg-primary shadow" src="${postUserPic}" alt="" style="width: 50px; height: 50px;" />
-    //           </div><!-- プロフ画像 のbox 終わり-->
-    //           <div class="col-6 container-fluid">
-    //             <!-- 投稿者名・投稿日 のbox -->
-    //             <div class="row">
-    //               <!-- 投稿者名 のbox -->
-    //               <div class="col-xl">
-    //                 <!-- 投稿者名 --> <small><span id="postUserName" class=" font-weight-bold">${postUserName}</span></small>
-    //               </div>
-    //             </div><!-- 投稿者名 のbox 終わり-->
-    //             <div class="row">
-    //               <!-- 投稿日 のbox -->
-    //               <div class="col-xl">
-    //                 <!-- 投稿者名 --> <small><span id="postDate" class="">${postDate}</span></small>
-    //               </div>
-    //             </div><!-- 投稿日 のbox 終わり-->
-    //           </div><!-- 投稿者名・投稿日のbox 終わり-->
-
-    //           <div class="col-2 p-0 text-right">
-    //             <!-- ハート のbox -->
-    //             <!-- 白ハート --> <img id="whiteHeart" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
-    //              <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px; height: 30px;" />
-    //           </div> <!-- ハート のbox 終わり-->
-    //           <div id="likesNumber" class="col-2 p-0">
-    //             <!-- いいねの数 のbox -->
-    //             <!-- いいね！の数 -->
-    //             <div class="mw-100 text-left" style="font-size:24px">110</div>
-    //           </div> <!-- いいねの数 のbox 終わり-->
-    //         </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
-
-    //         <div class="row">
-    //           <!-- コメントのbox -->
-    //           <!-- コメント -->
-    //           <div class="col mw-100 p-1">
-    //             <div class="mw-100 border border-light shadow-sm">
-    //               <span class="p-1">${postComment}</span>
-    //             </div>
-    //           </div>
-    //         </div><!-- コメントのbox 終わり-->
-    //       </div><!-- 投稿情報・コメントのbox 終わり-->
-    //     </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
-    //   </div>
-    // </div>
-    // </div><!-- 投稿のbox 終わり-- container-fluidに対応 -->
-    // `;
 
       $(".myPostList").append(text);
-          }
-      )
-
+      })
     });
-// ここにログインユーザー（自分）の投稿を読み込む指示を追加 終わり
-
       });
-    // };
-  // });
-
   </script>
 
 
@@ -342,6 +173,10 @@
 
  <link href="css/logo.css" rel="stylesheet" />
 
+   <!-- 上に戻るボタンの外部CSS（２行セット） -->
+   <link href="css/backToTopBTN.css" rel="stylesheet" />
+　 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+ 
   <!-- BootstrapのCSS読み込み -->
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -354,11 +189,42 @@
   <!-- BootstrapのJS読み込み -->
   <script src="js/bootstrap.min.js"></script>
 
-
-
-  <!-- initialize the SDK after all desired features are loaded -->
-  <!-- <script defer src="https://www.gstatic.com/firebasejs/init.js"></script> -->
-
+  <!-- 上へ戻るボタンの実装 -->
+  <script>
+    $(function() {
+      var appear = false;
+      var pagetop = $("#page_top");
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+          //100pxスクロールしたら
+          if (appear == false) {
+            appear = true;
+            pagetop.stop().animate(
+              {
+                right: "0px" //右から0pxの位置に
+              },
+              300
+            ); //0.3秒かけて現れる
+          }
+        } else {
+          if (appear) {
+            appear = false;
+            pagetop.stop().animate(
+              {
+                right: "-50px" //右から-50pxの位置に
+              },
+              300
+            ); //0.3秒かけて隠れる
+          }
+        }
+      });
+      pagetop.click(function() {
+        $("body, html").animate({ scrollTop: 0 }, 500); //0.5秒かけてトップへ戻る
+        return false;
+      });
+    });
+  </script>
+  
 
   <style media="screen">
     body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -392,6 +258,10 @@
       </div>
     </div>
     <hr class="mw-100  bg-light my-4">
+
+    <!-- 上へ戻るボタン -->
+      <div id="page_top"><a href="#"></a></div>
+
   </header>
 
 
@@ -399,7 +269,7 @@
   <div class="container-fluid" style="margin-bottom:100px;">
 
     <div class="text-center m-5">
-          <img id="profPic" src="" style="width: 200px;" />
+          <img id="profPic" class="rounded-circle shadow" src="img/logo.png" style="width: 150px; height:150px;" />
     </div>
 
 
@@ -531,15 +401,8 @@
         </div><!-- いいね！・投稿日時・編集のbox 終わり-->
       </div>
     </div><!-- 投稿アーカイブのbox 終わり-->
-
-
-
-
     </div>
-
-
     </div>
-
   </div>
 
 
@@ -568,52 +431,6 @@
       </div>
     </div>
   </footer>
-
-
-
-<!-- <script>
-
-  function loginUser() {
-
-    //location.replace('index.html')
-    //});
-
-
-    //認証状態の確認(ログインしているユーザーを取得する)
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        //ユーザーがログインしている状態
-        //loginDisplay();
-        //setTimeout(function(){
-        //window.location.href = 'timeline.html';
-        //}, 3*1000);
-      } else {
-        //ユーザーがログインしていない状態
-        logoutDisplay();
-      }
-    });
-
-    //function loginDisplay() {
-    //logout.classList.remove('d-none');
-    //info.textContent = "あなたはログイン中です";
-    //}
-
-    function logoutDisplay() {
-      //logout.classList.add('d-none');
-      location.replace('index.html')
-}
-// return();
-}
-
-window.onload = function () { // ページ読み込み時に実行する無名関数
-    read(); // １つ目の関数呼び出し
-    loginUser(); // ２つ目の関数呼び出し
-}
-</script> -->
-
-
-<!-- <script src="js/user.js"></script> -->
-
 
   <!-- エラーが出ていたのでとりあえずコメントアウト -->
   <script src="/js/logout_v2.js"></script>
