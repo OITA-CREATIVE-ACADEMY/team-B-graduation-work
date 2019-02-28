@@ -42,13 +42,11 @@ function create() {
       //プロフィール画像の登録
       var user = firebase.auth().currentUser; // ※firebase.auth().currentUser　を使うと現在ログイン中のユーザが取得できる
       var profPicId = user.uid;
-<<<<<<< HEAD
-      console.log("ユーザーID=" + profPicId);
-=======
+
       console.log("ユーザーID=" + profPicId)
       //画像名を変更する指示を書く
 
->>>>>>> master
+
 
       var storage = firebase.storage();
       var files = document.getElementById("file").files;
@@ -66,58 +64,7 @@ function create() {
       console.log(newProfPicName); //この名前がuserIDに変更した画像名
 
       if (files[0].type.indexOf("image") >= 0) {
-<<<<<<< HEAD
-        var ref = storage.ref("profilePic/").child(newProfPicName); //ここでstorageに画像を登録
-        ref
-          .put(image)
-          .then(function(snapshot) {
-            //画像の登録まで正常に終わったら、ユーザー登録が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
 
-            // ここに、photoURL　を update　で登録する
-            console.log("変更後のプロフ画像名=" + newProfPicName);
-            var profPhotoUpdates = {};
-            profPhotoUpdates[
-              "users/" + profPicId + "/photoURL"
-            ] = newProfPicName; //ここでRDの画像名を書き換え
-            firebase
-              .database()
-              .ref()
-              .update(profPhotoUpdates);
-
-            // 新規登録成功時の処理
-            alert("おめでとうございます！ユーザー登録が完了しました！");
-            // location.replace('timeline.html')
-          })
-          .catch(function(error) {
-            console.log(error);
-            // 画像登録失敗時の処理
-            alert("画像が選択されていません( ´△｀)");
-          });
-      }
-    });
-=======
-
-      //   //ここからーーーーーーー
-      //   var ref = storage.ref("profilePic/").child(newProfPicName);//ここでstorageに画像を登録
-      //   ref.put(image).then(function(snapshot) {
-
-      //      //画像の登録まで正常に終わったら、ユーザー登録が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
-
-      //       // ここに、photoURL　を update　で登録する
-      //       console.log("変更後のプロフ画像名=" + newProfPicName)
-      //       var profPhotoUpdates = {};
-      //       profPhotoUpdates['users/' + profPicId + '/photoURL'] = newProfPicName;　//ここでRDの画像名を書き換え
-      //       firebase.database().ref().update(profPhotoUpdates);
-
-      //     // 新規登録成功時の処理
-      //     alert("おめでとうございます！ユーザー登録が完了しました！");
-      //     location.replace('timeline.html')
-      //   }).catch(function(error) {
-      //     console.log(error);
-      //     // 画像登録失敗時の処理
-      //     alert("画像が選択されていません( ´△｀)");
-      //   });
-      // }//ここまでーーーーー
 
       var uploadTask = storageRef.child('profilePic/' + newProfPicName).put(image);
 
@@ -153,10 +100,10 @@ function create() {
           location.replace('timeline.html');
         });
       });
-      
+
     };
   });
->>>>>>> master
+
 }
 
 // Createの終わり
@@ -164,51 +111,7 @@ function create() {
 function read() {
   console.log("Firebaseからデータ取得");
   firebase.auth().onAuthStateChanged(function(user) {
-<<<<<<< HEAD
-    if (user) {
-      // User is signed in.
-      // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
-      console.log(user.uid);
-      var uid = user.uid;
-      console.log(uid);
-      var userInfo = firebase
-        .database()
-        .ref("/users/" + user.uid)
-        .once("value")
-        .then(function(snapshot) {
-          var firstName =
-            (snapshot.val() && snapshot.val().firstName) || "Anonymous";
-          var secondName =
-            (snapshot.val() && snapshot.val().secondName) || "Anonymous";
-          var username =
-            (snapshot.val() && snapshot.val().username) || "Anonymous";
 
-          var comment =
-            (snapshot.val() && snapshot.val().comment) || "Anonymous";
-          var photoURL =
-            (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
-
-          var email = user.email;
-          // ...
-          document.getElementById("inputUserName").value = username;
-          document.getElementById("inputFirstName").value = firstName;
-          document.getElementById("inputSecondName").value = secondName;
-          document.getElementById("exampleTextarea").value = comment;
-          document.getElementById("inputEmail").value = email;
-// プロフィール画像
-          document.getElementById("userPic").src = photoURL;
-          // ...
-
-
-          // 画像の読み込み
-        });
-      // ユーザー情報をコンソール出力してデータが取得できていることを確認する
-    } else {
-      // location.replace("logIn.html");
-      // No user is signed in.
-    }
-  });
-=======
       if (user) {
         // User is signed in.
         // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
@@ -274,7 +177,7 @@ function databaseUpdate() {
   // firebase.database().ref('users/' + userid ).set({
   //   firstName: '1212'
   // });
->>>>>>> master
+
 }
 
 function update() {
