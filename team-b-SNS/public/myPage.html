@@ -18,12 +18,39 @@
  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
 <!-- 　これも必要。ページの下の方に入っているかもしれないのでチェックする -->
  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
  <script src="js/apiConfig.js"></script>
   <script type="text/javascript" src="js/loginUser.js"></script>
 
   <!-- ページを開いた時に、ユーザー登録情報の読み込みを行う -->
   <script>
+    $(function() {
+      // $(".whiteHeart").on('click',function(){
+      //   console.log(this);
+      //   //白ハートを決して、赤ハートを表示
+      //   $('.whiteHeart').addClass('d-none');
+      //   $('.redHeart').removeClass('d-none');
+
+      //  //いいね！をする　投稿IDを取得
+
+
+      //   //いいねのカウントを追加（ここはタイムラインの表示に　１カウントを追加）
+      //   var likedList = document.getElementById( 'likeCount' ).innerHTML; 
+      //   console.log("タイムラインに表示のいいね！数"+likedList)
+      //   document.getElementById("likeCount").innerHTML=parseInt(likedList)+1;
+
+
+      //   //認証状態の確認(ログインしているユーザーを取得する)
+      //   function loginUser(){
+      //     var userId = firebase.auth().currentUser.uid;
+      //     console.log("ログインユーザー＝" + userId );
+      //     return
+      //   }
+      //   //取得した投稿IDのpostのlikesCountに1を足す（タイムラインは更新しない）
+      //   //投稿ID + ログインユーザー　を合体させて、likes　の中に追加する
+      // });
+    });
     // window.onload = function read() {
       window.addEventListener('DOMContentLoaded', function(read) {　//こちらの方が読み込みが早い
 
@@ -48,6 +75,7 @@
 
               var comment =
                 (snapshot.val() && snapshot.val().comment) || "Anonymous";
+                
 
               var email = user.email;
               // ...
@@ -80,6 +108,8 @@
       var tagTitle = snapshot.val().tag; //選択したタグ
       var postPic = snapshot.val().photoURL; //投稿した画像名
       var postComment = snapshot.val().comment; //投稿したコメント
+      var likesCount = snapshot.val().likesCount; //いいねの数
+      // var likeID = postID + user.uid;
 
       console.log("投稿ID=" + postId);
       console.log("投稿した日時=" + postDate);
@@ -92,6 +122,10 @@
       console.log("選択した#タグ=" + tagTitle);
       console.log("投稿した画像名=" + postPic);
       console.log("投稿したコメント=" + postComment);
+      console.log("投稿したコメント=" + likesCount);
+      // console.log("likeの合成ID=" + likeID);
+
+
 
       const text = `<div id="${postId}" class="container-fluid myPost">
         <div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}">
@@ -117,7 +151,7 @@
               <!-- プロフ画像 のbox-->
               <div class="col-2 p-1 text-center">
                  <!-- プロフ画像 -->
-                <img id="${postUserID}" class="rounded-circle bg-primary shadow" src="${postUserPic}" alt="" style="width: 50px; height: 50px;" />
+                <img id="${postUserID}" class="rounded-circle shadow" src="${postUserPic}" alt="" style="width: 50px; height: 50px;" />
               </div><!-- プロフ画像 のbox 終わり-->
               <div class="col-6 container-fluid">
                 <!-- 投稿者名・投稿日 のbox -->
@@ -137,13 +171,13 @@
 
               <div class="col-2 p-0 text-right">
                 <!-- ハート のbox -->
-                <!-- 白ハート --> <img id="whiteHeart" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
-                 <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px; height: 30px;" />
+                <!-- 白ハート --> <img class="whiteHeart" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                 <!-- 赤ハート --> <img class="d-none redHeart" src="img/likes_heart.svg" alt="" style="width: 30px; height: 30px;" />
               </div> <!-- ハート のbox 終わり-->
               <div id="likesNumber" class="col-2 p-0">
                 <!-- いいねの数 のbox -->
                 <!-- いいね！の数 -->
-                <div class="mw-100 text-left" style="font-size:24px">110</div>
+                <div id="likeCount" class="mw-100 text-left pl-2" style="font-size:19px; vertical-align:100%">${likesCount}</div>
               </div> <!-- いいねの数 のbox 終わり-->
             </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
 
@@ -163,11 +197,79 @@
     </div><!-- 投稿のbox 終わり-- container-fluidに対応>`;
 
       $(".myPostList").append(text);
-      })
-    });
-      });
-  </script>
 
+      likedActionPlus();
+      likedActionMinus();
+
+      })
+
+    });
+
+      });
+
+//いいね！を押した時に発動するアクション
+// $('.like000').click(function() {
+//   console.log(this);
+// });
+      function likedActionPlus(){
+        //白ハートを押した時の処理
+      $(".whiteHeart").on('click',function(){
+        console.log(this.parentNode);//１つ上の親のdivがこれで取れている状態
+        //白ハートを決して、赤ハートを表示
+        $('.whiteHeart').addClass('d-none');
+        $('.redHeart').removeClass('d-none');
+
+       //いいね！をする　投稿IDを取得
+
+
+        //いいねのカウントを追加（ここはタイムラインの表示に　１カウントを追加）
+        var likedList = document.getElementById( 'likeCount' ).innerHTML; 
+        console.log("タイムラインに表示のいいね！数"+likedList)
+        document.getElementById("likeCount").innerHTML=parseInt(likedList)+1;
+
+
+        //認証状態の確認(ログインしているユーザーを取得する)
+        function loginUser(){
+          var userId = firebase.auth().currentUser.uid;
+          console.log("ログインユーザー＝" + userId );
+          return
+        }
+        //取得した投稿IDのpostのlikesCountに1を足す（タイムラインは更新しない）
+        //投稿ID + ログインユーザー　を合体させて、likes　の中に追加する
+      });
+      }
+
+      function likedActionMinus(){
+        //白ハートを押した時の処理
+      $(".redHeart").on('click',function(){
+
+        //白ハートを決して、赤ハートを表示
+        $('.redHeart').addClass('d-none');
+        $('.whiteHeart').removeClass('d-none');
+
+        //いいねのカウントを追加（ここはタイムラインの表示に　１カウントを引く）
+        var likedList = document.getElementById( 'likeCount' ).innerHTML; 
+        console.log("タイムラインに表示のいいね！数"+likedList)
+        document.getElementById("likeCount").innerHTML=parseInt(likedList)-1;
+
+
+        //認証状態の確認(ログインしているユーザーを取得する)
+          var userId = firebase.auth().currentUser.uid;
+          console.log("ログインユーザー＝" + userId );
+      
+
+        //いいね！をする　投稿IDを取得
+
+        //取得した投稿IDのpostのlikesCountに1を引く（タイムラインは更新しない）
+
+        //投稿ID + ログインユーザー　を合体させて、likes　の中から削除する
+
+
+      })
+      }
+
+
+  </script>
 
 
 
@@ -354,53 +456,9 @@
       </div>
 
 <!-- ログインユーザー（自分）の投稿が入るボックス -->
-      <div class="container-fluid bg-white mw-100 p-2 myPostList" id="">
-      </div>
+      <div class="container-fluid bg-white mw-100 p-2 myPostList" id=""></div>
 <!-- ログインユーザー（自分）の投稿が入るボックス 終わり-->
 
-
-
-    <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
-      <div class="row">
-
-        <div class="col-md">
-          <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
-          <div class="mx-100">
-            <div class="">
-              <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
-            </div>
-          </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
-        </div>
-        <!-- いいね！・投稿日時・編集のbox -->
-        <div class="col-md mt-2">
-
-          <!-- いいね！・投稿日時・編集のcontainer 終わり-->
-          <div class=" container-fluid">
-
-            <div class="row">
-              <!-- ハート のbox -->
-              <div class="col-1 p-0 text-right">
-                <!-- ハート --> <img id="heartPic" class="h-50" src="img/likes_heart.svg" alt="" style="width: 35px;height: 35px;" />
-              </div> <!-- ハート のbox 終わり-->
-              <div id="likesNumber" class="col-2 p-0">
-                <!-- いいねの数 のbox -->
-                <!-- いいね！の数 -->
-                <div class="mw-100 text-left" style="font-size:24px">110</div>
-              </div> <!-- いいねの数 のbox 終わり-->
-              <!-- 投稿日 のbox -->
-              <div class="col-7 text-right">
-                <small><span id="postDate" class="">2018年12月25日</span></small>
-              </div> <!-- 投稿日 のbox 終わり-->
-              <!-- 編集ボタン のbox -->
-              <div class="col-2 p-0 text-right">
-                <!-- 編集ボタン --> <img id="editBtn" class="h-75" src="img/edit_icon.svg" alt="" style="width: 35px;height: 35px;" />
-              </div> <!-- 編集ボタン のbox 終わり-->
-
-            </div>
-          </div><!-- いいね！・投稿日時・編集のcontainer 終わり-->
-        </div><!-- いいね！・投稿日時・編集のbox 終わり-->
-      </div>
-    </div><!-- 投稿アーカイブのbox 終わり-->
     </div>
     </div>
   </div>
