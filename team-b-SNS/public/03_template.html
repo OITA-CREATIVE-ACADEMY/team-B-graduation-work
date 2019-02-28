@@ -422,6 +422,13 @@ img.likes_btn_heart:active{
     </div><!-- 投稿アーカイブのbox 終わり-->
   </div>
 
+  <input type="image" id="btn1" src="img/likes_heart.svg" onclick="heartfunc(this)">
+  <script>
+    var heartfunc = function (image) {
+      image.src = "img/likes_heart.svg";
+    }
+  </script>
+
 
   
   
@@ -446,7 +453,7 @@ img.likes_btn_heart:active{
 
 <!-- onclick="slideshow()　でハートの画像を切り替えるスクリプト -->
 <!-- 今回は使えないので、ボツにした -->
-<script>
+<!-- <script>
     var heartSrc = new Array("img/likes_heart_white.svg","img/likes_heart.svg");
     var num = 0;
     function slideshow(){
@@ -459,8 +466,14 @@ img.likes_btn_heart:active{
       document.getElementById("likesHeart").src=heartSrc[num];
     }
 </script>
+ -->
 
-
+ <script>
+     $("#whiteHeart").on('click',function(){
+        $('#whiteHeart').addClass('d-none');
+        $('#redHeart').removeClass('d-none');
+  })
+</script>
 
 </body>
 

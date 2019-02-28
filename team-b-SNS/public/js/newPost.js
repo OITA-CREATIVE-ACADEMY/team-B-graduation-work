@@ -25,11 +25,11 @@ function createNewPost() {
       var tagTitle = document.getElementById("tagSelected").innerHTML;//ユーザーへの表示用：選択したタグ
       var postedEventTitle = document.getElementById("postedEvent").innerHTML;//RD登録用：選択したイベント
       var postedTagTitle = document.getElementById("postedtag").innerHTML;//RD登録用：選択したタグ
+      
 
       // var postTime = document.getElementById("DateTimeDisp").innerHTML;//投稿日時 postDate の取得 を追加する
       var postDate =moment().format('YYYY年MM月DD日HH時MM分');
 
-      // var likes =
       var uid = userId;
 
       console.log(uid);
@@ -50,7 +50,8 @@ function createNewPost() {
           tag: postedTagTitle,
           comment: postComment,
           photoURL: postPic,
-          date: postDate
+          date: postDate,
+          likesCount:0, //いいね！のカウントが入る。初期値はゼロ
         })
 
        //ここのthenは、push　の処理が正常に処理されたかどうかを判断するもの
