@@ -1,4 +1,4 @@
-function updateUserPic() {
+
 
   // Initialize Firebase
   // APIコンフィグ情報を取得する
@@ -77,5 +77,4 @@ function updateUserPic() {
 
 
 
-}
 // Createの終わり
