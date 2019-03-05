@@ -16,26 +16,11 @@
 　 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
 
-    <!-- style.cssの読み込み -->
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
-
-    <!--
-  realtimedababseからの情報取得テスト -->
-    <!-- <script src="js/apiConfig.js"></script> -->
     <!-- jQuery読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- update the version number as needed -->
-    <!-- <script defer src="/__/firebase/5.5.7/firebase-app.js"></script> -->
-    <!-- include only the Firebase features as you need -->
-    <!-- <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script> -->
-    <!-- initialize the SDK after all desired features are loaded -->
-    <!-- <script defer src="/__/firebase/init.js"></script> -->
 
     <!-- 1月17日　田中先生にて修正 -->
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
@@ -124,7 +109,7 @@
             <img class="sp" src="img/logo.svg" alt="スマートフォン用の画像" />
           </div>
 
-          <div id="title-space" class="col-6 text-right ">
+          <div class="col-6 text-right ">
             <span class="">タイムライン</span>
           </div>
         </div>
@@ -561,12 +546,13 @@
             var postId = snapshot.key; //投稿ID
             var postDate = snapshot.val().date; //投稿した日時
             var postUserID = snapshot.val().userID; //投稿者のユーザーID
-            var postUserName = snapshot.val().userName; //投稿者のユーザーID
+            var postUserName = snapshot.val().userName; //投稿者のユーザー名
             var postUserPic = snapshot.val().userPic; //投稿者のプロフ画像
             var eventTitle = snapshot.val().event; //投稿イベント名
             var tagTitle = snapshot.val().tag; //選択したタグ
             var postPic = snapshot.val().photoURL; //投稿した画像名
             var postComment = snapshot.val().comment; //投稿したコメント
+            var likesCount = snapshot.val().likesCount; //いいねの数
 
             console.log("投稿ID=" + postId);
             console.log("投稿した日時=" + postDate);
@@ -576,6 +562,8 @@
             console.log("選択した#タグ=" + tagTitle);
             console.log("投稿した画像名=" + postPic);
             console.log("投稿したコメント=" + postComment);
+            console.log("投稿についたいいね数=" + likesCount);
+
 
             const text = `<div class="defaultBox"><div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="${postId}">
 
@@ -621,14 +609,15 @@
 
                     <div class="col-2 p-0 text-right">
                       <!-- ハート のbox -->
-                      <!-- 白ハート --> <img id="whiteHeart" class="" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
-                     <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 30px; height: 30px;" />
+                      <!-- 白ハート --> <img id="whiteHeart" class="" src="img/likes_heart_white.svg" alt="" style="width: 23px; height: 23px;" />
+                     <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 23px; height: 23px;" />
                     </div> <!-- ハート のbox 終わり-->
-                    <div id="likesNumber" class="col-2 p-0">
-                      <!-- いいねの数 のbox -->
+
+                    <div id="likesNumber" class="col-2 p-0"><!-- いいねの数 のbox -->
                       <!-- いいね！の数 -->
-                      <div class="mw-100 text-left" style="font-size:24px">110</div>
+                      <div class="mw-100 text-left pl-2" style="font-size:19px; vertical-align:100%">${likesCount}</div>
                     </div> <!-- いいねの数 のbox 終わり-->
+
                   </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
 
                   <div class="row">
@@ -680,7 +669,6 @@
     }
 
 
-
     </script>
     <!--ここはタイムラインを開いた時に最初に読み込まれる処理（一番目のイベントで一番目の#タグ） -->
     <!-- 投稿の読み込み -->
@@ -688,7 +676,7 @@
       window.onload = readPost("cosplay");
     </script>
 
-        <script src="js/likesCount.js"></script>
+    <script src="js/likesCount.js"></script>
 
   </body>
 </html>
