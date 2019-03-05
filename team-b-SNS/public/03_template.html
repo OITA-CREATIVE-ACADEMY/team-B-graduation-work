@@ -307,6 +307,7 @@ img.likes_btn_heart:active{
 <!-- <img id="likesHeart" onclick="slideshow()" class="likes_btn_heart" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" /> -->
  
               </div> <!-- ハート のbox 終わり-->
+              
             <div id="likesNumber" class="col-2 p-0">
               <!-- いいねの数 のbox -->
               <!-- いいね！の数 -->
@@ -422,6 +423,36 @@ img.likes_btn_heart:active{
     </div><!-- 投稿アーカイブのbox 終わり-->
   </div>
 
+                <!-- 白ハート --> 
+                <img id="whiteHeart" class="likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+                <!-- 赤ハート --> 
+                <img id="redHeart" class="d-none likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+
+                              <!-- 白ハート --> 
+              <img id="whiteHeart" class="likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+              <!-- 赤ハート --> 
+              <img id="redHeart" class="d-none likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+
+                            <!-- 白ハート --> 
+                            <img id="whiteHeart" class="white likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+                            <!-- 赤ハート --> 
+                            <img id="redHeart" class="d-none red likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+                            <!-- 白ハート --> 
+                            <img id="whiteHeart" class="white likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+                            <!-- 赤ハート --> 
+                            <img id="redHeart" class="d-none red likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+                            <!-- 白ハート --> 
+                            <img id="whiteHeart" class="white likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+                            <!-- 赤ハート --> 
+                            <img id="redHeart" class="d-none red likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+             
+  <input type="image" id="btn1" src="img/likes_heart.svg" onclick="heartfunc(this)">
+  <script>
+    var heartfunc = function (image) {
+      image.src = "img/likes_heart.svg";
+    }
+  </script>
+
 
   
   
@@ -446,7 +477,7 @@ img.likes_btn_heart:active{
 
 <!-- onclick="slideshow()　でハートの画像を切り替えるスクリプト -->
 <!-- 今回は使えないので、ボツにした -->
-<script>
+<!-- <script>
     var heartSrc = new Array("img/likes_heart_white.svg","img/likes_heart.svg");
     var num = 0;
     function slideshow(){
@@ -459,8 +490,14 @@ img.likes_btn_heart:active{
       document.getElementById("likesHeart").src=heartSrc[num];
     }
 </script>
+ -->
 
-
+ <script>
+     $("#whiteHeart").on('click',function(){
+        $('#whiteHeart').addClass('d-none');
+        $('#redHeart').removeClass('d-none');
+  })
+</script>
 
 </body>
 

@@ -25,11 +25,11 @@ function createNewPost() {
       var tagTitle = document.getElementById("tagSelected").innerHTML;//ユーザーへの表示用：選択したタグ
       var postedEventTitle = document.getElementById("postedEvent").innerHTML;//RD登録用：選択したイベント
       var postedTagTitle = document.getElementById("postedtag").innerHTML;//RD登録用：選択したタグ
+      
 
       // var postTime = document.getElementById("DateTimeDisp").innerHTML;//投稿日時 postDate の取得 を追加する
       var postDate =moment().format('YYYY年MM月DD日HH時MM分');
 
-      // var likes =
       var uid = userId;
 
       console.log(uid);
@@ -50,7 +50,8 @@ function createNewPost() {
           tag: postedTagTitle,
           comment: postComment,
           photoURL: postPic,
-          date: postDate
+          date: postDate,
+          likesCount:0, //いいね！のカウントが入る。初期値はゼロ
         })
 
        //ここのthenは、push　の処理が正常に処理されたかどうかを判断するもの
@@ -60,7 +61,12 @@ function createNewPost() {
           console.log(data);
           console.log(data.key);  //投稿IDを取得　data.key　全部！
 
-
+          
+//投稿IDをusersのDBへ追加する
+          // firebase.database().ref('/users/' + userId)
+          // .push({
+          //   userPostID: data.key,
+          // });
         //投稿画像の登録は、この上のthen　の処理が正常に行われたら走る
 
         var newPostId = data.key;
@@ -89,11 +95,12 @@ function createNewPost() {
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-              alert('File available at', downloadURL);
+              // alert('File available at', downloadURL);
               var postPhotoUpdates = {};
               postPhotoUpdates['post/' + newPostId + '/photoURL'] = downloadURL;
               firebase.database().ref().update(postPhotoUpdates);
-              alert('ファイアベースに画像登録できました。');
+              console.log(postPhotoUpdates);
+              alert('投稿が完了しました！');
               location.replace('timeline.html');
             });
           });
@@ -109,7 +116,6 @@ function createNewPost() {
         //       // var postPhotoUpdates = {};
         //       // postPhotoUpdates['post/' + newPostId + '/photoURL'] = newFileName;
         //       // firebase.database().ref().update(postPhotoUpdates);
-        //
         //
         //       ref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
         //         console.log('File available at', downloadURL);
