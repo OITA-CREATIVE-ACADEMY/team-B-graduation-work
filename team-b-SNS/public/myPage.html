@@ -213,11 +213,12 @@
 // });
       function likedActionPlus(){
         //白ハートを押した時の処理
-      $(".whiteHeart").on('click',function(){
+      $(document).on('click', '.whiteHeart########', function() {
+  
         console.log(this.parentNode);//１つ上の親のdivがこれで取れている状態
         //白ハートを決して、赤ハートを表示
-        $('.whiteHeart').addClass('d-none');
-        $('.redHeart').removeClass('d-none');
+        // $('.whiteHeart').addClass('d-none');
+        // $('.redHeart').removeClass('d-none');
 
        //いいね！をする　投稿IDを取得
 
@@ -256,7 +257,7 @@
         //認証状態の確認(ログインしているユーザーを取得する)
           var userId = firebase.auth().currentUser.uid;
           console.log("ログインユーザー＝" + userId );
-      
+    
 
         //いいね！をする　投稿IDを取得
 
@@ -268,6 +269,21 @@
       })
       }
 
+      $(document).on('click', '.whiteHeart', function() {
+        var firebaseId = $(this).parents('.myPost').attr('id');
+        var heart = $(this).parent().find('img');
+        heart.each((idx, elem) => {
+          if ($(elem).hasClass('d-none')) {
+            $(elem).removeClass('d-none');
+          } else {
+            $(elem).addClass('d-none');
+          }
+        });
+        //ハートの種類・d-noneがついてる、ついてないで データベースのlikedに情報をアップロードする
+        
+        
+
+      });
 
   </script>
 
