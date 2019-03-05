@@ -134,7 +134,6 @@ function read() {
               (snapshot.val() && snapshot.val().comment) || "Anonymous";
             var photoURL =
               (snapshot.val() && snapshot.val().photoURL) || "Anonymous";
-
             var email = user.email;
             // ...
             document.getElementById("inputUserName").value = username;
@@ -142,10 +141,9 @@ function read() {
             document.getElementById("inputSecondName").value = secondName;
             document.getElementById("exampleTextarea").value = comment;
             document.getElementById("inputEmail").value = email;
-            // document.getElementById("photoURL").value = photoURL;
+            document.getElementById("userPic").src = photoURL;
             // ...
           });
-        console.log(userInfo); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
       } else {
         // location.replace("logIn.html");
         // No user is signed in.
@@ -164,7 +162,7 @@ function databaseUpdate() {
   updatesFirstName['users/' + userid + '/firstName'] = firstName;
   var updatesSecondName = {};
   updatesSecondName['users/' + userid + '/secondName'] = secondName;
-  var updatesUsername = {};
+  var updatesusername = {};
   updatesUsername['users/' + userid + '/username'] = username;
   var updatesComment = {};
   updatesComment ['users/' + userid + '/comment'] = comment;
@@ -199,14 +197,14 @@ function update() {
         var usersRef = firebase.database().ref("users/" + user.uid);
         var firstName = $("#inputFirstName").val();
         var secondName = $("#inputSecondName").val();
-        var userName = $("#inputUserName").val();
+        var username = $("#inputUserName").val();
         var comment = $("#exampleTextarea").val();
 
         usersRef
           .update({
             firstName: firstName,
             secondName: secondName,
-            userName: userName,
+            username: username,
             comment: comment
           })
           .then(function() {
@@ -306,8 +304,8 @@ function validation() {
     return false;
   }
 
-  var userName = $("#inputUserName").val();
-  if (userName == "") {
+  var username = $("#inputUserName").val();
+  if (username == "") {
     //alert("User Name　が入力されていません!");
     $("#usernamenone").removeClass("d-none");
     return false;
