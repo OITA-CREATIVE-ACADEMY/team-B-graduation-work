@@ -237,15 +237,15 @@
         }
 
         //いいね！を押した投稿IDを取得
-        function likedPost(){
-        firebase.database().ref('/post')
-        .on("child_added", function(snapshot) {
-        console.log(snapshot.val());//ログインユーザーの投稿IDを取得
-        // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
-        var likedPostID = snapshot.key; //投稿ID
-        console.log(likedPostID + "いいねした投稿ID")
-        })
-        }
+        // function likedPost(){
+        // firebase.database().ref('/post')
+        // .once(function(snapshot) {
+        // console.log(snapshot.val());//ログインユーザーの投稿IDを取得
+        // // 一意のIDを取得(postIdは、newPost.jsの、newPostIdと同じ値)
+        // var likedPostID = snapshot.key; //投稿ID
+        // console.log(likedPostID + "いいねした投稿ID")
+        // })
+        // }
         //取得した投稿IDのpostのlikesCountに1を足す（タイムラインは更新しない）
         //投稿ID + ログインユーザー　を合体させて、likes　の中に追加する
       });
