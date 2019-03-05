@@ -25,7 +25,7 @@ function createNewPost() {
       var tagTitle = document.getElementById("tagSelected").innerHTML;//ユーザーへの表示用：選択したタグ
       var postedEventTitle = document.getElementById("postedEvent").innerHTML;//RD登録用：選択したイベント
       var postedTagTitle = document.getElementById("postedtag").innerHTML;//RD登録用：選択したタグ
-      
+
 
       // var postTime = document.getElementById("DateTimeDisp").innerHTML;//投稿日時 postDate の取得 を追加する
       var postDate =moment().format('YYYY年MM月DD日HH時MM分');
@@ -61,7 +61,7 @@ function createNewPost() {
           console.log(data);
           console.log(data.key);  //投稿IDを取得　data.key　全部！
 
-          
+
 //投稿IDをusersのDBへ追加する
           // firebase.database().ref('/users/' + userId)
           // .push({
