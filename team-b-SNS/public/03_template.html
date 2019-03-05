@@ -100,6 +100,31 @@
       /* body { border-top: 16px solid #ffa100; } */
     }
   </style>
+
+  <style> 
+  /* heart画像をホバーした */
+img.likes_btn_heart:hover{
+ 
+ /* 透明度を上げることで、画像の色を薄く見せる。*/
+ opacity:0.5;
+
+ /* リンクをホバーしたときのカーソルにする。*/
+ cursor: pointer;
+}
+
+/* twitter画像をクリックした瞬間 */
+img.likes_btn_heart:active{
+
+ /* 要素を若干下に下げることで、押した感じを出す。*/
+
+ /* 今いる位置から相対的に3px下に配置する。*/
+ position: relative;
+ top: 3px;
+
+}
+  
+  
+  </style>
 </head>
 
 <body>
@@ -269,10 +294,20 @@
               </div><!-- 投稿日 のbox 終わり-->
             </div><!-- 投稿者名・投稿日のbox 終わり-->
 
+            
             <div class="col-2 p-0 text-right">
               <!-- ハート のbox -->
-              <!-- ハート --> <img id="heartPic" class="" src="img/likes_heart.svg" alt="" style="width: 30px;height: 30px;" />
-            </div> <!-- ハート のbox 終わり-->
+              <!-- 白ハート --> 
+              <img id="whiteHeart" class="likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+               <!-- 赤ハート --> 
+               <img id="redHeart" class="d-none likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+
+<!-- クリックでハートを　白抜き・赤ベタ　に切り替える方法　 onclick="slideshow()　を使う -->
+<!-- 今回はボツにした  -->
+<!-- <img id="likesHeart" onclick="slideshow()" class="likes_btn_heart" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" /> -->
+ 
+              </div> <!-- ハート のbox 終わり-->
+              
             <div id="likesNumber" class="col-2 p-0">
               <!-- いいねの数 のbox -->
               <!-- いいね！の数 -->
@@ -344,48 +379,83 @@
   マイページ用
   アーカイブに最適化　背景色をとった最終形態
   <!-- 投稿アーカイブのbox -->
-  <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
-    <div class="row">
+  <div class="cotainer">
+    <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+      <div class="row">
 
-      <div class="col-md">
-        <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
-        <div class="mx-100">
-          <div class="">
-            <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
-          </div>
-        </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+        <div class="col-md">
+          <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+          <div class="mx-100">
+            <div class="">
+              <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
+            </div>
+          </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+        </div>
+        <!-- いいね！・投稿日時・編集のbox -->
+        <div class="col-md mt-2">
+
+          <!-- いいね！・投稿日時・編集のcontainer 終わり-->
+          <div class=" container-fluid">
+
+            <div class="row">
+              <!-- ハート のbox -->
+              <div class="col-1 p-0 text-right">
+                <!-- ハート --> <img id="heartPic" class="h-50" src="img/likes_heart.svg" alt="" style="width: 35px;height: 35px;" />
+              </div> <!-- ハート のbox 終わり-->
+              <div id="likesNumber" class="col-2 p-0">
+                <!-- いいねの数 のbox -->
+                <!-- いいね！の数 -->
+                <div class="mw-100 text-left" style="font-size:24px">110</div>
+              </div> <!-- いいねの数 のbox 終わり-->
+              <!-- 投稿日 のbox -->
+              <div class="col-7 text-right">
+                <small><span id="postDate" class="">2018年12月25日</span></small>
+              </div> <!-- 投稿日 のbox 終わり-->
+              <!-- 編集ボタン のbox -->
+              <div class="col-2 p-0 text-right">
+                <!-- 編集ボタン --> <img id="editBtn" class="h-75" src="img/edit_icon.svg" alt="" style="width: 35px;height: 35px;" />
+              </div> <!-- 編集ボタン のbox 終わり-->
+
+            </div>
+          </div><!-- いいね！・投稿日時・編集のcontainer 終わり-->
+        </div><!-- いいね！・投稿日時・編集のbox 終わり-->
       </div>
-      <!-- いいね！・投稿日時・編集のbox -->
-      <div class="col-md mt-2">
+    </div><!-- 投稿アーカイブのbox 終わり-->
+  </div>
 
-        <!-- いいね！・投稿日時・編集のcontainer 終わり-->
-        <div class=" container-fluid">
+                <!-- 白ハート --> 
+                <img id="whiteHeart" class="likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+                <!-- 赤ハート --> 
+                <img id="redHeart" class="d-none likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
 
-          <div class="row">
-            <!-- ハート のbox -->
-            <div class="col-1 p-0 text-right">
-              <!-- ハート --> <img id="heartPic" class="h-50" src="img/likes_heart.svg" alt="" style="width: 35px;height: 35px;" />
-            </div> <!-- ハート のbox 終わり-->
-            <div id="likesNumber" class="col-2 p-0">
-              <!-- いいねの数 のbox -->
-              <!-- いいね！の数 -->
-              <div class="mw-100 text-left" style="font-size:24px">110</div>
-            </div> <!-- いいねの数 のbox 終わり-->
-            <!-- 投稿日 のbox -->
-            <div class="col-7 text-right">
-              <small><span id="postDate" class="">2018年12月25日</span></small>
-            </div> <!-- 投稿日 のbox 終わり-->
-            <!-- 編集ボタン のbox -->
-            <div class="col-2 p-0 text-right">
-              <!-- 編集ボタン --> <img id="editBtn" class="h-75" src="img/edit_icon.svg" alt="" style="width: 35px;height: 35px;" />
-            </div> <!-- 編集ボタン のbox 終わり-->
+                              <!-- 白ハート --> 
+              <img id="whiteHeart" class="likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+              <!-- 赤ハート --> 
+              <img id="redHeart" class="d-none likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
 
-          </div>
-        </div><!-- いいね！・投稿日時・編集のcontainer 終わり-->
-      </div><!-- いいね！・投稿日時・編集のbox 終わり-->
-    </div>
-  </div><!-- 投稿アーカイブのbox 終わり-->
+                            <!-- 白ハート --> 
+                            <img id="whiteHeart" class="white likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+                            <!-- 赤ハート --> 
+                            <img id="redHeart" class="d-none red likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+                            <!-- 白ハート --> 
+                            <img id="whiteHeart" class="white likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+                            <!-- 赤ハート --> 
+                            <img id="redHeart" class="d-none red likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+                            <!-- 白ハート --> 
+                            <img id="whiteHeart" class="white likes_btn_heart" src="img/likes_heart_white.svg" alt="likes_heart_white" style="width: 30px;height: 30px;" />
+                            <!-- 赤ハート --> 
+                            <img id="redHeart" class="d-none red likes_btn_heart" src="img/likes_heart.svg" alt="likes_heart" style="width: 30px;height: 30px;" />
+             
+  <input type="image" id="btn1" src="img/likes_heart.svg" onclick="heartfunc(this)">
+  <script>
+    var heartfunc = function (image) {
+      image.src = "img/likes_heart.svg";
+    }
+  </script>
 
+
+  
+  
 
 
 
@@ -403,6 +473,31 @@
     };
     firebase.initializeApp(config);
   </script>
+
+
+<!-- onclick="slideshow()　でハートの画像を切り替えるスクリプト -->
+<!-- 今回は使えないので、ボツにした -->
+<!-- <script>
+    var heartSrc = new Array("img/likes_heart_white.svg","img/likes_heart.svg");
+    var num = 0;
+    function slideshow(){
+      if (num == 1 ) {
+        num = 0;
+      }
+      else {
+        num ++;
+      }
+      document.getElementById("likesHeart").src=heartSrc[num];
+    }
+</script>
+ -->
+
+ <script>
+     $("#whiteHeart").on('click',function(){
+        $('#whiteHeart').addClass('d-none');
+        $('#redHeart').removeClass('d-none');
+  })
+</script>
 
 </body>
 

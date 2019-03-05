@@ -21,15 +21,20 @@
   <script src="js/bootstrap.min.js"></script>
 
 
-  <!-- update the version number as needed -->
-  <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
+ <!-- 1月17日　田中先生にて修正 -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
+<!-- 　これも必要。ページの下の方に入っているかもしれないのでチェックする -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script> -->
+
+  <script src="js/apiConfig.js"></script>
+  <script type="text/javascript" src="js/loginUser.js"></script>
+
 
   <style media="screen">
     body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -60,7 +65,9 @@
 
 </head>
 
-<body>
+<body id="body00" class="d-none" >
+    <!-- <body onload="LoadProc();"> ロードしたら、時刻を取得する指示-->　
+
   <header class="sticky-top mb-2 bg-white">
     <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
     <div class="col-12">　
@@ -83,10 +90,12 @@
   <div class="container-fluid pb-3 text-center" style="margin-bottom:100px;">
     <div class="container-fluid my-3">
       <h3 class="text-center">① 投稿するイベントを選択し、#タグを１つ選択してください。</h3>
+      <small class="text-center">※イベントを２回クリックもしくは切り替えると #タグ がリセットされます。</small>
     </div>
 
-    <!-- タブ部分 イベント名称-->
-    <ul id="tabMenu" class="nav nav-tabs text-center">
+    <!-- タブ部分 イベント名称-->　
+      <!-- ここの .nav-tabs から選択されたイベントを抽出して下部の確認画面へ反映 -->
+    <ul id="tabMenu" class="nav nav-tabs text-center"> 　
       <li class="nav-item">
         <a href="#event_1" id="tab_1" class="nav-link active" role="tab" data-toggle="tab" aria-controls="event_1" aria-selected="true">ハロウィン</a>
       </li>
@@ -99,53 +108,91 @@
     </ul>
 
     <!-- タブのコンテンツ部分 -->
+    <!-- 　ここの .tab-contentで選択された#タグを抽出して下部の確認画面へ反映 -->
     <div id="myTabContent" class="tab-content mt-3 container-fluid">
 
       <!-- １つ目のイベント -->
       <div id="event_1" class="tab-pane active" role="tabpanel" aria-labelledby="event_1-tab">
         <!-- ＃タグのボタン -->
-        <div class="btnEvent_1 container-fluid">
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#コスプレ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#魔女</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#渋ハロ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#かぼちゃ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#準備大変！</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#コウモリ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#ドンキホーテ</button>
-        </div>
-        <hr class="mw-100 mb-3 w-90 bg-gradient-light">
-      </div>
+        <div class="container-fluid">
+            <div class="btnEvents btnEvent_1">
+              <button type="button" name="button" id="cosplay" class="btn-sm btn-outline-primary shadow-sm m-1">#コスプレ</button>
+              <button type="button" name="button" id="witch" class="btn-sm btn-outline-primary shadow-sm m-1">#魔女</button>
+              <button type="button" name="button" id="shibuhallo" class="btn-sm btn-outline-primary shadow-sm m-1">#渋ハロ</button>
+              <button type="button" name="button" id="pumpkin" class="btn-sm btn-outline-primary shadow-sm m-1">#かぼちゃ</button>
+              <button type="button" name="button" id="preparepanic" class="btn-sm btn-outline-primary shadow-sm m-1">#準備大変！</button>
+              <button type="button" name="button" id="bats" class="btn-sm btn-outline-primary shadow-sm m-1">#コウモリ</button>
+              <button type="button" name="button" id="donki" class="btn-sm btn-outline-primary shadow-sm m-1">#ドンキホーテ</button>
+            </div>
+            <!-- <hr class="mw-100 mb-3 w-90 bg-gradient-light"> -->
+          </div>
+          </div>
 
       <!-- ２つ目のイベント -->
       <div id="event_2" class="tab-pane" role="tabpanel" aria-labelledby="event_2-tab">
         <!-- ＃タグのボタン -->
-        <div class="btnEvent_2 container-fluid">
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#サンタ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#ツリー</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#プレゼント</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#雪</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#イルミネーション</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#イブ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#セブンのケーキ</button>
+        <div class="container-fluid">
+            <div class="btnEvents btnEvent_2">
+              <button type="button" name="button" id="santaclause" class="btn-sm btn-outline-primary shadow-sm m-1">#サンタ</button>
+              <button type="button" name="button" id="xmastree" class="btn-sm btn-outline-primary shadow-sm m-1">#ツリー</button>
+              <button type="button" name="button" id="presents" class="btn-sm btn-outline-primary shadow-sm m-1">#プレゼント</button>
+              <button type="button" name="button" id="snow" class="btn-sm btn-outline-primary shadow-sm m-1">#雪</button>
+              <button type="button" name="button" id="illumination" class="btn-sm btn-outline-primary shadow-sm m-1">#イルミネーション</button>
+              <button type="button" name="button" id="xmaseve" class="btn-sm btn-outline-primary shadow-sm m-1">#イブ</button>
+              <button type="button" name="button" id="sevencake" class="btn-sm btn-outline-primary shadow-sm m-1">#セブンのケーキ</button>
+            </div>
+            <!-- <hr class="mw-100 mb-3 w-90 bg-gradient-light"> -->
+          </div>
         </div>
-        <hr class="mw-100 mb-3 w-90 bg-gradient-light">
-      </div>
 
       <!-- 3つ目のイベント -->
       <div id="event_3" class="tab-pane" role="tabpanel" aria-labelledby="event_3-tab">
-        <div class="btnEvent_3 container-fluid">
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#鏡餅</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#お年玉</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#おせち</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#初詣</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#駅伝</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#お正月ライブ</button>
-          <button type="button" name="button" id="" class="btn-sm btn-outline-secondary shadow-sm m-1">#福袋</button>
+        <!-- ＃タグのボタン -->
+        <div class="container-fluid">
+            <div class="btnEvents btnEvent_3">
+              <button type="button" name="button" id="kagamimochi" class="btn-sm btn-outline-primary shadow-sm m-1">#鏡餅</button>
+              <button type="button" name="button" id="otoshidama" class="btn-sm btn-outline-primary shadow-sm m-1">#お年玉</button>
+              <button type="button" name="button" id="osechi" class="btn-sm btn-outline-primary shadow-sm m-1">#おせち</button>
+              <button type="button" name="button" id="hatsumode" class="btn-sm btn-outline-primary shadow-sm m-1">#初詣</button>
+              <button type="button" name="button" id="ekiden" class="btn-sm btn-outline-primary shadow-sm m-1">#駅伝</button>
+              <button type="button" name="button" id="shougatsulive" class="btn-sm btn-outline-primary shadow-sm m-1">#お正月ライブ</button>
+              <button type="button" name="button" id="fukubukuro" class="btn-sm btn-outline-primary shadow-sm m-1">#福袋</button>
+            </div>
+          </div>
         </div>
         <hr class="mw-100 mb-3 w-90 bg-gradient-light">
-      </div>
+        <span id="span0"></span>
+        <span id="span1"></span>
 
     </div><!-- タブのコンテンツ部分　終わり -->
+
+      <!-- 投稿内容　イベント・タグ　の確認 -->
+  <div class="col-sm-5">
+      <div class="card border-primary mb-3">
+        <div class="card-header p-1">選択したイベント</div>
+        <div class="card-body text-primary p-1">
+          <!-- <p class="card-title m-0" id="eventSelected">クリスマス</p> -->
+          <p class="card-title m-0 postElement" id="eventSelected">
+            </p>
+        </div>
+      </div>
+  
+      <div class="card border-primary mb-3">
+        <div class="card-header p-1">選択したタグ</div>
+        <div class="card-body text-primary p-1">
+          <!-- <input class="card-title m-0" id="tagSelected"> -->
+          <p class="card-title m-0 postElement" id="tagSelected">
+            </p>
+        </div>
+      </div>
+
+      <div class="d-none" id="postedEvent"></div>
+      <div class="d-none" id="postedtag"></div>
+      
+    </div>  <!-- 投稿内容　イベント・タグ　の確認 終わり-->
+    <hr class="mw-100 mb-3 w-90 bg-gradient-light">
+
+  
 
     <!-- 画像選択とプレビュー表示 -->
     <div class="container-fluid mt-5 mb-3 text-center">
@@ -157,69 +204,36 @@
             <div id="postImagePreview" class="imagePreview"></div>
             <div class="input-group">
               <label class="input-group-btn">
-                <span class="btn btn-primary">
-                  Choose File<input type="file" style="display:none" class="uploadFile">
-                </span>
+
+                  <span class="btn btn-primary">
+                      ファイルを選択
+                      <input type="file" name="file" id="postPic" style="display:none" class="uploadFile">
+                    </span>
               </label>
-              <input type="text" class="form-control" readonly="">
+              <input type="text" class="form-control postElement" readonly="">
             </div>
           </form>
         </div>
+        <hr class="mw-100 mb-3 w-90 bg-gradient-light">
+        <span id="span2"></span>
+       <hr class="mw-100 mb-3 w-90 bg-gradient-light">
       </div>
     </div> <!-- 画像選択とプレビュー表示 終わり-->
 
-    <hr class="mw-100  bg-light my-4">
-
-    <div class="row">
-
-      <a href="timeline.html">
-        <div class=" col-6 text-right">
-          <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">キャンセル</button>
-        </div>
-      </a>
-
-      <a href="postEditDelete.html">
-        <div class=" col-6 text-left">
-          <button id="forwardBtn" type="button" class="btn btn-primary" style="width:100px">次へ</button>
-        </div>
-      </a>
-
-    </div><!-- 新規投稿ー①イベント・#タグ・②画像選択 終わり-->
-
-
-<!-- ここから、class="d-none"　にする -->
 <!-- 新規投稿ー③　コメント投稿 -->　
 <div class="container-fluid my-3">
   <h3 class="text-center">③ 投稿するコメントを作成してください。</h3>
   <div class="text-center d-flex align-items-center mw-100 mb-3">
-    <textarea id="exampleTextarea" cols="30" rows="5" class="form-control mx-auto" placeholder="free" autofocus="" style="width:90%">
-    </textarea>
+    <textarea id="exampleTextarea" cols="30" rows="5" class="form-control mx-auto postElement" style="width:90%"></textarea>
   </div>
 </div>　<!-- 新規投稿ー③　コメント投稿 終わり-->
 
-<hr class="mw-100  bg-light my-4">
+<hr class="mw-100 mb-3 w-90 bg-gradient-light">
+<span id="span4"></span>
+<hr class="mw-100 mb-3 w-90 bg-gradient-light">
 
 <!-- 投稿内容　全体　の確認 -->
 <div class="row container-fluid m-0 text-center">
-
-  <!-- 投稿内容　イベント・タグ　の確認 -->
-  <div class="col-sm-5">
-
-    <div class="card border-primary mb-3">
-      <div class="card-header p-1">投稿イベント</div>
-      <div class="card-body text-primary p-1">
-        <p class="card-title m-0" id="tagSelected">クリスマス</p>
-      </div>
-    </div>
-
-    <div class="card border-primary mb-3">
-      <div class="card-header p-1">選択したタグ</div>
-      <div class="card-body text-primary p-1">
-        <p class="card-title m-0" id="tagSelected">雪</p>
-      </div>
-    </div>
-
-  </div>  <!-- 投稿内容　イベント・タグ　の確認 終わり-->
 
 
 
@@ -227,7 +241,7 @@
 　<!-- 投稿内容　画像の確認 -->
   <div class="col-sm-7 container-fluid mb-3 mx-auto" style="width:500px">
         <!-- <form action="" method="post" enctype="multipart/form-data"> -->
-          <div id="postImagePreviewCopy" class="imagePreview"></div>
+          <div id="postImagePreviewCopy" class="imagePreview d-none"></div>
           <!-- <div class="input-group">
             <label class="input-group-btn">
               <span class="btn btn-primary">
@@ -243,13 +257,14 @@
 
 </div>　<!-- 投稿内容　全体　の確認 -->
 
-
 <div class="row">
 <div class=" col-6 text-right">
-  <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">戻る</button>
+    <a href="timeline.html">
+      <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">戻る</button>
+    </a>
 </div>
 <div class=" col-6 text-left">
-  <button id="forwardBtn" type="button" class="btn btn-primary" style="width:100px">投稿</button>
+  <button id="postBtn" type="button" class="btn btn-primary" style="width:100px">投稿</button>
 </div>
 </div>
 
@@ -265,19 +280,19 @@
     <div class="col-12">
       <div class="row">
         <!-- ホームアイコン -->
-        <div id="timeLine" class="col-4 text-center">
+        <div id="timeLine" class="col-6 text-center">
           <a href="timeLine.html">
             <img id="timeLineIcon" src="img/home_icon.svg" style="width: 40px;" />
           </a>
         </div>
         <!-- 新規投稿アイコン -->
-        <div id="newPost" class="col-4 text-center">
+        <div id="newPost" class="col-4 text-center d-none">
           <a href="newPostPic.html">
             <img id="newPostIcon" src="img/newPost_icon.svg" style="width: 40px;" />
           </a>
         </div>
         <!-- マイページアイコン -->
-        <div id="myPage" class="col-4 text-center">
+        <div id="myPage" class="col-6 text-center">
           <a href="myPage.html">
             <img id="myPageIcon" src="img/myPage_icon.svg" style="width: 40px;" />
           </a>
@@ -286,25 +301,29 @@
     </div>
   </footer>
 
+  　<script>
+      window.onload =
+        function loginUser() {
+          //認証状態の確認(ログインしているユーザーを取得する)
+          firebase.auth().onAuthStateChanged(function(user) {
+          var body = document.getElementById("body00");
+          if (user) {
+            body.classList.remove("d-none");
+          } else {
+            //ユーザーがログインしていない状態
+            logoutDisplay();
+          }
+          });
 
-  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-      authDomain: "team-b-sns.firebaseapp.com",
-      databaseURL: "https://team-b-sns.firebaseio.com",
-      projectId: "team-b-sns",
-      storageBucket: "team-b-sns.appspot.com",
-      messagingSenderId: "895377669050"
-    };
-    firebase.initializeApp(config);
-  </script>
+          function logoutDisplay() {
+          location.href = '/';
+          }
+          }
+    </script>
+  
+
 
   <!-- 画像プレビューのJS -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
   <script>
     $(document).on('change', ':file', function() {
       var input = $(this),
@@ -324,12 +343,66 @@
     });
   </script>   <!-- 画像プレビューのJS 終わり-->
 
-<!-- cloneで画像プレビューを複製するJS -->
-<script>
-    $(function(){
-    　　$(‘#postImagePreview‘).clone().appendTo($(‘#postImagePreviewCopy‘));
+
+  <!-- #タグのボタンのON と　OFF　の切り替え -->
+  <script>
+      $(".btnEvents button").click(function(){
+      $(".btnEvents button").removeClass('active');
+      $(this).addClass('active');
     });
-    </script>　<!-- cloneで画像プレビューを複製するJS 終わり-->
+  </script>
+
+
+<!-- 選択されたtabと#タグを取得する -->
+<script>
+  $(".nav-tabs a").click( tabClicked );
+    function tabClicked (e) {
+        //ここにクリックされたときの処理を書きます
+        e.preventDefault();
+        // alert(e.target.innerText);
+        // alert( $(e.target).attr("href") );
+        var eventHref = $(e.target).attr("href"); //選択したイベントのhrefを取得するならこっちを使う。
+        var eventId = $(e.target).attr("id"); //選択したイベントのidを取得するならこっちを使う。
+        var postEvent = (e.target.innerText);//選択したイベントのタイトルを取得
+
+        console.log(eventHref);
+        console.log(eventId);
+        console.log(postEvent);
+
+        $('#eventSelected').text(postEvent); //選択したイベントのタイトルを反映
+        $('#postedEvent').text(eventId); //サーバー登録用選択した#タグを反映
+        $('#tagSelected').text(""); //イベントのtabを押したら、#タグの値がリセットされる
+        $('#postedtag').text(""); //イベントのtabを押したら、#タグの値がリセットされる
+
+    }
+</script>
+
+<script>
+    $(".tab-content button").click( tagClicked );
+      function tagClicked (e) {
+          //ここにクリックされたときの処理を書きます
+          e.preventDefault();
+          // alert(e.target.innerText);
+          // alert( $(e.target).attr("href") );
+
+          var postTag = (e.target.innerText);//選択した#タグの値を直接取得するならこちら。
+          var postTagId = $(e.target).attr("id");//選択した#タグのidを取得するならこちら。
+
+          console.log(postTag);
+          console.log(postTagId);
+
+          $('#tagSelected').text(postTag); //選択した#タグを反映
+          $('#postedtag').text(postTagId); //サーバー登録用選択した#タグを反映
+
+      }
+  </script>
+
+
+  <script src="js/moment.js"></script>
+  <script src="js/newPost.js"></script>
+
+
+
 
 </body>
 

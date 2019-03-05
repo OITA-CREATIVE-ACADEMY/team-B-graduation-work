@@ -1,19 +1,6 @@
 // // Initialize Firebase
 // // APIコンフィグ情報を取得する
-// var config = getApiConfing();
-// firebase.initializeApp(config);
-
-
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-  authDomain: "team-b-sns.firebaseapp.com",
-  databaseURL: "https://team-b-sns.firebaseio.com",
-  projectId: "team-b-sns",
-  storageBucket: "team-b-sns.appspot.com",
-  messagingSenderId: "895377669050"
-};
-
+var config = getApiConfing();
 firebase.initializeApp(config);
 
 
@@ -77,8 +64,6 @@ function loginDisplay() {
   logout.classList.remove('d-none');
   info.textContent = "あなたはログイン中です";
 }
-
-
 
 function logoutDisplay() {
   logout.classList.add('d-none');

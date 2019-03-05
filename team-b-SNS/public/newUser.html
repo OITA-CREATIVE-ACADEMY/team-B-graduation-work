@@ -14,22 +14,23 @@
   <!-- style.cssの読み込み -->
   <!-- <link href="css/style.css" rel="stylesheet"> -->
 
+   <!-- 1月17日　田中先生にて修正 -->
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
+
 
   <!-- jQuery読み込み -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- BootstrapのJS読み込み -->
   <script src="js/bootstrap.min.js"></script>
 
+  <script type="text/javascript" src="js/loginUser.js"></script>
 
-  <!-- update the version number as needed -->
-  <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
 
   <style media="screen">
     body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -60,7 +61,7 @@
 </head>
 
 <body>
-  <header class="sticky-top mb-2 bg-white">
+    <header class="sticky-top mb-2 bg-white">
     <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
     <div class="col-12">　
       <div class="row align-items-end">
@@ -82,40 +83,50 @@
   <div class="container-fluid" style="margin-bottom:100px;">
 
     <div class="form-label-group">
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
+      <div class="row text-center d-flex align-items-center mw-100 mb-3 text-center">
         <label for="inputUserName" class="col-3">名前</label>
-        <input type="text" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required="" autofocus="">
-        <input type="text" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required="" autofocus="">
+        <input type="text" name="inputFirstName" id="inputFirstName" class="form-control col-4 mr-2" placeholder="姓" required="" autofocus="">
+        <input type="text" name="inputSecondName" id="inputSecondName" class="form-control col-4 ml-2" placeholder="名" required="" autofocus="">
+
+        <p id="namenone" class="col-12 d-none text-danger text-center">
+          ※名前が入力されていません！
+        </p>
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="inputUserName" class="col-3">ユーザーネーム</label>
-        <input type="text" id="inputUserName" class="form-control col-9" placeholder="User name" required="" autofocus="">
+        <input type="text" name="inputUserName" id="inputUserName" class="form-control col-9" placeholder="User name" required="" autofocus="">
+        <p id = "usernamenone" class= "col-12 d-none text-danger">
+          ※ユーザーネームが入力されていません！
+        </p>
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="inputEmail" class="col-3">E-mail</label>
-        <input type="text" id="inputEmail" class="form-control col-9" placeholder="E-mail" required="" autofocus="">
+        <input type="text" name="inputEmail" id="inputEmail" class="form-control col-9" placeholder="E-mail" required="" autofocus="">
+        <p id = "emailnone" class= "col-12 d-none text-danger">
+          ※E-mailが入力されていません！
+        </p>
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="inputPassword" class="col-3">password</label>
-        <input type="password" id="inputPassword" class="form-control col-9" placeholder="Password" required="" autofocus="">
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control col-9" placeholder="Password" required>
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="inputPassword" class="col-3">確認用password</label>
-        <input type="password" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required="" autofocus="">
+        <input type="password" name="inputConfirmationPassword" id="inputConfirmationPassword" class="form-control col-9" placeholder="確認用Password" required="" autofocus="">
       </div>
 
-      <div class="row text-center d-flex align-items-center mw-100 mb-3">
-        ※パスワードが一致しません。
-      </div>
+
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
         <label for="exampleTextarea" class="col-3">自己紹介</label>
-        <textarea id="exampleTextarea" class="form-control col-9" placeholder="free" autofocus="">
-        </textarea>
+        <textarea id="exampleTextarea" class="form-control col-9"></textarea>
+        <p id = "textareanone" class= "col-12 d-none text-danger">
+          ※自己紹介が入力されていません！
+        </p>
       </div>
 
       <div class="row text-center d-flex align-items-center mw-100 mb-3">
@@ -129,10 +140,13 @@
             <div class="input-group">
               <label class="input-group-btn">
                 <span class="btn btn-primary">
-                  ファイルを選択<input type="file" style="display:none">
+                  ファイルを選択
+                  <input  type="file" name="file" id="file" style="display:none">
                 </span>
               </label>
-              <input type="text" class="form-control" readonly=""  id="uploadFile">
+              <!-- <input type="text" class="form-control" readonly=""  id="uploadFile"> -->
+              <input type="text" class="form-control" readonly="">
+
             </div>
           </form>
         </div>
@@ -142,57 +156,18 @@
 
     </div>
 
-    <div class="row mx-auto">
-      <button id="profilePicUpload" type="button" class="btn btn-danger mt-0 mx-auto mb-4">テスト用画像登録</button>
-    </div>
-
 
     <div class="row mx-auto">
-      <button type="button" class="btn btn-info mt-0 mx-auto">次へ</button>
+      <button type="button" id="newuser" class="btn btn-info mt-0 mx-auto">
+        登録
+      </button>
     </div>
 
   </div>
 
 
-  <footer class="fixed-bottom bg-white pb-2">
-    <hr class="mw-100 bg-light">
-    <div class="col-12">
-      <div class="row">
-        <!-- ホームアイコン -->
-        <div id="timeLine" class="col-4 text-center">
-          <a href="timeLine.html">
-            <img id="timeLineIcon" src="img/home_icon.svg" style="width: 40px;" />
-          </a>
-        </div>
-        <!-- 新規投稿アイコン -->
-        <div id="newPost" class="col-4 text-center">
-          <a href="newPostPic.html">
-            <img id="newPostIcon" src="img/newPost_icon.svg" style="width: 40px;" />
-          </a>
-        </div>
-        <!-- マイページアイコン -->
-        <div id="myPage" class="col-4 text-center">
-          <a href="myPage.html">
-            <img id="myPageIcon" src="img/myPage_icon.svg" style="width: 40px;" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
 
-  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-      authDomain: "team-b-sns.firebaseapp.com",
-      databaseURL: "https://team-b-sns.firebaseio.com",
-      projectId: "team-b-sns",
-      storageBucket: "team-b-sns.appspot.com",
-      messagingSenderId: "895377669050"
-    };
-    firebase.initializeApp(config);
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
 
   <!-- 画像選択とプレビュー表示　の　JS -->　
   <script>
@@ -215,19 +190,8 @@
   </script>   <!-- 画像選択とプレビュー表示　の　JS 終わり-->
 
 <!-- プロフィール画像アップロードのコード -->
-<script>
-      document.getElementById('profilePicUpload').addEventListener('click', function() {
-        var files = document.getElementById('file').files;
-        var image = files[0];
-
-        var ref = firebase.storage().ref().child(image.name);
-        ref.put(file).then(function(snapshot) {
-  console.log('プロフィール画像アップ完了');
-});
-});
-    </script><!-- プロフィール画像アップロードのコード -->
-
-
+<script src="js/apiConfig.js"></script>
+<script src="js/user.js"></script>
 
 </body>
 

@@ -1,263 +1,382 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>投稿 編集・削除</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>投稿 編集・削除</title>
+    <link href="css/logo.css" rel="stylesheet" />
 
- <link href="css/logo.css" rel="stylesheet" />
+    <!-- BootstrapのCSS読み込み -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- style.cssの読み込み -->
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
 
-  <!-- BootstrapのCSS読み込み -->
-  <link href="css/bootstrap.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- style.cssの読み込み -->
-  <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <!-- jQuery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="js/bootstrap.min.js"></script>
 
+    <!-- 1月17日　田中先生にて修正 -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-functions.js"></script>
+    <!-- 　これも必要。ページの下の方に入っているかもしれないのでチェックする -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 
-  <!-- jQuery読み込み -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- BootstrapのJS読み込み -->
-  <script src="js/bootstrap.min.js"></script>
+    <script src="js/apiConfig.js"></script>
+    <script type="text/javascript" src="js/loginUser.js"></script>
 
-
-  <!-- update the version number as needed -->
-  <script defer src="/__/firebase/5.5.7/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/5.5.7/firebase-auth.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-database.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/5.5.7/firebase-storage.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
-
-  <style media="screen">
-    body { background: white; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+    <style media="screen">
+      body {
+        background: white;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      #message {
+        background: white;
+        max-width: 360px;
+        margin: 100px auto 16px;
+        padding: 32px 24px;
+        border-radius: 3px;
+      }
+      #message h2 {
+        color: #ffa100;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0 0 8px;
+      }
+      #message h1 {
+        font-size: 22px;
+        font-weight: 300;
+        color: rgba(0, 0, 0, 0.6);
+        margin: 0 0 16px;
+      }
+      #message p {
+        line-height: 140%;
+        margin: 16px 0 24px;
+        font-size: 14px;
+      }
+      #message a {
+        display: block;
+        text-align: center;
+        background: #039be5;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: white;
+        padding: 16px;
+        border-radius: 4px;
+      }
+      #message,
+      #message a {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+      #load {
+        color: rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-size: 13px;
+      }
       @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body,
+        #message {
+          margin-top: 0;
+          background: white;
+          box-shadow: none;
+        }
         /* body { border-top: 16px solid #ffa100; } */
       }
     </style>
+  </head>
 
+  <body id="body00" class="d-none">
+    <header class="sticky-top mb-2 bg-white">
+      <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
+      <div class="col-12">
+        <div class="row align-items-end">
+          <div id="logo-space" class="col-6  text-left">
+            <img class="pc" src="img/logo_2.svg" alt="パソコン用の画像" />
+            <img class="sp" src="img/logo.svg" alt="スマートフォン用の画像" />
+          </div>
 
-</head>
-
-<body>
-  <header class="sticky-top mb-2 bg-white">
-    <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
-    <div class="col-12">　
-      <div class="row align-items-end">
-        <div id="logo-space" class="col-6  text-left">
-          <img class="pc" src="img/logo_2.svg" alt="パソコン用の画像">
-          <img class="sp" src="img/logo.svg" alt="スマートフォン用の画像">
-        </div>
-
-        <div id="title-space" class="col-6 text-right ">
-          <span class="">投稿 編集・削除</span>
+          <div id="title-space" class="col-6 text-right ">
+            <span class="">投稿 編集・削除</span>
+          </div>
         </div>
       </div>
-    </div>
-    <hr class="mw-100  bg-light my-4">
-  </header>
+      <hr class="mw-100  bg-light my-4" />
+    </header>
 
+    <!-- 投稿編集・削除 -->
+    <!-- １：コメント 編集・削除-->
+    <div class="container-fluid pb-3 text-center" style="margin-bottom:100px;">
+      <div class="container-fluid my-3">
+        <h3 class="text-center">【コメント編集】</h3>
+        <h6>投稿したコメントのみ編集できます。</h6>
+      </div>
 
-  <!-- 投稿編集・削除 -->
-  <!-- １：コメント 編集・削除-->
-  <div class="container-fluid pb-3 text-center" style="margin-bottom:100px;">
-    <div class="container-fluid my-3">
-      <h3 class="text-center">【コメント編集】</h3>
-      <h6>投稿したコメントのみ編集できます。</h6>
-    </div>
-
-    <!-- 編集用の投稿（画像・コメント）の表示 -->
-    <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
-      <!-- 投稿編集のbox -->
-      <div class="row">
-        <!-- 投稿のbox -->
-        <div class="col-md">
-          <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
-          <div class="mx-100">
-            <div class="">
-              <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
+      <!-- 編集用の投稿（画像・コメント）の表示 -->
+      <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+        <!-- 投稿編集のbox -->
+        <div class="row">
+          <!-- 投稿のbox -->
+          <div class="col-md">
+            <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+            <div class="mx-100">
+              <div class="">
+                <!-- 画像 -->
+                <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
+              </div>
             </div>
-          </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
-        </div>
+            <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+          </div>
 
-        <div class="col-md mt-2">
-          <!-- コメントのbox -->
+          <div class="col-md mt-2">
+            <!-- コメントのbox -->
 
-          <div class=" container-fluid">
-            <!-- コメント -->
-            <div class="col mw-100 p-1">
-              <textarea id="postCommentEditBox" cols="30" rows="5" class="form-control mx-auto" placeholder="free" autofocus="" style="width:90%">
-                  </textarea>
+            <div class=" container-fluid">
+              <!-- コメント -->
+              <div class="col mw-100 p-1">
+                <textarea
+                  id="postCommentEditBox"
+                  cols="30"
+                  rows="5"
+                  class="form-control mx-auto"
+                  placeholder="free"
+                  autofocus=""
+                  style="width:90%"
+                >
+                </textarea>
+              </div>
             </div>
-          </div><!-- コメント 終わり-->
-        </div><!-- コメントのbox 終わり-->
-      </div><!-- 投稿のbox 終わり-->
-    </div><!-- 投稿編集のbox 終わり-->
-
-
-    <!-- 投稿編集のボタン-->
-    <div class="row postEditBtns mt-4" id="BtnsPostEdit">
-      <div class=" col-6 text-right">
-        <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">キャンセル</button>
+            <!-- コメント 終わり-->
+          </div>
+          <!-- コメントのbox 終わり-->
+        </div>
+        <!-- 投稿のbox 終わり-->
       </div>
-      <div class=" col-6 text-left">
-        <button id="forwardBtn" type="button" class="btn btn-primary" style="width:100px">更新</button>
+      <!-- 投稿編集のbox 終わり-->
+
+      <!-- 投稿編集のボタン-->
+      <div class="row postEditBtns mt-4" id="BtnsPostEdit">
+        <div class=" col-6 text-right">
+          <button
+            id="cancelBtn"
+            type="button"
+            class="btn btn-secondary"
+            style="width:100px"
+          >
+            キャンセル
+          </button>
+        </div>
+        <div class=" col-6 text-left">
+          <button
+            id="forwardBtn"
+            type="button"
+            class="btn btn-primary"
+            style="width:100px"
+          >
+            更新
+          </button>
+        </div>
       </div>
+      <hr class="mw-100  bg-light my-4" />
+      <!-- 投稿編集のボタン 終わり-->
+
+      <!-- 投稿の削除 -->
+      <div class="container-fluid pb-3 mt-3 text-center">
+        <div class="container-fluid my-3">
+          <h3 class="text-center">【投稿の削除】</h3>
+          <h6>投稿を完全に削除します。この作業は取り消せません。</h6>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <button
+              id="deleteBtn"
+              type="button"
+              class="btn btn-danger"
+              style="width:200px"
+            >
+              投稿を削除
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- 投稿の削除 終わり-->
     </div>
-    <hr class="mw-100  bg-light my-4">
-    <!-- 投稿編集のボタン 終わり-->
+    <!-- １：コメント 編集・削除　終わり-->
 
-    <!-- 投稿の削除 -->
-    <div class="container-fluid pb-3 mt-3 text-center">
+    <!-- ２：投稿削除の確認 -->
+    <div
+      class="container-fluid pb-3 text-center postDelete"
+      id="DeletePost"
+      style="margin-bottom:100px;"
+    >
       <div class="container-fluid my-3">
         <h3 class="text-center">【投稿の削除】</h3>
         <h6>投稿を完全に削除します。この作業は取り消せません。</h6>
       </div>
-      <div class="row">
-        <div class="col text-center">
-          <button id="deleteBtn" type="button" class="btn btn-danger" style="width:200px">投稿を削除</button>
-        </div>
-      </div>
-    </div><!-- 投稿の削除 終わり-->
-  </div>
-  <!-- １：コメント 編集・削除　終わり-->
 
-  <!-- ２：投稿削除の確認 -->
-  <div class="container-fluid pb-3 text-center postDelete" id="DeletePost" style="margin-bottom:100px;">
-    <div class="container-fluid my-3">
-      <h3 class="text-center">【投稿の削除】</h3>
-      <h6>投稿を完全に削除します。この作業は取り消せません。</h6>
-    </div>
-
-    <!-- 編集用の投稿（画像・コメント）の表示 -->
-    <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
-      <!-- 投稿編集のbox -->
-      <div class="row">
-        <!-- 投稿のbox -->
-        <div class="col-md">
-          <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
-          <div class="mx-100">
-            <div class="">
-              <!-- 画像 --> <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
+      <!-- 編集用の投稿（画像・コメント）の表示 -->
+      <div class="mw-100 shadow-sm p-2 mx-2 my-3" id="postBox">
+        <!-- 投稿編集のbox -->
+        <div class="row">
+          <!-- 投稿のbox -->
+          <div class="col-md">
+            <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） -->
+            <div class="mx-100">
+              <div class="">
+                <!-- 画像 -->
+                <img class="mw-100" id="boxPic" src="img/img_sample1.jpg" />
+              </div>
             </div>
-          </div> <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
-        </div>
+            <!-- 画像のbox ブレイクポイントはMedium（768px〜991px） 終わり-->
+          </div>
 
-        <div class="col-md mt-2">
-          <!-- コメントのbox -->
+          <div class="col-md mt-2">
+            <!-- コメントのbox -->
 
-          <div class=" container-fluid">
-            <!-- コメント -->
-            <div class="col mw-100 p-1">
-              <textarea id="postCommentEditBox" cols="30" rows="5" class="form-control mx-auto" placeholder="free" autofocus="" style="width:90%">
+            <div class=" container-fluid">
+              <!-- コメント -->
+              <div class="col mw-100 p-1">
+                <textarea
+                  id="postCommentEditBox"
+                  cols="30"
+                  rows="5"
+                  class="form-control mx-auto"
+                  placeholder="free"
+                  autofocus=""
+                  style="width:90%"
+                >
                 </textarea>
+              </div>
             </div>
-          </div><!-- コメント 終わり-->
-        </div><!-- コメントのbox 終わり-->
-      </div><!-- 投稿のbox 終わり-->
-    </div><!-- 投稿編集のbox 終わり-->
-    <!-- 投稿の削除　確認 -->
-    <div class="container-fluid my-3">
-      <h3 class="text-center mb-4">【投稿を削除しますか？】</h3>
-      <div class="row postEditBtns" id="BtnsPostEdit">
-        <div class=" col-6 text-right">
-          <button id="cancelBtn" type="button" class="btn btn-secondary" style="width:100px">キャンセル</button>
+            <!-- コメント 終わり-->
+          </div>
+          <!-- コメントのbox 終わり-->
         </div>
-        <div class=" col-6 text-left">
-          <button id="forwardBtn" type="button" class="btn btn-danger" style="width:100px">削除</button>
+        <!-- 投稿のbox 終わり-->
+      </div>
+      <!-- 投稿編集のbox 終わり-->
+      <!-- 投稿の削除　確認 -->
+      <div class="container-fluid my-3">
+        <h3 class="text-center mb-4">【投稿を削除しますか？】</h3>
+        <div class="row postEditBtns" id="BtnsPostEdit">
+          <div class=" col-6 text-right">
+            <button
+              id="cancelBtn"
+              type="button"
+              class="btn btn-secondary"
+              style="width:100px"
+            >
+              キャンセル
+            </button>
+          </div>
+          <div class=" col-6 text-left">
+            <button
+              id="forwardBtn"
+              type="button"
+              class="btn btn-danger"
+              style="width:100px"
+            >
+              削除
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>　
-  <!-- ２：投稿削除の確認 終わり-->
+    <!-- ２：投稿削除の確認 終わり-->
 
-  <!-- 投稿編集・削除 終わり-->
+    <!-- 投稿編集・削除 終わり-->
 
-
-
-
-  <footer class="fixed-bottom bg-white pb-2">
-    <hr class="mw-100 bg-light">
-    <div class="col-12">
-      <div class="row">
-        <!-- ホームアイコン -->
-        <div id="timeLine" class="col-4 text-center">
-          <a href="timeLine.html">
-            <img id="timeLineIcon" src="img/home_icon.svg" style="width: 40px;" />
-          </a>
-        </div>
-        <!-- 新規投稿アイコン -->
-        <div id="newPost" class="col-4 text-center">
-          <a href="newPostPic.html">
-            <img id="newPostIcon" src="img/newPost_icon.svg" style="width: 40px;" />
-          </a>
-        </div>
-        <!-- マイページアイコン -->
-        <div id="myPage" class="col-4 text-center">
-          <a href="myPage.html">
-            <img id="myPageIcon" src="img/myPage_icon.svg" style="width: 40px;" />
-          </a>
+    <footer class="fixed-bottom bg-white pb-2">
+      <hr class="mw-100 bg-light" />
+      <div class="col-12">
+        <div class="row">
+          <!-- ホームアイコン -->
+          <div id="timeLine" class="col-4 text-center">
+            <a href="timeLine.html">
+              <img
+                id="timeLineIcon"
+                src="img/home_icon.svg"
+                style="width: 40px;"
+              />
+            </a>
+          </div>
+          <!-- 新規投稿アイコン -->
+          <div id="newPost" class="col-4 text-center">
+            <a href="newPostPic.html">
+              <img
+                id="newPostIcon"
+                src="img/newPost_icon.svg"
+                style="width: 40px;"
+              />
+            </a>
+          </div>
+          <!-- マイページアイコン -->
+          <div id="myPage" class="col-4 text-center">
+            <a href="myPage.html">
+              <img
+                id="myPageIcon"
+                src="img/myPage_icon.svg"
+                style="width: 40px;"
+              />
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
+    <!-- 画像プレビューのJS -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
+    <script>
+      $(document).on("change", ":file", function() {
+        var input = $(this),
+          numFiles = input.get(0).files ? input.get(0).files.length : 1,
+          label = input
+            .val()
+            .replace(/\\/g, "/")
+            .replace(/.*\//, "");
+        input
+          .parent()
+          .parent()
+          .next(":text")
+          .val(label);
 
-  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAxNVDXIAHlDF3VC_QGPzBCkqxZs3b_zHA",
-      authDomain: "team-b-sns.firebaseapp.com",
-      databaseURL: "https://team-b-sns.firebaseio.com",
-      projectId: "team-b-sns",
-      storageBucket: "team-b-sns.appspot.com",
-      messagingSenderId: "895377669050"
-    };
-    firebase.initializeApp(config);
-  </script>
-
-  <!-- 画像プレビューのJS -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
-  <script>
-    $(document).on('change', ':file', function() {
-      var input = $(this),
-        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-      input.parent().parent().next(':text').val(label);
-
-      var files = !!this.files ? this.files : [];
-      if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
-      if (/^image/.test(files[0].type)) { // only image file
-        var reader = new FileReader(); // instance of the FileReader
-        reader.readAsDataURL(files[0]); // read the local file
-        reader.onloadend = function() { // set image data as background of div
-          input.parent().parent().parent().prev('.imagePreview').css("background-image", "url(" + this.result + ")");
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+        if (/^image/.test(files[0].type)) {
+          // only image file
+          var reader = new FileReader(); // instance of the FileReader
+          reader.readAsDataURL(files[0]); // read the local file
+          reader.onloadend = function() {
+            // set image data as background of div
+            input
+              .parent()
+              .parent()
+              .parent()
+              .prev(".imagePreview")
+              .css("background-image", "url(" + this.result + ")");
+          };
         }
-      }
-    });
-  </script> <!-- 画像プレビューのJS 終わり-->
+      });
+    </script>
+    <!-- 画像プレビューのJS 終わり-->
 
-  <!-- cloneで画像プレビューを複製するJS -->
-  <script>
-    $(function() {
-      $(‘#postImagePreview‘).clone().appendTo($(‘#postImagePreviewCopy‘));
-    });
-  </script>　
-  <!-- cloneで画像プレビューを複製するJS 終わり-->
-
-</body>
-
+    <!-- cloneで画像プレビューを複製するJS -->
+    <script>
+      $(function() {
+        $(‘#postImagePreview‘).clone().appendTo($(‘#postImagePreviewCopy‘));
+      });
+    </script>
+    <!-- cloneで画像プレビューを複製するJS 終わり-->
+  </body>
 </html>
