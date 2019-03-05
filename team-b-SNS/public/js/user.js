@@ -36,14 +36,16 @@ function create() {
           secondName: userSecondName,
           username: displayName,
           comment: profileText,
-          photoURL: userProfilePic,
+          photoURL: userProfilePic
         });
 
       //プロフィール画像の登録
       var user = firebase.auth().currentUser; // ※firebase.auth().currentUser　を使うと現在ログイン中のユーザが取得できる
       var profPicId = user.uid;
+
       console.log("ユーザーID=" + profPicId)
       //画像名を変更する指示を書く
+
 
 
       var storage = firebase.storage();
@@ -51,36 +53,18 @@ function create() {
       var image = files[0];
       // fileの名前を取得
       // var file_name = files[0].name;
-        // fileの名前を取得
-        // var file_name = files[0].name;
+      // fileの名前を取得
+      // var file_name = files[0].name;
 
-        //ここで画像のファイル名を投稿IDをベースに拡張子別に変更する。
-        var newProfPicName = (image.type.indexOf('png') !== -1) ? `${profPicId}.png`: `${profPicId}.jpg`;
-        console.log(newProfPicName);//この名前がuserIDに変更した画像名
+      //ここで画像のファイル名を投稿IDをベースに拡張子別に変更する。
+      var newProfPicName =
+        image.type.indexOf("png") !== -1
+          ? `${profPicId}.png`
+          : `${profPicId}.jpg`;
+      console.log(newProfPicName); //この名前がuserIDに変更した画像名
 
       if (files[0].type.indexOf("image") >= 0) {
 
-      //   //ここからーーーーーーー
-      //   var ref = storage.ref("profilePic/").child(newProfPicName);//ここでstorageに画像を登録
-      //   ref.put(image).then(function(snapshot) {
-
-      //      //画像の登録まで正常に終わったら、ユーザー登録が完了になる。画像が登録できない場合は、画像登録失敗時の処理のcatchに飛ぶ
-
-      //       // ここに、photoURL　を update　で登録する
-      //       console.log("変更後のプロフ画像名=" + newProfPicName)
-      //       var profPhotoUpdates = {};
-      //       profPhotoUpdates['users/' + profPicId + '/photoURL'] = newProfPicName;　//ここでRDの画像名を書き換え
-      //       firebase.database().ref().update(profPhotoUpdates);
-
-      //     // 新規登録成功時の処理
-      //     alert("おめでとうございます！ユーザー登録が完了しました！");
-      //     location.replace('timeline.html')
-      //   }).catch(function(error) {
-      //     console.log(error);
-      //     // 画像登録失敗時の処理
-      //     alert("画像が選択されていません( ´△｀)");
-      //   });
-      // }//ここまでーーーーー
 
       var uploadTask = storageRef.child('profilePic/' + newProfPicName).put(image);
 
@@ -116,17 +100,18 @@ function create() {
           location.replace('timeline.html');
         });
       });
-      
+
     };
   });
+
 }
 
 // Createの終わり
 
 function read() {
-
-  console.log('Firebaseからデータ取得');
+  console.log("Firebaseからデータ取得");
   firebase.auth().onAuthStateChanged(function(user) {
+
       if (user) {
         // User is signed in.
         // console.log(user); // ユーザー情報をコンソール出力してデータが取得できていることを確認する
@@ -192,82 +177,121 @@ function databaseUpdate() {
   // firebase.database().ref('users/' + userid ).set({
   //   firstName: '1212'
   // });
+
 }
 
 function update() {
-
-  console.log('アップデート処理実行');
-  // ユーザ情報更新処理を記述する
-  // ユーザーのプロフィールを更新する
-  var usersInfoUpdate = firebase.auth().currentUser;
-
-  user.updateProfile({
-    displayName: username,
-    // photoURL: 関数を入れる
-  }).then(function() {
-    // Update successful.
-  }).catch(function(error) {
-    // An error happened.
-  });
-
-
-  // ユーザーのメールアドレスを設定する
-  var userEmailUpdate = firebase.auth().currentUser;
-
-  user.updateEmail(email).then(function() {
-    // Update successful.
-  }).catch(function(error) {
-    // An error happened.
-  });
-
-
-  // ユーザーに確認メールを送信する
-  var userEmailSend = firebase.auth().currentUser;
-
-  user.sendEmailVerification().then(function() {
-    // Email sent.
-  }).catch(function(error) {
-    // An error happened.
-  });
-
-
-    // A post entry.
-    var postData = {
-      firstName: firstNameUpdate,
-      secondName: userSecondNameUpdate,
-      comment: profileTextUpdate,
-      photoURL: profilePicUpdate,
-    };
-
-
-// emailの更新
-  var updatesEmail = document.getElementById("inputEmail").value;
+  // まず、メールアドレスの更新処理から実施する
+  var email = $("#inputEmail").val();
+  var passwd = $("#inputPassword").val();
   var user = firebase.auth().currentUser;
-  user.updateEmail(updatesEmail).then(function() {
-  // Update successful.
-}).catch(function(error) {
-  // An error happened.
-});
+  // メールアドレス・パスワードなどのセキュリティ情報を変更するには、クレデンシャルを発行する必要がある
+  var credential = firebase.auth.EmailAuthProvider.credential(
+    user.email,
+    passwd
+  );
 
+  user
+    .reauthenticateAndRetrieveDataWithCredential(credential) // クレデンシャルを利用してユーザを再認証する
+    .then(function() {
+      user.updateEmail(email).then(function() {
+        // 続いて、usersテーブルの情報を更新する
+        var usersRef = firebase.database().ref("users/" + user.uid);
+        var firstName = $("#inputFirstName").val();
+        var secondName = $("#inputSecondName").val();
+        var userName = $("#inputUserName").val();
+        var comment = $("#exampleTextarea").val();
+
+        usersRef
+          .update({
+            firstName: firstName,
+            secondName: secondName,
+            userName: userName,
+            comment: comment
+          })
+          .then(function() {
+            // 画像登録処理
+            var files = document.getElementById("file").files;
+            var image = files[0];
+            var newFileName =
+              image.type.indexOf("png") !== -1
+                ? `${user.uid}.png`
+                : `${user.uid}.jpg`;
+            if (image.size > 0) {
+              var storageRef = firebase.storage().ref();
+              var uploadTask = storageRef
+                .child("images/" + newFileName)
+                .put(image);
+              uploadTask.on(
+                "state_changed",
+                function(snapshot) {
+                  var progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                  console.log("Upload is " + progress + "% done");
+                },
+                function(error) {
+                  alert("画像が選択されていません( ´△｀)");
+                },
+                // プロフィール画像を更新
+                function() {
+                  uploadTask.snapshot.ref
+                    .getDownloadURL()
+                    .then(function(downloadURL) {
+                      usersRef
+                        .update({
+                          photoURL: downloadURL // ダウンロードURLで更新する
+                        })
+                        .then(function() {
+                          alert("更新成功");
+                          location.replace("userInfoUpdate.html");
+                        });
+                    });
+                }
+              );
+            }
+          });
+      });
+    })
+    .catch(function(error) {
+      console.log(error.message);
+    });
 }
 
+// // ユーザーのメールアドレスを設定する
+// var userEmailUpdate = firebase.auth().currentUser;
+//
+// user.updateEmail(email).then(function() {
+//   // Update successful.
+// }).catch(function(error) {
+//   // An error happened.
+// });
+//
+//
+// // ユーザーに確認メールを送信する
+// var userEmailSend = firebase.auth().currentUser;
+//
+// user.sendEmailVerification().then(function() {
+//   // Email sent.
+// }).catch(function(error) {
+//   // An error happened.
+// });
 
 function drop() {
   // ユーザーを削除する
   var userDelete = firebase.auth().currentUser;
 
-  user.delete().then(function() {
-    // User deleted.
-  }).catch(function(error) {
-    // An error happened.
-  });
+  user
+    .delete()
+    .then(function() {
+      // User deleted.
+    })
+    .catch(function(error) {
+      // An error happened.
+    });
   return;
 }
 
-
-
 function validation() {
-
   var firstName = $("#inputFirstName").val();
   if (firstName == "") {
     //alert("姓　が入力されていません!");
@@ -303,7 +327,6 @@ function validation() {
     return false;
   }
 
-
   var password = $("#inputPassword").val();
   var confirmationPassword = $("#inputConfirmationPassword").val();
 
@@ -314,7 +337,6 @@ function validation() {
     return false;
   }
 }
-
 
 // 登録ボタン押下イベント
 $("#newuser").on("click", function() {
