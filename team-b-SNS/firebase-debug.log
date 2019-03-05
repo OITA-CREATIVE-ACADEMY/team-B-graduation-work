@@ -1,43 +1,83 @@
-[debug] [2019-02-19T10:06:21.455Z] ----------------------------------------------------------------------
-[debug] [2019-02-19T10:06:21.458Z] Command:       /Users/hab_air2/.nodebrew/node/v10.11.0/bin/node /Users/hab_air2/.nodebrew/current/bin/firebase serve
-[debug] [2019-02-19T10:06:21.459Z] CLI Version:   4.2.1
-[debug] [2019-02-19T10:06:21.459Z] Platform:      darwin
-[debug] [2019-02-19T10:06:21.459Z] Node Version:  v10.11.0
-[debug] [2019-02-19T10:06:21.467Z] Time:          Tue Feb 19 2019 19:06:21 GMT+0900 (GMT+09:00)
-[debug] [2019-02-19T10:06:21.467Z] ----------------------------------------------------------------------
+[debug] [2019-03-05T10:54:26.079Z] ----------------------------------------------------------------------
+[debug] [2019-03-05T10:54:26.081Z] Command:       /Users/ocauser/.nodebrew/node/v10.11.0/bin/node /Users/ocauser/.nodebrew/current/bin/firebase serve
+[debug] [2019-03-05T10:54:26.082Z] CLI Version:   4.2.1
+[debug] [2019-03-05T10:54:26.082Z] Platform:      darwin
+[debug] [2019-03-05T10:54:26.082Z] Node Version:  v10.11.0
+[debug] [2019-03-05T10:54:26.083Z] Time:          Tue Mar 05 2019 19:54:26 GMT+0900 (GMT+09:00)
+[debug] [2019-03-05T10:54:26.083Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2019-02-19T10:06:21.495Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-02-19T10:06:21.495Z] > authorizing via signed-in user
-[debug] [2019-02-19T10:06:21.498Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-02-19T10:06:21.498Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2019-03-05T10:54:26.094Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-05T10:54:26.094Z] > authorizing via signed-in user
+[debug] [2019-03-05T10:54:26.096Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-03-05T10:54:26.096Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
 
-[debug] [2019-02-19T10:06:21.827Z] <<< HTTP RESPONSE 200
-[debug] [2019-02-19T10:06:21.844Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/team-b-sns  
+[debug] [2019-03-05T10:54:26.507Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-05T10:54:26.524Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/team-b-sns  
  
-[debug] [2019-02-19T10:06:22.739Z] <<< HTTP RESPONSE 200
-[debug] [2019-02-19T10:06:22.740Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/team-b-sns  
+[debug] [2019-03-05T10:54:27.451Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-05T10:54:27.453Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/team-b-sns  
  
-[debug] [2019-02-19T10:06:23.779Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-05T10:54:28.469Z] <<< HTTP RESPONSE 200
 [info] 
-[info] === Serving from '/Users/hab_air2/Desktop/OCA/team-B-graduation-work/team-b-SNS'...
+[info] === Serving from '/Users/ocauser/Desktop/oca/APP/team-b-SNS'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2019-02-19T10:06:25.393Z] Fetching environment
-[debug] [2019-02-19T10:06:25.396Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/895377669050:getServerAppConfig  
+[debug] [2019-03-05T10:54:30.141Z] Fetching environment
+[debug] [2019-03-05T10:54:30.146Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/895377669050:getServerAppConfig  
  
-[debug] [2019-02-19T10:06:25.397Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/895377669050/clients/_:getWebAppConfig  
+[debug] [2019-03-05T10:54:30.147Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/895377669050/clients/_:getWebAppConfig  
  
-[debug] [2019-02-19T10:06:25.983Z] <<< HTTP RESPONSE 200
-[debug] [2019-02-19T10:06:25.984Z] Starting @google-cloud/functions-emulator
-[debug] [2019-02-19T10:06:26.490Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-05T10:54:30.798Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-05T10:54:30.799Z] Starting @google-cloud/functions-emulator
+[debug] [2019-03-05T10:54:30.823Z] <<< HTTP RESPONSE 200
 [info] i  hosting[team-b-sns]: Serving hosting files from: public
 [info] ✔  hosting[team-b-sns]: Local server: http://localhost:5000
-[debug] [2019-02-19T10:06:28.083Z] Parsing function triggers
+[debug] [2019-03-05T10:54:32.898Z] Parsing function triggers
 [warn] ⚠  functions: Failed to load functions source code. Ensure that you have the latest SDK by running npm i --save firebase-functions inside the functions directory.
-[debug] [2019-02-19T10:06:28.195Z] Error during trigger parsing:  Error parsing triggers: Cannot find module 'firebase-functions'
+[debug] [2019-03-05T10:54:33.000Z] Error during trigger parsing:  Error parsing triggers: Cannot find module 'firebase-functions'
 
 Try running "npm install" in your functions directory before deploying.
 [warn] ⚠  functions: Error from emulator. Error parsing triggers: Cannot find module 'firebase-functions'
 
 Try running "npm install" in your functions directory before deploying.
-[debug] [2019-02-19T10:06:28.197Z] 
+[debug] [2019-03-05T10:54:33.002Z] 
+[debug] [2019-03-05T11:18:00.720Z] ----------------------------------------------------------------------
+[debug] [2019-03-05T11:18:00.725Z] Command:       /Users/ocauser/.nodebrew/node/v10.11.0/bin/node /Users/ocauser/.nodebrew/current/bin/firebase serve
+[debug] [2019-03-05T11:18:00.725Z] CLI Version:   4.2.1
+[debug] [2019-03-05T11:18:00.725Z] Platform:      darwin
+[debug] [2019-03-05T11:18:00.725Z] Node Version:  v10.11.0
+[debug] [2019-03-05T11:18:00.727Z] Time:          Tue Mar 05 2019 20:18:00 GMT+0900 (GMT+09:00)
+[debug] [2019-03-05T11:18:00.727Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-03-05T11:18:00.748Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-03-05T11:18:00.748Z] > authorizing via signed-in user
+[debug] [2019-03-05T11:18:00.751Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/team-b-sns  
+ 
+[debug] [2019-03-05T11:18:01.622Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-05T11:18:01.625Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/team-b-sns  
+ 
+[debug] [2019-03-05T11:18:02.578Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/ocauser/Desktop/oca/APP/team-b-SNS'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2019-03-05T11:18:04.143Z] Fetching environment
+[debug] [2019-03-05T11:18:04.149Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/895377669050:getServerAppConfig  
+ 
+[debug] [2019-03-05T11:18:04.151Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/895377669050/clients/_:getWebAppConfig  
+ 
+[debug] [2019-03-05T11:18:05.034Z] <<< HTTP RESPONSE 200
+[debug] [2019-03-05T11:18:05.035Z] Starting @google-cloud/functions-emulator
+[debug] [2019-03-05T11:18:05.061Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5000 is not available. Trying another port...
+[info] i  hosting[team-b-sns]: Serving hosting files from: public
+[info] ✔  hosting[team-b-sns]: Local server: http://localhost:5005
+[debug] [2019-03-05T11:18:07.131Z] Parsing function triggers
+[warn] ⚠  functions: Failed to load functions source code. Ensure that you have the latest SDK by running npm i --save firebase-functions inside the functions directory.
+[debug] [2019-03-05T11:18:07.252Z] Error during trigger parsing:  Error parsing triggers: Cannot find module 'firebase-functions'
+
+Try running "npm install" in your functions directory before deploying.
+[warn] ⚠  functions: Error from emulator. Error parsing triggers: Cannot find module 'firebase-functions'
+
+Try running "npm install" in your functions directory before deploying.
+[debug] [2019-03-05T11:18:07.253Z] 
