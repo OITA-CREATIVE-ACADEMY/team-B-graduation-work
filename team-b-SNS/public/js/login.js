@@ -49,11 +49,11 @@ logout.addEventListener('click', function() {
 //認証状態の確認(ログインしているユーザーを取得する)
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    //ユーザーがログインしている状態
+    //ユーザーがログインしている状態→タイムラインへ1秒後に移動
     loginDisplay();
     setTimeout(function(){
     window.location.href = 'timeline.html';
-  }, 3*1000);
+  }, 1*1000);
   } else {
     //ユーザーがログインしていない状態
     logoutDisplay();

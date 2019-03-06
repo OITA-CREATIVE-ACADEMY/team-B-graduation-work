@@ -34,6 +34,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 
     <script src="js/apiConfig.js"></script>
+    <script type="text/javascript" src="js/loginUser.js"></script>
     
 
     
@@ -101,8 +102,8 @@
     </style>
   </head>
 
-  <body id="body00" class="d-none" >
-    <header class="sticky-top mb-2 bg-white">
+    <body id="body00" class="d-none" >
+      <header class="sticky-top mb-2 bg-white">
       <!-- 親（ここではheaderタブ）にかかるデフォルトの左右の余白をこのdivに当ててその下のrowにかからないようにするために入れている。 -->
       <div class="col-12">
         <div class="row align-items-end">
@@ -138,7 +139,7 @@
             data-toggle="tab"
             aria-controls="event_1"
             aria-selected="true"
-            >ハロウィン</a
+            >ホワイトデー</a
           >
         </li>
         <li class="nav-item">
@@ -150,7 +151,7 @@
             data-toggle="tab"
             aria-controls="event_2"
             aria-selected="false"
-            >クリスマス</a
+            >卒業式</a
           >
         </li>
         <li class="nav-item">
@@ -162,7 +163,7 @@
             data-toggle="tab"
             aria-controls="event_3"
             aria-selected="false"
-            >お正月</a
+            >お花見</a
           >
         </li>
       </ul>
@@ -170,71 +171,17 @@
       <!-- タブのコンテンツ部分 -->
       <div id="myTabContent" class="tab-content mt-3 container-fluid">
         <!-- １つ目のイベント -->
-        <div
-          id="event_1"
-          class="tab-pane active"
-          role="tabpanel"
-          aria-labelledby="event_1-tab"
-        >
+        <div id="event_1" class="tab-pane active" role="tabpanel" aria-labelledby="event_1-tab">
           <!-- ＃タグのボタン -->
           <div class="container-fluid">
             <div class="btnEvents btnEvent_1">
-              <button
-                type="button"
-                name="button"
-                id="cosplay"
-                class="btn-sm btn-outline-primary shadow-sm m-1 active"
-              >
-                #コスプレ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="witch"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #魔女
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="shibuhallo"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #渋ハロ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="pumpkin"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #かぼちゃ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="preparepanic"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #準備大変！
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="bats"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #コウモリ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="donki"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #ドンキホーテ
-              </button>
+              <button type="button" name="button" id="whiteday2019" class="btn-sm btn-outline-primary shadow-sm m-1 active">#ホワイトデー2019</button>
+              <button type="button" name="button" id="whitedayreturn" class="btn-sm btn-outline-primary shadow-sm m-1">#ホワイトデーお返し</button>
+              <button type="button" name="button" id="handmade" class="btn-sm btn-outline-primary shadow-sm m-1">#手作り</button>
+              <button type="button" name="button" id="wrapping" class="btn-sm btn-outline-primary shadow-sm m-1">#ラッピング</button>
+              <button type="button" name="button" id="present" class="btn-sm btn-outline-primary shadow-sm m-1">#プレゼント</button>
+              <button type="button" name="button" id="payback" class="btn-sm btn-outline-primary shadow-sm m-1">#お返しヤバイ</button>
+              <button type="button" name="button" id="date" class="btn-sm btn-outline-primary shadow-sm m-1">#デート</button>
             </div>
             <hr class="mw-100 mb-3 w-90 bg-gradient-light" />
           </div>
@@ -242,72 +189,18 @@
         </div>
 
         <!-- イベントのarea 2 -->
-        <div
-          id="event_2"
-          class="tab-pane"
-          role="tabpanel"
-          aria-labelledby="event_2-tab"
-        >
+        <div id="event_2" class="tab-pane" role="tabpanel" aria-labelledby="event_2-tab">
           <!-- ＃タグのボタン -->
           <div class="container-fluid">
-            <div class="btnEvents btnEvent_2">
-              <button
-                type="button"
-                name="button"
-                id="santaclause"
-                class="btn-sm btn-outline-primary shadow-sm m-1 active"
-              >
-                #サンタ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="xmastree"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #ツリー
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="presents"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #プレゼント
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="snow"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #雪
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="illumination"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #イルミネーション
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="xmaseve"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #イブ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="sevencake"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #セブンのケーキ
-              </button>
-            </div>
+              <div class="btnEvents btnEvent_2">
+                  <button type="button" name="button" id="graduation2019" class="btn-sm btn-outline-primary shadow-sm m-1 active">#卒業式2019</button>
+                  <button type="button" name="button" id="graduationhair" class="btn-sm btn-outline-primary shadow-sm m-1">#卒業式ヘア</button>
+                  <button type="button" name="button" id="graduationcode" class="btn-sm btn-outline-primary shadow-sm m-1">#卒業式コーデ</button>
+                  <button type="button" name="button" id="friends" class="btn-sm btn-outline-primary shadow-sm m-1">#友達</button>
+                  <button type="button" name="button" id="fellow" class="btn-sm btn-outline-primary shadow-sm m-1">#仲間</button>
+                  <button type="button" name="button" id="tears" class="btn-sm btn-outline-primary shadow-sm m-1">#涙</button>
+                  <button type="button" name="button" id="wordtogive" class="btn-sm btn-outline-primary shadow-sm m-1">#贈る言葉</button>
+                </div>
             <hr class="mw-100 mb-3 w-90 bg-gradient-light" />
           </div>
         </div>
@@ -322,68 +215,17 @@
         >
           <!-- ＃タグのボタン -->
           <div class="container-fluid">
-            <div class="btnEvents btnEvent_3">
-              <button
-                type="button"
-                name="button"
-                id="kagamimochi"
-                class="btn-sm btn-outline-primary shadow-sm m-1 active"
-              >
-                #鏡餅
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="otoshidama"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #お年玉
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="osechi"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #おせち
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="hatsumode"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #初詣
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="ekiden"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #駅伝
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="shougatsulive"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #お正月ライブ
-              </button>
-              <button
-                type="button"
-                name="button"
-                id="fukubukuro"
-                class="btn-sm btn-outline-primary shadow-sm m-1"
-              >
-                #福袋
-              </button>
-            </div>
+              <div class="btnEvents btnEvent_3">
+                  <button type="button" name="button" id="ohanami2019" class="btn-sm btn-outline-primary shadow-sm m-1">#お花見2019</button>
+                  <button type="button" name="button" id="ohanamilunchbox" class="btn-sm btn-outline-primary shadow-sm m-1">#お花見弁当</button>
+                  <button type="button" name="button" id="sunflowerviewday" class="btn-sm btn-outline-primary shadow-sm m-1">#お花見日和</button>
+                  <button type="button" name="button" id="sakura" class="btn-sm btn-outline-primary shadow-sm m-1">#桜</button>
+                  <button type="button" name="button" id="yosakura" class="btn-sm btn-outline-primary shadow-sm m-1">#夜桜</button>
+                  <button type="button" name="button" id="sakurasui" class="btn-sm btn-outline-primary shadow-sm m-1">#桜酔</button>
+                  <button type="button" name="button" id="placetaking" class="btn-sm btn-outline-primary shadow-sm m-1">#場所取り</button>
+                </div>    
             <hr class="mw-100 mb-3 w-90 bg-gradient-light" />
           </div>
-
-
         </div>
         <!-- イベントのarea 3 終わり-->
       </div>
@@ -567,7 +409,8 @@
             console.log("投稿についたいいね数=" + likesCount);
 
 
-            const text = `<div class="defaultBox"><div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="${postId}">
+            const text = `<div class="defaultBox container-fluid myPost" id="${postId}">
+              <div class="mw-100 shadow-sm p-2 mx-2 my-3 ${eventTitle} ${tagTitle}" id="${postId}">
 
             <div class="row">
               <!-- 投稿のbox -->
@@ -611,13 +454,13 @@
 
                     <div class="col-2 p-0 text-right">
                       <!-- ハート のbox -->
-                      <!-- 白ハート --> <img id="whiteHeart" class="" src="img/likes_heart_white.svg" alt="" style="width: 23px; height: 23px;" />
-                     <!-- 赤ハート --> <img id="redHeart" class="d-none" src="img/likes_heart.svg" alt="" style="width: 23px; height: 23px;" />
+                      <!-- 白ハート --> <img class="whiteHeart" src="img/likes_heart_white.svg" alt="" style="width: 30px;height: 30px;" />
+                      <!-- 赤ハート --> <img class="d-none redHeart" src="img/likes_heart.svg" alt="" style="width: 30px; height: 30px;" />
                     </div> <!-- ハート のbox 終わり-->
 
                     <div id="likesNumber" class="col-2 p-0"><!-- いいねの数 のbox -->
                       <!-- いいね！の数 -->
-                      <div class="mw-100 text-left pl-2" style="font-size:19px; vertical-align:100%">${likesCount}</div>
+                      <div id="likeCount" class="mw-100 text-left pl-2" style="font-size:19px; vertical-align:100%">${likesCount}</div>
                     </div> <!-- いいねの数 のbox 終わり-->
 
                   </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
@@ -649,7 +492,7 @@
       function changeEvent_tab1(){
         $("#tab_1").on('click',function(){
           $(".defaultBox").remove();
-          $("#cosplay").click();
+          $("#whiteday2019").click();
           exit;
       })
     }
@@ -657,7 +500,7 @@
     function changeEvent_tab2(){
         $("#tab_2").on('click',function(){
           $(".defaultBox").remove();
-          $("#santaclause").click();
+          $("#graduation2019").click();
           exit;
       })
     }
@@ -665,17 +508,82 @@
     function changeEvent_tab3(){
         $("#tab_3").on('click',function(){
           $(".defaultBox").remove();
-          $("#kagamimochi").click();
+          $("#ohanami2019").click();
           exit;
       })
     }
+
+
+//白ハートクリックで　いいね！　を１つ追加
+$(document).on('click', '.whiteHeart', function() {
+        var firebaseId = $(this).parents('.myPost').attr('id');
+        var heart = $(this).parent().find('img');
+        console.log("いいねした投稿のID------" + firebaseId) //いいねした投稿のID
+
+        heart.each((idx, elem) => {
+          if ($(elem).hasClass('d-none')) {
+            $(elem).removeClass('d-none');
+          } else {
+            $(elem).addClass('d-none');
+          }
+        });
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          console.log("いいねしたユーザーID------" + user.uid);　//いいねした人のID
+        });
+
+        //クリックした時のサーバーに登録された　いいね　の数を取得
+        firebase.database().ref('post/' + firebaseId).once("value").then(function(snapshot) {
+        var likes = (snapshot.val() && snapshot.val().likesCount) ;
+        var likePlus = 1; 
+        var whiteHeartClick = parseInt(likes) + parseInt(likePlus)
+        console.log(whiteHeartClick + "=いいねの数(白ハートクリックした時の処理)") //サーバーのいいね数に、１つ追加した数
+
+        //該当の　いいね数　を１増やす
+        document.getElementById("likeCount").innerHTML = whiteHeartClick;
+
+      });
+    })
+//白ハートクリックで　いいね！　を１つ追加　終わり
+
+//赤ハートクリックで　いいね！　を１つマイナス
+$(document).on('click', '.redHeart', function() {
+        var firebaseId = $(this).parents('.myPost').attr('id');
+        var redHeart = $(this).parent().find('img');
+        console.log("【赤ハート】いいねした投稿のID------" + firebaseId) //いいねした投稿のID
+
+        redHeart.each((idx, elem) => {
+          if ($(elem).hasClass('d-none')) {
+            $(elem).removeClass('d-none');
+          } else {
+            $(elem).addClass('d-none');
+          }
+        });
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          console.log("【赤ハート】いいねしたユーザーID------" + user.uid);　//いいねした人のID
+        });
+
+        //クリックした時のサーバーに登録された　いいね　の数を取得
+        firebase.database().ref('post/' + firebaseId).once("value").then(function(snapshot) {
+        var likes = (snapshot.val() && snapshot.val().likesCount) ;
+        var likePlus = 1; 
+        var whiteHeartClick = parseInt(likes) - parseInt(likePlus)
+        console.log(whiteHeartClick + "=【赤ハート】いいねの数(赤ハートクリックした時の処理)") //サーバーのいいね数に、１つマイナスした数
+
+        //該当の　いいね数　を１減らす
+        document.getElementById("likeCount").innerHTML = whiteHeartClick;
+      });
+    })
+//赤ハートクリックで　いいね！　を１つマイナス　終わり
+
 
 
     </script>
     <!--ここはタイムラインを開いた時に最初に読み込まれる処理（一番目のイベントで一番目の#タグ） -->
     <!-- 投稿の読み込み -->
     <script>
-      window.onload = readPost("cosplay");
+      window.onload = readPost("whiteday2019");
     </script>
 
     <script src="js/likesCount.js"></script>
