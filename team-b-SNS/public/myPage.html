@@ -177,7 +177,7 @@
               <div id="likesNumber" class="col-2 p-0">
                 <!-- いいねの数 のbox -->
                 <!-- いいね！の数 -->
-                <div id="likeCount" class="mw-100 text-left pl-2" style="font-size:19px; vertical-align:100%">${likesCount}</div>
+                <div id="likeCount" class="likeCountClass mw-100 text-left pl-2" style="font-size:19px; vertical-align:100%">${likesCount}</div>
               </div> <!-- いいねの数 のbox 終わり-->
             </div><!-- プロフ画像・投稿者名・投稿日・いいね！のbox 終わり-->
 
@@ -205,8 +205,9 @@
 
       });
 //白ハートクリックで　いいね！　を１つ追加
-      $(document).on('click', '.whiteHeart', function() {
-        var firebaseId = $(this).parents('.myPost').attr('id');
+$(document).on('click', '.whiteHeart', function() {
+        const rootDom = $(this).parents('.myPost');
+        var firebaseId = rootDom.attr('id');
         var heart = $(this).parent().find('img');
         console.log("いいねした投稿のID------" + firebaseId) //いいねした投稿のID
 
@@ -229,8 +230,24 @@
         var whiteHeartClick = parseInt(likes) + parseInt(likePlus)
         console.log(whiteHeartClick + "=いいねの数(白ハートクリックした時の処理)") //サーバーのいいね数に、１つ追加した数
 
+        const postData = snapshot.val();
+        console.log(postData);
+        console.log(postData.likesCount);
+
+        const countUp = postData.likesCount + 1;
+        console.log(countUp);
+
+        var likeUpdateObj = {};
+        likeUpdateObj['post/' + firebaseId + '/likesCount'] = countUp;
+        firebase.database().ref().update(likeUpdateObj).then(function () {
+          console.log('アップデート完了！！！！！');
         //該当の　いいね数　を１増やす
-        document.getElementById("likeCount").innerHTML = whiteHeartClick;
+        console.log(rootDom.find('.likeCountClass'));
+
+        rootDom.find('.likeCountClass').text(whiteHeartClick);
+        // document.getElementById("likeCount").innerHTML = whiteHeartClick;
+      });
+
       });
     })
 //白ハートクリックで　いいね！　を１つ追加　終わり
@@ -238,7 +255,8 @@
 
 //赤ハートクリックで　いいね！　を１つマイナス
 $(document).on('click', '.redHeart', function() {
-        var firebaseId = $(this).parents('.myPost').attr('id');
+        const rootDom = $(this).parents('.myPost');
+        var firebaseId = rootDom.attr('id');
         var redHeart = $(this).parent().find('img');
         console.log("【赤ハート】いいねした投稿のID------" + firebaseId) //いいねした投稿のID
 
@@ -256,13 +274,38 @@ $(document).on('click', '.redHeart', function() {
 
         //クリックした時のサーバーに登録された　いいね　の数を取得
         firebase.database().ref('post/' + firebaseId).once("value").then(function(snapshot) {
-        var likes = (snapshot.val() && snapshot.val().likesCount) ;
-        var likePlus = 1; 
-        var whiteHeartClick = parseInt(likes) - parseInt(likePlus)
-        console.log(whiteHeartClick + "=【赤ハート】いいねの数(赤ハートクリックした時の処理)") //サーバーのいいね数に、１つマイナスした数
+          var likes = (snapshot.val() && snapshot.val().likesCount) ;
+          var likePlus = 1; 
+          var whiteHeartClick = parseInt(likes) - parseInt(likePlus)
+          console.log(whiteHeartClick + "=【赤ハート】いいねの数(赤ハートクリックした時の処理)") //サーバーのいいね数に、１つマイナスした数
+
+          const postData = snapshot.val();
+
+          console.log(postData);
+          console.log(postData.likesCount);
+
+          const countDown = postData.likesCount - 1;
+          console.log(countDown);
+
+          var likeUpdateObj = {};
+          likeUpdateObj['post/' + firebaseId + '/likesCount'] = countDown;
+          firebase.database().ref().update(likeUpdateObj).then(function () {
+            console.log('アップデート完了！！！！！');
+          });
+
+
+          // firebase.database().ref(`post/${firebaseId}/likesCount`).then(function(likesUpdate) {
+          //   var likesCountUpdates = {};
+          //   likesCountUpdates[`post/${firebaseId}/likesCount`] = likesUpdate + 1;
+          //   console.log(likesCountUpdates)
+          //   firebase.database().ref().update(likesCountUpdates);
+          // });
+
 
         //該当の　いいね数　を１減らす
-        document.getElementById("likeCount").innerHTML = whiteHeartClick;
+        console.log(rootDom.find('.likeCountClass'));
+        rootDom.find('.likeCountClass').text(whiteHeartClick);
+        // document.getElementById("likeCount").innerHTML = whiteHeartClick;
       });
     })
 //赤ハートクリックで　いいね！　を１つマイナス　終わり
